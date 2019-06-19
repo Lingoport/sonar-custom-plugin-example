@@ -14,7 +14,7 @@ public class MyPluginPageDefinition implements PageDefinition {
         .setName("Custom Project Page (Pure JS)")
         .setScope(Scope.COMPONENT).build())
       .addPage(Page.builder("example/measures_history")
-        .setName("Custom Project Page using ReactJS")
+        .setName("Globalyzer")
         .setScope(Scope.COMPONENT).build())
 
       .addPage(Page.builder("example/custom_page_4_admin")

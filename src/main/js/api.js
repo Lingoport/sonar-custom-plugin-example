@@ -40,7 +40,7 @@ return getJSON('/api/project_analyses/search', {
   if (numberOfAnalyses > 0) {
     return getJSON('/api/measures/search_history', {
       component: project.key,
-      metrics: "lngprt-gyzr-scan-line-count,alert_status,bugs,vulnerabilities,code_smells,reliability_rating,security_rating,sqale_rating",
+      metrics: "lngprt-gyzr-scan-line-count,lngprt-gyzr-scan-rule-set-name,lngprt-gyzr-scan-local-ruleset,lngprt-gyzr-scan-violation-count,lngprt-gyzr-scan-file-count,lngprt-gyzr-scan-scan-name,lngprt-gyzr-scan-machine-learning",
       ps: 1000
     }).then(function (responseMetrics) {
       var data = [];
@@ -51,32 +51,35 @@ return getJSON('/api/project_analyses/search', {
         for (let j = 0; j < analysis.events.length; j++) {
           if (analysis.events[j].category === "VERSION") {
             let result = {version: analysis.events[j].name,
-                          alert_status:"",
-                          bugs:"0", vulnerabilities:"0", code_smells:"0",
-                          reliability_rating:"",security_rating:"",sqale_rating:""
+                          Scan:"",
+                          RuleSet:"",
+                           Issues:"0", Lines:"0",Files:"0"
+
                          };
-            const numberOfMeasuresRetrieved = 8;
+            const numberOfMeasuresRetrieved = 7;
 
             for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
               for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {
                 if ( responseMetrics.measures[k].history[d].date === responseAnalyses.analyses[i].date ) {
                   //console.log(responseMetrics.measures[k].metric);
-                  if (responseMetrics.measures[k].metric === "bugs") {
-                    result.bugs = responseMetrics.measures[k].history[d].value;
-                  } else if (responseMetrics.measures[k].metric === "vulnerabilities") {
-                    result.vulnerabilities = responseMetrics.measures[k].history[d].value;
-                  } else if (responseMetrics.measures[k].metric === "code_smells") {
-                    result.code_smells = responseMetrics.measures[k].history[d].value;
-                  } else if (responseMetrics.measures[k].metric === "alert_status") {
-                    result.alert_status = responseMetrics.measures[k].history[d].value;
-                  } else if (responseMetrics.measures[k].metric === "reliability_rating") {
-                    result.reliability_rating = responseMetrics.measures[k].history[d].value;
-                  } else if (responseMetrics.measures[k].metric === "security_rating") {
-                    result.security_rating = responseMetrics.measures[k].history[d].value;
-                  } else if (responseMetrics.measures[k].metric === "sqale_rating") {
-                    result.sqale_rating = responseMetrics.measures[k].history[d].value;
-                  } else if(responseMetrics.measures[k].metric === "lngprt-gyzr-scan-line-count"){
-                    result.sqale_rating = responseMetrics.measures[k].history[d].value;
+                  if (responseMetrics.measures[k].metric === "lngprt-gyzr-scan-line-count") {
+                    result.Lines = responseMetrics.measures[k].history[d].value;
+                  } else if (responseMetrics.measures[k].metric === "lngprt-gyzr-scan-rule-set-name") {
+                    result.RuleSet = responseMetrics.measures[k].history[d].value;
+                  } else if (responseMetrics.measures[k].metric === "lngprt-gyzr-scan-local-ruleset") {
+                    if(responseMetrics.measures[k].history[d].value === "0")
+                        result.RuleSet = result.RuleSet + "(Remote)";
+                    else {
+                      result.RuleSet = result.RuleSet + "(Local)";
+                    }
+                  } else if (responseMetrics.measures[k].metric === "lngprt-gyzr-scan-violation-count") {
+                    result.Issues = responseMetrics.measures[k].history[d].value;
+                  } else if (responseMetrics.measures[k].metric === "lngprt-gyzr-scan-file-count") {
+                    result.Files = responseMetrics.measures[k].history[d].value;
+                  } else if (responseMetrics.measures[k].metric === "lngprt-gyzr-scan-scan-name") {
+                    result.Scan = responseMetrics.measures[k].history[d].value;
+                  } else if(responseMetrics.measures[k].metric === "lngprt-gyzr-scan-machine-learning"){
+                  //  result.bugs = responseMetrics.measures[k].history[d].value;
                   }
                 }
               }

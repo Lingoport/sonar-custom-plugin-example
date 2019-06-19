@@ -30,18 +30,15 @@ export default class VersionsMeasuresHistoryApp extends React.PureComponent {
       <div className="page page-limited">
         <table className="data zebra">
           <thead><tr className="code-components-header">
-            <th className="thin nowrap text-left code-components-cell">Version</th>
+            <th className="thin nowrap text-left code-components-cell">Scan</th>
 
-            <th className="thin nowrap text-center code-components-cell">Quality Gate</th>
+            <th className="thin nowrap text-center code-components-cell">Rule Set</th>
 
-            <th className="thin nowrap text-right code-components-cell">{translate('issue.type.BUG.plural')}</th>
-            <th className="thin nowrap text-right code-components-cell">Reliability Rating</th>
+            <th className="thin nowrap text-right code-components-cell">Issues</th>
+            <th className="thin nowrap text-right code-components-cell">Lines</th>
 
-            <th className="thin nowrap text-right code-components-cell">Vulnerabilities</th>
-            <th className="thin nowrap text-right code-components-cell">Security Rating</th>
+            <th className="thin nowrap text-right code-components-cell">Files</th>
 
-            <th className="thin nowrap text-right code-components-cell">Code Smells</th>
-            <th className="thin nowrap text-right code-components-cell">Maintainability Rating</th>
           </tr></thead>
           <tbody>
           {this.state.data.map(
