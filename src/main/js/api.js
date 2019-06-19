@@ -38,10 +38,9 @@ return getJSON('/api/project_analyses/search', {
 }).then(function (responseAnalyses) {
   const numberOfAnalyses = responseAnalyses.analyses.length;
   if (numberOfAnalyses > 0) {
-
     return getJSON('/api/measures/search_history', {
       component: project.key,
-      metrics: "alert_status,bugs,vulnerabilities,code_smells,reliability_rating,security_rating,sqale_rating",
+      metrics: "lngprt-gyzr-scan-line-count,alert_status,bugs,vulnerabilities,code_smells,reliability_rating,security_rating,sqale_rating",
       ps: 1000
     }).then(function (responseMetrics) {
       var data = [];
@@ -56,7 +55,7 @@ return getJSON('/api/project_analyses/search', {
                           bugs:"0", vulnerabilities:"0", code_smells:"0",
                           reliability_rating:"",security_rating:"",sqale_rating:""
                          };
-            const numberOfMeasuresRetrieved = 7;
+            const numberOfMeasuresRetrieved = 8;
 
             for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
               for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {
@@ -75,6 +74,8 @@ return getJSON('/api/project_analyses/search', {
                   } else if (responseMetrics.measures[k].metric === "security_rating") {
                     result.security_rating = responseMetrics.measures[k].history[d].value;
                   } else if (responseMetrics.measures[k].metric === "sqale_rating") {
+                    result.sqale_rating = responseMetrics.measures[k].history[d].value;
+                  } else if(responseMetrics.measures[k].metric === "lngprt-gyzr-scan-line-count"){
                     result.sqale_rating = responseMetrics.measures[k].history[d].value;
                   }
                 }
