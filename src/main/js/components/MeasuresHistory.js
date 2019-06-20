@@ -2,6 +2,11 @@
  * Copyright (C) 2017-2017 SonarSource SA
  * All rights reserved
  * mailto:info AT sonarsource DOT com
+ <div className="lpgzsummaryscanwidget" style="height:100%;">
+
+   <div className="widget">
+     <h3>Globalyzer Scans</h3>
+    <div className="lg_widget">
  */
 import React from 'react';
 import QualityGate from './QualityGate'
@@ -40,6 +45,7 @@ export default class MeasuresHistory extends React.PureComponent {
       <tbody>
           {content}
       </tbody></table>
+
     );
   }
 }
