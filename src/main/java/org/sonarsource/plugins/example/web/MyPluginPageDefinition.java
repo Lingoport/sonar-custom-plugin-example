@@ -11,7 +11,7 @@ public class MyPluginPageDefinition implements PageDefinition {
   public void define(Context context) {
     context
       .addPage(Page.builder("example/custom_page_4_project")
-        .setName("Custom Project Page (Pure JS)")
+        .setName("Resource Manager")
         .setScope(Scope.COMPONENT).build())
       .addPage(Page.builder("example/measures_history")
         .setName("Globalyzer")

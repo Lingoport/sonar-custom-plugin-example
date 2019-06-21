@@ -14,7 +14,7 @@ import Rating from './Rating'
 import '../style.css';
 
 
-export default class MeasuresHistory extends React.PureComponent {
+export default class GlobalyzerScanSummary extends React.PureComponent {
 
   render() {
     var scan = this.props.measure.Scan.split(";")
