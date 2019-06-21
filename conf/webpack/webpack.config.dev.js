@@ -8,7 +8,7 @@ const config = require('./webpack.config');
 
 config.devtool = 'eval';
 
-config.output.publicPath = '/static/example/';
+config.output.publicPath = '/static/lingoport/';
 
 config.output.pathinfo = true;
 

@@ -17,30 +17,27 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-package org.sonarsource.plugins.example.settings;
+package org.sonarsource.plugins.lingoport;
 
-import java.util.List;
+import org.sonar.api.Plugin;
 import org.sonar.api.config.PropertyDefinition;
+import org.sonarsource.plugins.lingoport.web.MyPluginPageDefinition;
 
 import static java.util.Arrays.asList;
 
-public class HelloWorldProperties {
+/**
+ * This class is the entry point for all extensions. It is referenced in pom.xml.
+ */
+public class LingoportPlugin implements Plugin {
 
-  public static final String HELLO_KEY = "sonar.example.hello";
-  public static final String CATEGORY = "Properties Example";
+  @Override
+  public void define(Context context) {
+    // tutorial on hooks
+    // http://docs.sonarqube.org/display/DEV/Adding+Hooks
 
-  private HelloWorldProperties() {
-    // only statics
+    // tutorial on web extensions
+    context.addExtension(MyPluginPageDefinition.class);
+
+
   }
-
-  public static List<PropertyDefinition> getProperties() {
-    return asList(
-      PropertyDefinition.builder(HELLO_KEY)
-        .name("Hello")
-        .description("Say Hello")
-        .defaultValue(String.valueOf(false))
-        .category(CATEGORY)
-        .build());
-  }
-
 }

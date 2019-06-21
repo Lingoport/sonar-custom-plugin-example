@@ -21,8 +21,7 @@ const output = path.join(__dirname, '../../target/classes/static');
 module.exports = {
   devtool: 'source-map',
   entry: {
-    'measures_history': ['./src/main/js/app-measures_history.js'],
-    'sanity_check': ['./src/main/js/app-sanity_check.js'],
+    'globalyzer_page': ['./src/main/js/app-globalyzer_page.js'],
   },
   output: {
     path: output,

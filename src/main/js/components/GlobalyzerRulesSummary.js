@@ -4,8 +4,6 @@
  * mailto:info AT sonarsource DOT com
  */
 import React from 'react';
-import QualityGate from './QualityGate'
-import Rating from './Rating'
 import '../style.css';
 
 

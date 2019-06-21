@@ -5,15 +5,17 @@
  */
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
-import InstanceStatisticsApp from './components/InstanceStatisticsApp';
+import GlobalyzerApp from './components/GlobalyzerApp';
 import './style.css';
 
-window.registerExtension('example/sanity_check', options => {
+window.registerExtension('lingoport/globalyzer_page', options => {
 
   const { el } = options;
 
   render(
-          <InstanceStatisticsApp/>, el
+          <GlobalyzerApp
+            project={options.component}
+          />, el
   );
 
   return () => unmountComponentAtNode(el);

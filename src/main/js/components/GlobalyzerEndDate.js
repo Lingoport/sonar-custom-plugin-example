@@ -9,8 +9,6 @@
     <div className="lg_widget">
  */
 import React from 'react';
-import QualityGate from './QualityGate'
-import Rating from './Rating'
 import '../style.css';
 
 

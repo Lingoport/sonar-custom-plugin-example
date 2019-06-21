@@ -11,8 +11,6 @@
 
  */
 import React from 'react';
-import QualityGate from './QualityGate'
-import Rating from './Rating'
 import '../style.css';
 
 
@@ -32,8 +30,7 @@ export default class GlobalyzerViolations extends React.PureComponent {
 
     var chart = ch.substring(0,ch.length-1) + "&chl="  +chl.substring(0,chl.length-1);
     var proj = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&tags=gz'
-
-     var  chart_v = 'https://chart.googleapis.com/chart?chs=400x160&chco=7AAF00&cht=p3&chd=t:' +chart
+    chart = 'https://chart.googleapis.com/chart?chs=400x160&chco=7AAF00&cht=p3&chd=t:' +chart
 
     return (
 
@@ -49,7 +46,7 @@ export default class GlobalyzerViolations extends React.PureComponent {
       <br/>
       <span>{this.props.measure.ratio} rules activated</span>
       <br/>
-          <img src={chart_v}/>
+          <img src={chart}/>
     </tbody></table>
 
     );

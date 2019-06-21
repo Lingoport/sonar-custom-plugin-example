@@ -17,7 +17,7 @@ import GlobalyzerRulesSummary from './GlobalyzerRulesSummary'
 
 
 
-export default class VersionsMeasuresHistoryApp extends React.PureComponent {
+export default class GlobalyzerApp extends React.PureComponent {
 
   state = {
     endDate: [],

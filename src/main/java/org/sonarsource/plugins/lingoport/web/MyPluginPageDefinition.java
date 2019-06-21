@@ -1,4 +1,4 @@
-package org.sonarsource.plugins.example.web;
+package org.sonarsource.plugins.lingoport.web;
 
 import org.sonar.api.web.page.Context;
 import org.sonar.api.web.page.Page;
@@ -10,23 +10,23 @@ public class MyPluginPageDefinition implements PageDefinition {
   @Override
   public void define(Context context) {
     context
-      .addPage(Page.builder("example/custom_page_4_project")
+      .addPage(Page.builder("lingoport/custom_page_4_project")
         .setName("Resource Manager")
         .setScope(Scope.COMPONENT).build())
-      .addPage(Page.builder("example/measures_history")
+      .addPage(Page.builder("lingoport/globalyzer_page")
         .setName("Globalyzer")
         .setScope(Scope.COMPONENT).build())
 
-      .addPage(Page.builder("example/custom_page_4_admin")
+      .addPage(Page.builder("lingoport/custom_page_4_admin")
         .setName("Custom Admin Page")
         .setScope(Scope.GLOBAL)
         .setAdmin(Boolean.TRUE).build())
-      .addPage(Page.builder("example/sanity_check")
+      .addPage(Page.builder("lingoport/sanity_check")
         .setName("Custom Admin Page Sanity Check")
         .setScope(Scope.GLOBAL)
         .setAdmin(Boolean.TRUE).build())
 
-      .addPage(Page.builder("example/custom_page_global")
+      .addPage(Page.builder("lingoport/custom_page_global")
         .setName("Custom Global Page")
         .setScope(Scope.GLOBAL).build());
   }
