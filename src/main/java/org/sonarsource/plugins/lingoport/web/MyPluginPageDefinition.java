@@ -13,6 +13,7 @@ public class MyPluginPageDefinition implements PageDefinition {
       .addPage(Page.builder("lingoport/custom_page_4_project")
         .setName("Resource Manager")
         .setScope(Scope.COMPONENT).build())
+
       .addPage(Page.builder("lingoport/globalyzer_page")
         .setName("Globalyzer")
         .setScope(Scope.COMPONENT).build())
@@ -21,10 +22,7 @@ public class MyPluginPageDefinition implements PageDefinition {
         .setName("Custom Admin Page")
         .setScope(Scope.GLOBAL)
         .setAdmin(Boolean.TRUE).build())
-      .addPage(Page.builder("lingoport/sanity_check")
-        .setName("Custom Admin Page Sanity Check")
-        .setScope(Scope.GLOBAL)
-        .setAdmin(Boolean.TRUE).build())
+
 
       .addPage(Page.builder("lingoport/custom_page_global")
         .setName("Custom Global Page")
