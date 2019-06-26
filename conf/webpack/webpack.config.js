@@ -22,6 +22,7 @@ module.exports = {
   devtool: 'source-map',
   entry: {
     'globalyzer_page': ['./src/main/js/app-globalyzer_page.js'],
+    'lrm_page': ['./src/main/js/app-lrm_page.js']
   },
   output: {
     path: output,

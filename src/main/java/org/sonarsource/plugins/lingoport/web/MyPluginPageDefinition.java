@@ -10,7 +10,7 @@ public class MyPluginPageDefinition implements PageDefinition {
   @Override
   public void define(Context context) {
     context
-      .addPage(Page.builder("lingoport/custom_page_4_project")
+      .addPage(Page.builder("lingoport/lrm_page")
         .setName("Resource Manager")
         .setScope(Scope.COMPONENT).build())
 
