@@ -280,7 +280,7 @@ return getJSON('/api/project_analyses/search', {
             let result = {version: analysis.events[j].name,
                           concatenations:"",
                           static:"",
-                           embedded:"0", sensitive:"0",general:"0"
+                           embedded:"0", sensitive:"0",general:"0",project: project.key
                          };
             const numberOfMeasuresRetrieved = 5;
 
