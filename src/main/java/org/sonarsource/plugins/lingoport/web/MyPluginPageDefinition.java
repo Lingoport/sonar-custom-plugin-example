@@ -18,12 +18,6 @@ public class MyPluginPageDefinition implements PageDefinition {
         .setName("Globalyzer")
         .setScope(Scope.COMPONENT).build())
 
-      .addPage(Page.builder("lingoport/custom_page_4_admin")
-        .setName("Custom Admin Page")
-        .setScope(Scope.GLOBAL)
-        .setAdmin(Boolean.TRUE).build())
-
-
       .addPage(Page.builder("lingoport/custom_page_global")
         .setName("Custom Global Page")
         .setScope(Scope.GLOBAL).build());

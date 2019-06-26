@@ -6,8 +6,9 @@
  */
 import React from 'react';
 import {translate} from '../common/l10n.js'
-import {findVersionsAndMeasures} from '../api.js'
+import {findScans} from '../api.js'
 import {findgyzrEndDate} from '../api.js'
+import {findgyzrSummary} from '../api.js'
 import {findgyzrViolations} from '../api.js'
 import GlobalyzerEndDate from './GlobalyzerEndDate'
 import GlobalyzerScanSummary from './GlobalyzerScanSummary'
@@ -22,11 +23,12 @@ export default class GlobalyzerApp extends React.PureComponent {
   state = {
     endDate: [],
     data: [],
-    violation: []
+    violation: [],
+    summary: []
   };
 
   componentDidMount() {
-    findVersionsAndMeasures(this.props.project).then(
+    findScans(this.props.project).then(
       (valuesReturnedByAPI) => {
         this.setState({
           data: valuesReturnedByAPI
@@ -46,6 +48,14 @@ export default class GlobalyzerApp extends React.PureComponent {
       (valuesReturnedByAPI) => {
         this.setState({
           violation: valuesReturnedByAPI
+        });
+      }
+    );
+
+    findgyzrSummary(this.props.project).then(
+      (valuesReturnedByAPI) => {
+        this.setState({
+          summary: valuesReturnedByAPI
         });
       }
     );
@@ -88,6 +98,19 @@ export default class GlobalyzerApp extends React.PureComponent {
                   />
                   )
           }
+          <br/>
+          <br/>
+          <h3>Globalyzer Summary</h3>
+          {this.state.summary.map(
+                (value,idx) =>
+                <GlobalyzerRulesSummary
+                  measure={value}
+                  key={idx}
+                  />
+                  )
+          }
+
+
 
           </tbody>
         </table>
