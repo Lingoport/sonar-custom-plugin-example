@@ -10,12 +10,12 @@ import {findScans} from '../api.js'
 import {findgyzrEndDate} from '../api.js'
 import {findgyzrSummary} from '../api.js'
 import {findgyzrViolations} from '../api.js'
+import {findgyzrHistory} from '../api.js'
 import GlobalyzerEndDate from './GlobalyzerEndDate'
 import GlobalyzerScanSummary from './GlobalyzerScanSummary'
 import GlobalyzerViolations from './GlobalyzerViolations'
 import GlobalyzerRulesSummary from './GlobalyzerRulesSummary'
-
-
+import GlobalyzerIssuesHistory from './GlobalyzerIssuesHistory'
 
 
 export default class GlobalyzerApp extends React.PureComponent {
@@ -24,7 +24,8 @@ export default class GlobalyzerApp extends React.PureComponent {
     endDate: [],
     data: [],
     violation: [],
-    summary: []
+    summary: [],
+    history: []
   };
 
   componentDidMount() {
@@ -40,6 +41,14 @@ export default class GlobalyzerApp extends React.PureComponent {
       (valuesReturnedByAPI) => {
         this.setState({
           endDate: valuesReturnedByAPI
+        });
+      }
+    );
+
+    findgyzrHistory(this.props.project).then(
+      (valuesReturnedByAPI) => {
+        this.setState({
+          history: valuesReturnedByAPI
         });
       }
     );
@@ -109,7 +118,17 @@ export default class GlobalyzerApp extends React.PureComponent {
                   />
                   )
           }
+          <br/>
+          <br/>
 
+          {this.state.history.map(
+                (value,idx) =>
+                <GlobalyzerIssuesHistory
+                  measure={value}
+                  key={idx}
+                  />
+                  )
+          }
 
 
           </tbody>

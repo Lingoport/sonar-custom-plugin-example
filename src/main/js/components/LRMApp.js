@@ -5,8 +5,9 @@
 
  */
 import React from 'react';
+import { Chart } from "react-google-charts";
 import {translate} from '../common/l10n.js'
-import {findVersionsAndMeasures} from '../api.js'
+import {findScans} from '../api.js'
 import {findgyzrEndDate} from '../api.js'
 import {findgyzrViolations} from '../api.js'
 import GlobalyzerEndDate from './GlobalyzerEndDate'
@@ -16,23 +17,27 @@ import GlobalyzerRulesSummary from './GlobalyzerRulesSummary'
 
 
 
-
 export default class LRMApp extends React.PureComponent {
 
   state = {
     endDate: [],
     data: [],
-    violation: []
+    violation: [],
+    chart: []
   };
 
+
+
+
   componentDidMount() {
-    findVersionsAndMeasures(this.props.project).then(
+    findScans(this.props.project).then(
       (valuesReturnedByAPI) => {
         this.setState({
           data: valuesReturnedByAPI
         });
       }
     );
+
 
     findgyzrEndDate(this.props.project).then(
       (valuesReturnedByAPI) => {
@@ -52,10 +57,12 @@ export default class LRMApp extends React.PureComponent {
 
   }
 
+
   render() {
     // Data Gathered: {JSON.stringify(this.state.data)}
     return (
       <div className="page page-limited">
+
         <table className="data zebra">
           <thead><tr className="code-components-header">
             {this.state.endDate.map(
@@ -88,6 +95,34 @@ export default class LRMApp extends React.PureComponent {
                   />
                   )
           }
+          <br/>
+          <br/>
+          <div>
+          <Chart
+            width={'430px'}
+            height={'250px'}
+            chartType="LineChart"
+            loader={<div>Loading Chart</div>}
+            data={[
+              ['x', 'Globalyzer Issues'],
+              [new Date(2000, 8, 5), 0],
+              [new Date(2000, 9, 5), 10],
+              [new Date(2000, 12, 5), 23],
+              [new Date(2001, 6, 5), 17],
+              [new Date(2001, 6, 9), 27],
+              [new Date(2001, 6, 20), 87],
+              [new Date(2001, 7, 5), 67],
+              [new Date(2001, 7, 30), 47],
+              [new Date(2001, 8, 2), 37],
+
+            ]}
+            options={{
+              chart: {
+               title: 'Globalyzer Issues',
+              },
+            }}
+          />
+          </div>
 
           </tbody>
         </table>
