@@ -332,35 +332,22 @@ return getJSON('/api/project_analyses/search', {
     }).then(function (responseMetrics) {
       var data = [];
       var numberOfVersions=0;
+      let result = {
+                    gdate: [],
+                    value: []
+                   };
 
-      for (let i = 0; i < numberOfAnalyses; i++) {
-        let analysis = responseAnalyses.analyses[i];
-        for (let j = 0; j < analysis.events.length; j++) {
-          if (analysis.events[j].category === "VERSION") {
-            let result = {version: analysis.events[j].name,
-                          gdate: "",
-                          value: ""
-                         };
-            const numberOfMeasuresRetrieved = 1;
+      //for (let i = 0; i < numberOfAnalyses; i++) {
+          for(let d = 0; d < responseMetrics.measures[0].history.length; d++) {
+                result.gdate[d] = responseMetrics.measures[0].history[d].date;
+                result.value[d] = responseMetrics.measures[0].history[d].value;
+                if(result.value[d]  === undefined)
+                    result.value[d] =0;
 
-            for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
-              for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {
-                if ( responseMetrics.measures[k].history[d].date === responseAnalyses.analyses[i].date ) {
-                  //console.log(responseMetrics.measures[k].metric);
-                  if (responseMetrics.measures[k].metric === "lngprt-gyzr-violations") {
-                    result.gdate = responseMetrics.measures[k].history[d].date;
-                    result.value = responseMetrics.measures[k].history[d].value;
-                  }
-
-                }
-              }
-            }
-
-            data[numberOfVersions] = result;
-            numberOfVersions++;
           }
-        }
-      }
+            data[numberOfVersions] = result;
+          //  numberOfVersions++;
+    //  }
       //console.table(data);
       return data;
     });
