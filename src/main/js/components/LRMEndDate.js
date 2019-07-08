@@ -19,7 +19,8 @@ export default class LRMEndDate extends React.PureComponent {
     return (
       <table className="lg_ds_progress_bar" border="0" width="500">
       <tbody>
-          <td>Your LRM License is valid until {this.props.measure.endDate}</td>
+          <tr>Your LRM License is valid until {this.props.measure.endDate}</tr>
+          <tr>Your InContextQA License is valid until {this.props.measure.lqaendDate}</tr>
       </tbody></table>
 
     );

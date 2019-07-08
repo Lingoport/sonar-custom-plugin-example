@@ -41,7 +41,7 @@ return getJSON('/api/project_analyses/search', {
   if (numberOfAnalyses > 0) {
     return getJSON('/api/measures/search_history', {
       component: project.key,
-      metrics: "lngprt-lrm-license-enddate",
+      metrics: "lngprt-lrm-license-enddate,lngprt-lqa-license-enddate",
       ps: 1000
     }).then(function (responseMetrics) {
       var data = [];
@@ -52,9 +52,10 @@ return getJSON('/api/project_analyses/search', {
         for (let j = 0; j < analysis.events.length; j++) {
           if (analysis.events[j].category === "VERSION") {
             let result = {version: analysis.events[j].name,
-                          endDate: ""
+                          endDate: "",
+                          lqaendDate:"",
                          };
-            const numberOfMeasuresRetrieved = 1;
+            const numberOfMeasuresRetrieved = 2;
 
             for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
               for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {
@@ -62,6 +63,8 @@ return getJSON('/api/project_analyses/search', {
                   //console.log(responseMetrics.measures[k].metric);
                   if (responseMetrics.measures[k].metric === "lngprt-lrm-license-enddate") {
                     result.endDate = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lqa-license-enddate") {
+                      result.lqaendDate = responseMetrics.measures[k].history[d].value;
                   }
 
                 }
