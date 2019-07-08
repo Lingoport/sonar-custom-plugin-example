@@ -8,9 +8,9 @@ import React from 'react';
 import { Chart } from "react-google-charts";
 import {translate} from '../common/l10n.js'
 import {findScans} from '../api.js'
-import {findgyzrEndDate} from '../api.js'
+import {findlrmEndDate} from '../api_lrm.js'
 import {findgyzrViolations} from '../api.js'
-import GlobalyzerEndDate from './GlobalyzerEndDate'
+import LRMEndDate from './LRMEndDate'
 import GlobalyzerScanSummary from './GlobalyzerScanSummary'
 import GlobalyzerViolations from './GlobalyzerViolations'
 import GlobalyzerRulesSummary from './GlobalyzerRulesSummary'
@@ -39,7 +39,7 @@ export default class LRMApp extends React.PureComponent {
     );
 
 
-    findgyzrEndDate(this.props.project).then(
+    findlrmEndDate(this.props.project).then(
       (valuesReturnedByAPI) => {
         this.setState({
           endDate: valuesReturnedByAPI
@@ -67,7 +67,7 @@ export default class LRMApp extends React.PureComponent {
           <thead><tr className="code-components-header">
             {this.state.endDate.map(
                 (value,idx) =>
-                <GlobalyzerEndDate
+                <LRMEndDate
                   measure={value}
                   key={idx}
                 />
@@ -75,26 +75,8 @@ export default class LRMApp extends React.PureComponent {
             }
             <br/>
           </tr></thead>
-          <h3>Globalyzer Scans</h3>
+          <h3>Next Prep Kit Content</h3>
           <tbody>
-          {this.state.data.map(
-              (value,idx) =>
-              <GlobalyzerScanSummary
-                measure={value}
-                key={idx}
-              />
-              )
-          }
-          <br/>
-          <br/>
-          {this.state.violation.map(
-                (value,idx) =>
-                <GlobalyzerViolations
-                  measure={value}
-                  key={idx}
-                  />
-                  )
-          }
           <br/>
           <br/>
           <div>
@@ -104,7 +86,7 @@ export default class LRMApp extends React.PureComponent {
             chartType="LineChart"
             loader={<div>Loading Chart</div>}
             data={[
-              ['x', 'Globalyzer Issues'],
+              ['x', 'LRM Remaining Files'],
               [new Date(2000, 8, 5), 0],
               [new Date(2000, 9, 5), 10],
               [new Date(2000, 12, 5), 23],
@@ -118,7 +100,7 @@ export default class LRMApp extends React.PureComponent {
             ]}
             options={{
               chart: {
-               title: 'Globalyzer Issues',
+               title: 'LRM Remaining Files',
               },
             }}
           />

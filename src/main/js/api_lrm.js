@@ -41,7 +41,7 @@ return getJSON('/api/project_analyses/search', {
   if (numberOfAnalyses > 0) {
     return getJSON('/api/measures/search_history', {
       component: project.key,
-      metrics: "lngprt-globalyzer-license-enddate",
+      metrics: "lngprt-lrm-license-enddate",
       ps: 1000
     }).then(function (responseMetrics) {
       var data = [];
@@ -60,7 +60,7 @@ return getJSON('/api/project_analyses/search', {
               for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {
                 if ( responseMetrics.measures[k].history[d].date === responseAnalyses.analyses[i].date ) {
                   //console.log(responseMetrics.measures[k].metric);
-                  if (responseMetrics.measures[k].metric === "lngprt-globalyzer-license-enddate") {
+                  if (responseMetrics.measures[k].metric === "lngprt-lrm-license-enddate") {
                     result.endDate = responseMetrics.measures[k].history[d].value;
                   }
 

@@ -19,7 +19,7 @@ export default class LRMEndDate extends React.PureComponent {
     return (
       <table className="lg_ds_progress_bar" border="0" width="500">
       <tbody>
-          <td>Your Globalyzer License is valid until {this.props.measure.endDate}</td>
+          <td>Your LRM License is valid until {this.props.measure.endDate}</td>
       </tbody></table>
 
     );

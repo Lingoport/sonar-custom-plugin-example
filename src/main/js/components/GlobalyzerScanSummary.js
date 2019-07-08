@@ -15,12 +15,14 @@ import '../style.css';
 export default class GlobalyzerScanSummary extends React.PureComponent {
 
   render() {
-    var scan = this.props.measure.Scan.split(";")
-    var ruleset = this.props.measure.RuleSet.split(";")
-    var issues = this.props.measure.Issues.split(";")
-    var lines = this.props.measure.Lines.split(";")
-    var files = this.props.measure.Files.split(";")
-
+    if(this.props.measure.Scan === undefined){
+       var content = "";
+    }else{
+      var scan = this.props.measure.Scan.split(";")
+      var ruleset = this.props.measure.RuleSet.split(";")
+      var issues = this.props.measure.Issues.split(";")
+      var lines = this.props.measure.Lines.split(";")
+      var files = this.props.measure.Files.split(";")
     var content = new Array(scan.length);
     for(let d = 0; d < scan.length; d++){
      content[d]  = (
@@ -33,6 +35,7 @@ export default class GlobalyzerScanSummary extends React.PureComponent {
         </tr>
     );
   }
+}
     return (
       <table className="lg_ds_progress_bar" border="0" width="500">
       <thead>

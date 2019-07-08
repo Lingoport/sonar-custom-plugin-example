@@ -31,7 +31,9 @@ export default class GlobalyzerIssuesHistory extends React.PureComponent {
 
   render() {
 
-
+    if(this.props.measure.gdate === undefined){
+       var content = "";
+    }else{
     var content = new Array(this.props.measure.gdate.length+1);
     content[0] = ['x', 'Globalyzer Issues'];
     let m = 0;
@@ -41,6 +43,7 @@ export default class GlobalyzerIssuesHistory extends React.PureComponent {
     );
      m++;
   }
+}
 
     return (
       <table className="lg_ds_progress_bar" border="0" width="500">
