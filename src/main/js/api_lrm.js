@@ -28,7 +28,7 @@ export function findProjects(project) {
      return response.components.length;
   });
 }
-//
+
 
 export function findlrmEndDate(project) {
 
@@ -67,6 +67,74 @@ return getJSON('/api/project_analyses/search', {
                       result.lqaendDate = responseMetrics.measures[k].history[d].value;
                   }
 
+                }
+              }
+            }
+
+            data[numberOfVersions] = result;
+            numberOfVersions++;
+          }
+        }
+      }
+      //console.table(data);
+      return data;
+    });
+  }
+ });
+}
+
+
+export function findPrepLocale(project) {
+
+return getJSON('/api/project_analyses/search', {
+  project: project.key,
+  p: 1,
+  ps: 500,
+}).then(function (responseAnalyses) {
+  const numberOfAnalyses = responseAnalyses.analyses.length;
+  if (numberOfAnalyses > 0) {
+    return getJSON('/api/measures/search_history', {
+      component: project.key,
+      metrics: "lngprt-lrm-files-to-prep-locale_ids,lngprt-lrm-num-files-to-prep-locales,lngprt-lrm-num-keys-to-prep-locales,lngprt-lrm-num-words-to-prep-locales,lngprt-lrm-num-files-to-prep-locale_names,lngprt-lrm-files-to-prep,lngprt-lrm-critical-errors",
+      ps: 1000
+    }).then(function (responseMetrics) {
+      var data = [];
+      var numberOfVersions=0;
+
+      for (let i = 0; i < numberOfAnalyses; i++) {
+        let analysis = responseAnalyses.analyses[i];
+        for (let j = 0; j < analysis.events.length; j++) {
+          if (analysis.events[j].category === "VERSION") {
+            let result = {version: analysis.events[j].name,
+                          localeMSR: "",
+                          numFilesMSR:"",
+                          numKeysMSR:"",
+                          numWordsMSR:"",
+                          displayNameMSR:"",
+                          filesToPrepMSR:"",
+                          errorCountMSR:"",
+                         };
+            const numberOfMeasuresRetrieved = 7;
+
+            for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
+              for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {
+                if ( responseMetrics.measures[k].history[d].date === responseAnalyses.analyses[i].date ) {
+                  //console.log(responseMetrics.measures[k].metric);
+                  if (responseMetrics.measures[k].metric === "lngprt-lrm-files-to-prep-locale_ids") {
+                    result.localeMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-num-files-to-prep-locales") {
+                      result.numFilesMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-num-keys-to-prep-locales") {
+                      result.numKeysMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-num-words-to-prep-locales") {
+                      result.numWordsMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-num-files-to-prep-locale_names") {
+                      result.displayNameMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-files-to-prep") {
+                      result.filesToPrepMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-critical-errors") {
+                      result.errorCountMSR = responseMetrics.measures[k].history[d].value;
+                  }
                 }
               }
             }

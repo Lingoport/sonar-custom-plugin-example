@@ -9,11 +9,10 @@ import { Chart } from "react-google-charts";
 import {translate} from '../common/l10n.js'
 import {findScans} from '../api.js'
 import {findlrmEndDate} from '../api_lrm.js'
-import {findgyzrViolations} from '../api.js'
+import {findPrepLocale} from '../api_lrm.js'
 import LRMEndDate from './LRMEndDate'
-import GlobalyzerScanSummary from './GlobalyzerScanSummary'
-import GlobalyzerViolations from './GlobalyzerViolations'
-import GlobalyzerRulesSummary from './GlobalyzerRulesSummary'
+import LRMPrepKitContent from './LRMPrepKitContent'
+
 
 
 
@@ -22,6 +21,7 @@ export default class LRMApp extends React.PureComponent {
   state = {
     endDate: [],
     data: [],
+    preLocal: [],
     violation: [],
     chart: []
   };
@@ -47,10 +47,10 @@ export default class LRMApp extends React.PureComponent {
       }
     );
 
-    findgyzrViolations(this.props.project).then(
+    findPrepLocale(this.props.project).then(
       (valuesReturnedByAPI) => {
         this.setState({
-          violation: valuesReturnedByAPI
+          preLocal: valuesReturnedByAPI
         });
       }
     );
@@ -77,6 +77,15 @@ export default class LRMApp extends React.PureComponent {
           </tr></thead>
           <h3>Next Prep Kit Content</h3>
           <tbody>
+
+          {this.state.preLocal.map(
+              (value,idx) =>
+              <LRMPrepKitContent
+                measure={value}
+                key={idx}
+              />
+              )
+          }
           <br/>
           <br/>
           <div>
