@@ -7,42 +7,37 @@
 import React from 'react';
 import { Chart } from "react-google-charts";
 import {translate} from '../common/l10n.js'
-import {findScans} from '../api.js'
+import {findLRMViolations} from '../api_lrm.js'
 import {findlrmEndDate} from '../api_lrm.js'
 import {findPrepLocale} from '../api_lrm.js'
 import LRMEndDate from './LRMEndDate'
 import LRMPrepKitContent from './LRMPrepKitContent'
-
-
+import LRMViolations from './LRMViolations'
 
 
 export default class LRMApp extends React.PureComponent {
 
   state = {
     endDate: [],
-    data: [],
     preLocal: [],
     violation: [],
     chart: []
   };
 
-
-
-
   componentDidMount() {
-    findScans(this.props.project).then(
-      (valuesReturnedByAPI) => {
-        this.setState({
-          data: valuesReturnedByAPI
-        });
-      }
-    );
-
 
     findlrmEndDate(this.props.project).then(
       (valuesReturnedByAPI) => {
         this.setState({
           endDate: valuesReturnedByAPI
+        });
+      }
+    );
+
+    findLRMViolations(this.props.project).then(
+      (valuesReturnedByAPI) => {
+        this.setState({
+          violation: valuesReturnedByAPI
         });
       }
     );
@@ -81,6 +76,15 @@ export default class LRMApp extends React.PureComponent {
           {this.state.preLocal.map(
               (value,idx) =>
               <LRMPrepKitContent
+                measure={value}
+                key={idx}
+              />
+              )
+          }
+
+          {this.state.violation.map(
+              (value,idx) =>
+              <LRMViolations
                 measure={value}
                 key={idx}
               />

@@ -29,7 +29,7 @@ export default class LRMViolations extends React.PureComponent {
   }
 
     var chart = ch.substring(0,ch.length-1) + "&chl="  +chl.substring(0,chl.length-1);
-    var proj = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&tags=gz'
+    var proj = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&tags=lrm-base,lrm-target'
     chart = 'https://chart.googleapis.com/chart?chs=400x160&chco=7AAF00&cht=p3&chd=t:' +chart
 
     return (
