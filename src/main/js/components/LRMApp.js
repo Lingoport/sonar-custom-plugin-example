@@ -10,9 +10,13 @@ import {translate} from '../common/l10n.js'
 import {findLRMViolations} from '../api_lrm.js'
 import {findlrmEndDate} from '../api_lrm.js'
 import {findPrepLocale} from '../api_lrm.js'
+import {findTraLRMViolations} from '../api_lrm.js'
+
 import LRMEndDate from './LRMEndDate'
 import LRMPrepKitContent from './LRMPrepKitContent'
 import LRMViolations from './LRMViolations'
+import LRMTransViolations from './LRMTransViolations'
+
 
 
 export default class LRMApp extends React.PureComponent {
@@ -21,6 +25,7 @@ export default class LRMApp extends React.PureComponent {
     endDate: [],
     preLocal: [],
     violation: [],
+    violation_tr:[],
     chart: []
   };
 
@@ -38,6 +43,14 @@ export default class LRMApp extends React.PureComponent {
       (valuesReturnedByAPI) => {
         this.setState({
           violation: valuesReturnedByAPI
+        });
+      }
+    );
+
+    findTraLRMViolations(this.props.project).then(
+      (valuesReturnedByAPI) => {
+        this.setState({
+          violation_tr: valuesReturnedByAPI
         });
       }
     );
@@ -81,10 +94,21 @@ export default class LRMApp extends React.PureComponent {
               />
               )
           }
-
+          <br/>
+          <br/>
           {this.state.violation.map(
               (value,idx) =>
               <LRMViolations
+                measure={value}
+                key={idx}
+              />
+              )
+          }
+          <br/>
+          <br/>
+          {this.state.violation_tr.map(
+              (value,idx) =>
+              <LRMTransViolations
                 measure={value}
                 key={idx}
               />
