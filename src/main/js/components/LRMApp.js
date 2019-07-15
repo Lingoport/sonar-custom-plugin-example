@@ -11,12 +11,13 @@ import {findLRMViolations} from '../api_lrm.js'
 import {findlrmEndDate} from '../api_lrm.js'
 import {findPrepLocale} from '../api_lrm.js'
 import {findTraLRMViolations} from '../api_lrm.js'
+import {findLrmCompletion} from '../api_lrm.js'
 
 import LRMEndDate from './LRMEndDate'
 import LRMPrepKitContent from './LRMPrepKitContent'
 import LRMViolations from './LRMViolations'
 import LRMTransViolations from './LRMTransViolations'
-
+import LRMCompletion from './LRMCompletion'
 
 
 export default class LRMApp extends React.PureComponent {
@@ -26,7 +27,8 @@ export default class LRMApp extends React.PureComponent {
     preLocal: [],
     violation: [],
     violation_tr:[],
-    chart: []
+    chart: [],
+    completion:[]
   };
 
   componentDidMount() {
@@ -46,6 +48,15 @@ export default class LRMApp extends React.PureComponent {
         });
       }
     );
+
+    findLrmCompletion(this.props.project).then(
+      (valuesReturnedByAPI) => {
+        this.setState({
+          completion: valuesReturnedByAPI
+        });
+      }
+    );
+
 
     findTraLRMViolations(this.props.project).then(
       (valuesReturnedByAPI) => {
@@ -109,6 +120,17 @@ export default class LRMApp extends React.PureComponent {
           {this.state.violation_tr.map(
               (value,idx) =>
               <LRMTransViolations
+                measure={value}
+                key={idx}
+              />
+              )
+          }
+          <br/>
+          <br/>
+
+          {this.state.completion.map(
+              (value,idx) =>
+              <LRMCompletion
                 measure={value}
                 key={idx}
               />

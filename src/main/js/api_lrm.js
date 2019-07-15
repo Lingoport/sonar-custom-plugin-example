@@ -262,3 +262,59 @@ return getJSON('/api/project_analyses/search', {
   }
  });
 }
+
+
+export function findLrmCompletion(project) {
+
+return getJSON('/api/project_analyses/search', {
+  project: project.key,
+  p: 1,
+  ps: 500,
+}).then(function (responseAnalyses) {
+  const numberOfAnalyses = responseAnalyses.analyses.length;
+  if (numberOfAnalyses > 0) {
+    return getJSON('/api/measures/search_history', {
+      component: project.key,
+      metrics: "lngprt-lrm-status-total-source-files,lngprt-lrm-status-total-source-keys,lngprt-lrm-status-total-source-words,lngprt-lrm-status-last-version-num,lngprt-lrm-status-non-base-locales-ids,lngprt-lrm-status-non-base-locales-display,lngprt-lrm-num-files-to-translate-for-locales,lngprt-lrm-num-keys-to-translate-for-locales,lngprt-lrm-num-words-to-translate-for-locales,lngprt-lrm-is-outstanding-prepkits,lngprt-lrm-percent-complete-for-locales,lngprt-lrm-status-avg-completion-percent,lngprt-lrm-status-total-remaining-words,lngprt-lrm-default-locale",
+      ps: 1000
+    }).then(function (responseMetrics) {
+      var data = [];
+      var numberOfVersions=0;
+
+      for (let i = 0; i < numberOfAnalyses; i++) {
+        let analysis = responseAnalyses.analyses[i];
+        for (let j = 0; j < analysis.events.length; j++) {
+          if (analysis.events[j].category === "VERSION") {
+            let result = {version: analysis.events[j].name,
+                          files: "0", keys: "", words: "0", versionnum: "",project: project.key
+                         };
+            const numberOfMeasuresRetrieved = 14;
+
+            for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
+              for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {
+                if ( responseMetrics.measures[k].history[d].date === responseAnalyses.analyses[i].date ) {
+                  //console.log(responseMetrics.measures[k].metric);
+                  if (responseMetrics.measures[k].metric === "lngprt-lrm-status-total-source-files") {
+                    result.files = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-status-total-source-keys") {
+                    result.keys = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-status-last-version-num") {
+                    result.versionnum = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-status-total-source-words") {
+                    result.words = responseMetrics.measures[k].history[d].value;
+                  }
+                }
+              }
+            }
+
+            data[numberOfVersions] = result;
+            numberOfVersions++;
+          }
+        }
+      }
+      //console.table(data);
+      return data;
+    });
+  }
+ });
+}
