@@ -286,7 +286,7 @@ return getJSON('/api/project_analyses/search', {
         for (let j = 0; j < analysis.events.length; j++) {
           if (analysis.events[j].category === "VERSION") {
             let result = {version: analysis.events[j].name,
-                          files: "0", keys: "", words: "0", versionnum: "",project: project.key,d_local:"",
+                          files: "0", keys: "", words: "0", versionnum: "",project: project.key,d_local:"",ids:"",display:"",tfiles:"",tkeys:"",twords:"",percent:"",
                          };
             const numberOfMeasuresRetrieved = 14;
 
@@ -304,6 +304,18 @@ return getJSON('/api/project_analyses/search', {
                     result.words = responseMetrics.measures[k].history[d].value;
                   }else if (responseMetrics.measures[k].metric === "lngprt-lrm-default-locale") {
                     result.d_local = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-status-non-base-locales-ids") {
+                    result.ids = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-status-non-base-locales-display") {
+                    result.display = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-num-files-to-translate-for-locales") {
+                    result.tfiles = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-num-keys-to-translate-for-locales") {
+                    result.tkeys = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-num-words-to-translate-for-locales") {
+                    result.twords = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-percent-complete-for-locales") {
+                    result.percent = responseMetrics.measures[k].history[d].value;
                   }
                 }
               }
