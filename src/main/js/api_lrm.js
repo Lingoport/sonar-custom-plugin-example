@@ -286,7 +286,7 @@ return getJSON('/api/project_analyses/search', {
         for (let j = 0; j < analysis.events.length; j++) {
           if (analysis.events[j].category === "VERSION") {
             let result = {version: analysis.events[j].name,
-                          files: "0", keys: "", words: "0", versionnum: "",project: project.key
+                          files: "0", keys: "", words: "0", versionnum: "",project: project.key,d_local:"",
                          };
             const numberOfMeasuresRetrieved = 14;
 
@@ -302,6 +302,8 @@ return getJSON('/api/project_analyses/search', {
                     result.versionnum = responseMetrics.measures[k].history[d].value;
                   }else if (responseMetrics.measures[k].metric === "lngprt-lrm-status-total-source-words") {
                     result.words = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-default-locale") {
+                    result.d_local = responseMetrics.measures[k].history[d].value;
                   }
                 }
               }
