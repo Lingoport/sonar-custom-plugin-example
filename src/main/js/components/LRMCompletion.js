@@ -29,7 +29,7 @@ export default class LRMCompletion extends React.PureComponent {
          <td title={display[d]}>{ids[d]}</td>
 
          <div style={{width: '100%', height: '17px', backgroundColor: '#DDDDDD'}}>
-         <div style={{width: "66.0%", height:'11px',lineHeight:'11px',backgroundColor: '#BBBBBB',borderTop:'3px solid #DDDDDD',color:'#4F7007',fontSize:'12px'}}>{percent[d]}%</div>
+         <div style={{width:p, height:'11px',lineHeight:'11px',backgroundColor: '#BBBBBB',borderTop:'3px solid #DDDDDD',color:'#4F7007',fontSize:'12px'}}>{percent[d]}%</div>
          </div>
 
          <td>{tfiles[d].substring(0,tfiles[d].length-2)}</td>
