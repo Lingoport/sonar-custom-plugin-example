@@ -12,13 +12,15 @@ import {findlrmEndDate} from '../api_lrm.js'
 import {findPrepLocale} from '../api_lrm.js'
 import {findTraLRMViolations} from '../api_lrm.js'
 import {findLrmCompletion} from '../api_lrm.js'
+import {findLrmProductivity} from '../api_lrm.js'
+
 
 import LRMEndDate from './LRMEndDate'
 import LRMPrepKitContent from './LRMPrepKitContent'
 import LRMViolations from './LRMViolations'
 import LRMTransViolations from './LRMTransViolations'
 import LRMCompletion from './LRMCompletion'
-
+import LRMProductivity from './LRMCompletion'
 
 export default class LRMApp extends React.PureComponent {
 
@@ -28,7 +30,8 @@ export default class LRMApp extends React.PureComponent {
     violation: [],
     violation_tr:[],
     chart: [],
-    completion:[]
+    completion:[],
+    productivity:[]
   };
 
   componentDidMount() {
@@ -57,6 +60,13 @@ export default class LRMApp extends React.PureComponent {
       }
     );
 
+    findLrmProductivity(this.props.project).then(
+      (valuesReturnedByAPI) => {
+        this.setState({
+          productivity: valuesReturnedByAPI
+        });
+      }
+    );
 
     findTraLRMViolations(this.props.project).then(
       (valuesReturnedByAPI) => {
@@ -131,6 +141,17 @@ export default class LRMApp extends React.PureComponent {
           {this.state.completion.map(
               (value,idx) =>
               <LRMCompletion
+                measure={value}
+                key={idx}
+              />
+              )
+          }
+          <br/>
+          <br/>
+
+          {this.state.productivity.map(
+              (value,idx) =>
+              <LRMProductivity
                 measure={value}
                 key={idx}
               />
