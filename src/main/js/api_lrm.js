@@ -345,7 +345,7 @@ return getJSON('/api/project_analyses/search', {
   if (numberOfAnalyses > 0) {
     return getJSON('/api/measures/search_history', {
       component: project.key,
-      metrics: "lngprt-lrm-status-total-source-files,lngprt-lrm-status-total-source-keys,lngprt-lrm-status-total-source-words,lngprt-lrm-status-last-version-num,lngprt-lrm-status-non-base-locales-ids,lngprt-lrm-status-non-base-locales-display,lngprt-lrm-status-non-base-locales-ids,lngprt-lrm-default-locale,lngprt-lrm-num-words-per-day-for-locales,lngprt-lrm-num-words-to-translate-for-locales",
+      metrics: "lngprt-lrm-status-total-source-files,lngprt-lrm-status-total-source-keys,lngprt-lrm-status-total-source-words,lngprt-lrm-status-last-version-num,lngprt-lrm-status-non-base-locales-ids,lngprt-lrm-status-non-base-locales-display,lngprt-lrm-default-locale,lngprt-lrm-num-words-per-day-for-locales,lngprt-lrm-num-words-to-translate-for-locales",
       ps: 1000
     }).then(function (responseMetrics) {
       var data = [];
@@ -358,7 +358,7 @@ return getJSON('/api/project_analyses/search', {
             let result = {version: analysis.events[j].name,
                           files: "0", keys: "", words: "0", versionnum: "",d_local:"",ids:"",display:"",numWordsToTranslate:"",twords:"",
                          };
-            const numberOfMeasuresRetrieved = 14;
+            const numberOfMeasuresRetrieved = 9;
 
             for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
               for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {

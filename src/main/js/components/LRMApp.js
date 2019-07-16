@@ -20,7 +20,7 @@ import LRMPrepKitContent from './LRMPrepKitContent'
 import LRMViolations from './LRMViolations'
 import LRMTransViolations from './LRMTransViolations'
 import LRMCompletion from './LRMCompletion'
-import LRMProductivity from './LRMCompletion'
+import LRMProductivity from './LRMProductivity'
 
 export default class LRMApp extends React.PureComponent {
 

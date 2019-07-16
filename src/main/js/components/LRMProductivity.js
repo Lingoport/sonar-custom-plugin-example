@@ -21,12 +21,12 @@ export default class LRMProductivity extends React.PureComponent {
       var content = new Array(ids.length);
 
       for(let d = 0; d < ids.length; d++){
-
+          var days = Math.round(Number(numWordsToTranslate[d])/Number(twords[d]));
         content[d]  = (
          <tr>
          <td title={display[d]}>{ids[d]}</td>
-         <td>{twords[d]}</td>
-         <td>{numWordsToTranslate[d]} day(s) for  {twords[d]} word(s)</td>
+         <td>{twords[d].substring(0,twords[d].length-2)}</td>
+         <td>{days} day(s) for {numWordsToTranslate[d].substring(0,numWordsToTranslate[d].length-2)} word(s)</td>
          </tr>
       );
     }
@@ -35,7 +35,7 @@ export default class LRMProductivity extends React.PureComponent {
     return (
       <div className="widget">
       <table>
-      <h3>Resource Manager Completion Report</h3>
+      <h3>Resource Manager Productivity Report</h3>
 
       <tbody>
       <tr>
