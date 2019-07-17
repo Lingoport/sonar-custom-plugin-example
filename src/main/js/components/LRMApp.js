@@ -13,7 +13,7 @@ import {findPrepLocale} from '../api_lrm.js'
 import {findTraLRMViolations} from '../api_lrm.js'
 import {findLrmCompletion} from '../api_lrm.js'
 import {findLrmProductivity} from '../api_lrm.js'
-
+import {findLrmHistory} from '../api_lrm.js'
 
 import LRMEndDate from './LRMEndDate'
 import LRMPrepKitContent from './LRMPrepKitContent'
@@ -21,6 +21,8 @@ import LRMViolations from './LRMViolations'
 import LRMTransViolations from './LRMTransViolations'
 import LRMCompletion from './LRMCompletion'
 import LRMProductivity from './LRMProductivity'
+import LRMHistory from './LRMHistory'
+
 
 export default class LRMApp extends React.PureComponent {
 
@@ -31,7 +33,8 @@ export default class LRMApp extends React.PureComponent {
     violation_tr:[],
     chart: [],
     completion:[],
-    productivity:[]
+    productivity:[],
+    history:[]
   };
 
   componentDidMount() {
@@ -40,6 +43,14 @@ export default class LRMApp extends React.PureComponent {
       (valuesReturnedByAPI) => {
         this.setState({
           endDate: valuesReturnedByAPI
+        });
+      }
+    );
+
+    findLrmHistory(this.props.project).then(
+      (valuesReturnedByAPI) => {
+        this.setState({
+          history: valuesReturnedByAPI
         });
       }
     );
@@ -159,6 +170,18 @@ export default class LRMApp extends React.PureComponent {
           }
           <br/>
           <br/>
+
+          {this.state.history.map(
+              (value,idx) =>
+              <LRMHistory
+                measure={value}
+                key={idx}
+              />
+              )
+          }
+          <br/>
+          <br/>
+
           <div>
           <Chart
             width={'430px'}

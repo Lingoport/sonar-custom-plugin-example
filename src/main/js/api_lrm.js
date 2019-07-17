@@ -422,17 +422,33 @@ return getJSON('/api/project_analyses/search', {
                    };
      const numberOfMeasuresRetrieved = 2;
      for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
-          for(let d = 0; d < responseMetrics.measures[0].history.length; d++) {
-                result.gdate[d] = responseMetrics.measures[0].history[d].date;
+          for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {
+                result.gdate[d] = responseMetrics.measures[k].history[d].date;
                 if (responseMetrics.measures[k].metric === "lngprt-lrm-num-words-to-translate-for-locales") {
-                  result.words = responseMetrics.measures[k].history[d].value;
-                }else if (responseMetrics.measures[k].metric === "lngprt-lrm-num-files-to-translate-for-locales") {
-                  result.keys = responseMetrics.measures[k].history[d].value;
-                }
-                if(result.words[d]  === undefined)
+                  result.words[d] = responseMetrics.measures[k].history[d].value;
+                  if(result.words[d]  === undefined){
                     result.words[d] =0;
-                if(result.keys[d]  === undefined)
-                    result.keys[d] =0;
+                  }else{
+                    var word = result.words[d].split(";");
+                    var tword = 0;
+                    for(let d = 0; d < word.length; d++){
+                      tword = Number(word[d])+Number(tword);
+                    }
+                    result.words[d] =tword;
+                  }
+                }else if (responseMetrics.measures[k].metric === "lngprt-lrm-num-files-to-translate-for-locales") {
+                  result.files[d] = responseMetrics.measures[k].history[d].value;
+                  if(result.files[d]  === undefined){
+                      result.files[d] =0;
+                    }else{
+                      var file = result.files[d].split(";");
+                      var tfile = 0;
+                      for(let d = 0; d < file.length; d++){
+                        tfile = Number(file[d])+Number(tfile);
+                      }
+                      result.files[d] =tfile;
+                    }
+                }
 
           }
             data[numberOfVersions] = result;
