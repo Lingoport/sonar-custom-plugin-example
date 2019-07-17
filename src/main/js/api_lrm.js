@@ -398,3 +398,49 @@ return getJSON('/api/project_analyses/search', {
   }
  });
 }
+
+export function findLrmHistory(project) {
+
+return getJSON('/api/project_analyses/search', {
+  project: project.key,
+  p: 1,
+  ps: 500,
+}).then(function (responseAnalyses) {
+  const numberOfAnalyses = responseAnalyses.analyses.length;
+  if (numberOfAnalyses > 0) {
+    return getJSON('/api/measures/search_history', {
+      component: project.key,
+      metrics: "lngprt-lrm-num-words-to-translate-for-locales,lngprt-lrm-num-files-to-translate-for-locales",
+      ps: 1000
+    }).then(function (responseMetrics) {
+      var data = [];
+      var numberOfVersions=0;
+      let result = {
+                    gdate: [],
+                    words: [],
+                    files: []
+                   };
+     const numberOfMeasuresRetrieved = 2;
+     for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
+          for(let d = 0; d < responseMetrics.measures[0].history.length; d++) {
+                result.gdate[d] = responseMetrics.measures[0].history[d].date;
+                if (responseMetrics.measures[k].metric === "lngprt-lrm-num-words-to-translate-for-locales") {
+                  result.words = responseMetrics.measures[k].history[d].value;
+                }else if (responseMetrics.measures[k].metric === "lngprt-lrm-num-files-to-translate-for-locales") {
+                  result.keys = responseMetrics.measures[k].history[d].value;
+                }
+                if(result.words[d]  === undefined)
+                    result.words[d] =0;
+                if(result.keys[d]  === undefined)
+                    result.keys[d] =0;
+
+          }
+            data[numberOfVersions] = result;
+          //  numberOfVersions++;
+      }
+      //console.table(data);
+      return data;
+    });
+  }
+ });
+}
