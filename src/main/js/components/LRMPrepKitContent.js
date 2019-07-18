@@ -10,10 +10,24 @@
  */
 import React from 'react';
 import '../style.css';
+import {findJenkinsURL} from '../api_lrm.js'
+
 
 
 export default class LRMPrepKitContent extends React.PureComponent {
+  state = {
+    jenkins: ''
 
+  };
+componentDidMount() {
+  findJenkinsURL().then(
+    (valuesReturnedByAPI) => {
+      this.setState({
+        jenkins: valuesReturnedByAPI
+      });
+    }
+  );
+}
   render() {
     if(this.props.measure.localeMSR === undefined){
        var content = "";
@@ -40,7 +54,7 @@ export default class LRMPrepKitContent extends React.PureComponent {
       <table className="lg_ds_progress_bar" border="0" width="500">
       <thead>
       <tr>
-          <th>Locale</th><th># of<br/>Files</th><th># of<br/>Keys</th><th># of<br/>Words</th>
+          <th>Locale {this.state.jenkins}</th><th># of<br/>Files</th><th># of<br/>Keys</th><th># of<br/>Words</th>
       </tr>
       </thead>
       <tbody>

@@ -460,3 +460,11 @@ return getJSON('/api/project_analyses/search', {
   }
  });
 }
+
+export function findJenkinsURL() {
+  return getJSON('/api/settings/values', {
+  keys: "sonar.lrm.jenkins.url",
+}).then(function (response) {
+     return response.settings[0].value;
+  });
+}
