@@ -113,6 +113,7 @@ return getJSON('/api/project_analyses/search', {
                           displayNameMSR:"",
                           filesToPrepMSR:"",
                           errorCountMSR:"",
+                          project: project.key
                          };
             const numberOfMeasuresRetrieved = 7;
 
