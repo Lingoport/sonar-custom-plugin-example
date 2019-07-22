@@ -74,7 +74,7 @@ get(){
       <table className="lg_ds_progress_bar" border="0" width="500">
       <thead>
       <tr>
-          <th>Locale {this.state.jenkins}</th><th># of<br/>Files</th><th># of<br/>Keys</th><th># of<br/>Words</th>
+          <th>Locale </th><th># of<br/>Files</th><th># of<br/>Keys</th><th># of<br/>Words</th>
       </tr>
       </thead>
       <tbody>

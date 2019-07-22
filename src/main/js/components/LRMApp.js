@@ -181,34 +181,6 @@ export default class LRMApp extends React.PureComponent {
           }
           <br/>
           <br/>
-
-          <div>
-          <Chart
-            width={'430px'}
-            height={'250px'}
-            chartType="LineChart"
-            loader={<div>Loading Chart</div>}
-            data={[
-              ['x', 'LRM Remaining Files'],
-              [new Date(2000, 8, 5), 0],
-              [new Date(2000, 9, 5), 10],
-              [new Date(2000, 12, 5), 23],
-              [new Date(2001, 6, 5), 17],
-              [new Date(2001, 6, 9), 27],
-              [new Date(2001, 6, 20), 87],
-              [new Date(2001, 7, 5), 67],
-              [new Date(2001, 7, 30), 47],
-              [new Date(2001, 8, 2), 37],
-
-            ]}
-            options={{
-              chart: {
-               title: 'LRM Remaining Files',
-              },
-            }}
-          />
-          </div>
-
           </tbody>
         </table>
 
