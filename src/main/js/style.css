@@ -1,3 +1,11 @@
+.dashboard-column{margin:0;padding:0;overflow:visible}
+
+.dashboard-column-wrapper{float:left;margin:0;padding:0}
+
+.block{margin:0 0 10px;border:1px solid #e6e6e6;background-color:#fff}
+
+.widget{position:relative;overflow-x:auto;overflow-y:hidden;padding:10px;margin:0}
+
 table.lg_ds_progress_bar td.label_center {
 	white-space: nowrap;
 	text-align: center;

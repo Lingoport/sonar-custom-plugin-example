@@ -43,9 +43,8 @@ export default class OverviewApp extends React.PureComponent {
           </header>
           <div style={{width: '100%',display: 'block', float: 'none'}}>
 
-
-              <div className="dashboard-column-wrapper" style={{width: '50%',margin: '0 -1px 0 0'}}>
-                <div className="dashboard-column" id="dashboard-column-1" style={{margin: '0 5px 0 0px'}}>
+              <div className="dashboard-column-wrapper" style={{width: '50%',margin: '0 -1px 0 0',float:'left'}}>
+                <div className="dashboard-column" id="dashboard-column-1" style={{margin: '0 5px 0 0px',padding:'0',overflow:'visible'}}>
 
                 {this.state.gzsummary.map(
                     (value,idx) =>
@@ -60,8 +59,8 @@ export default class OverviewApp extends React.PureComponent {
                </div>
 
 
-               <div className="dashboard-column-wrapper" style={{width: '50%',margin: '0 -1px 0 0'}}>
-                 <div className="dashboard-column" id="dashboard-column-2" style={{margin: '0 0px 0 5px'}}>
+               <div className="dashboard-column-wrapper" style={{width: '50%',margin: '0 -1px 0 0',float:'left'}}>
+                 <div className="dashboard-column" id="dashboard-column-2" style={{margin: '0 0px 0 5px',float:'rignt',padding:'0',overflow:'visible'}}>
 
                  {this.state.gzsummary.map(
                      (value,idx) =>
@@ -74,8 +73,7 @@ export default class OverviewApp extends React.PureComponent {
 
                  </div>
                 </div>
-
-              </div>
+             </div>
             </div>
           </div>
       </div>

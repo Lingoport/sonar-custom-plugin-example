@@ -7,7 +7,7 @@ import React from 'react';
 import '../style.css';
 
 
-export default class OverviewGlobalyzerSummary extends React.PureComponent {
+export default class OverviewLRMSummary extends React.PureComponent {
 
   render() {
     var concatenation = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&rules=gyzr:GlobalyzerESConcatCheck,gyzr:GlobalyzerGPConcatCheck,gyzr:GlobalyzerLSMConcatCheck,gyzr:GlobalyzerSFRConcatCheck'
@@ -15,14 +15,13 @@ export default class OverviewGlobalyzerSummary extends React.PureComponent {
     var Methods = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&rules=gyzr:GlobalyzerLSM1Check,gyzr:GlobalyzerLSM2Check,gyzr:GlobalyzerLSM3Check'
     var Patterns = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&rules=gyzr:GlobalyzerGP1Check,gyzr:GlobalyzerGP2Check,gyzr:GlobalyzerGP3Check'
     var References = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&rules=gyzr:GlobalyzerSFR1Check,gyzr:GlobalyzerSFR2Check,gyzr:GlobalyzerSFR3Check'
-    var globalyzerPage = '/project/extension/lingoport/globalyzer_page?id=' +this.props.measure.project+ '&qualifier=TRK'
 
     return (
       <div className="block" id="block_28">
       <div className="lpgzsummaryruleswidget" style={{height:'100%'}}>
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
-      <h3><a href ={globalyzerPage}>Globalyzer Summary</a></h3>
+      <h3>Globalyzer Summary</h3>
       <div className="lg_widget">
 
 
