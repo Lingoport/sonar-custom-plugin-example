@@ -17,6 +17,26 @@ export default class OverviewGlobalyzerSummary extends React.PureComponent {
     var References = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&rules=gyzr:GlobalyzerSFR1Check,gyzr:GlobalyzerSFR2Check,gyzr:GlobalyzerSFR3Check'
     var globalyzerPage = '/project/extension/lingoport/globalyzer_page?id=' +this.props.measure.project+ '&qualifier=TRK'
 
+    if(this.props.measure.embedded===undefined){
+      return (
+        <div className="block" id="block_28">
+        <div className="lpgzsummaryruleswidget" style={{height:'100%'}}>
+        <div className="widget">
+        <link href="../style.css" rel="stylesheet"/>
+        <h3><a href ={globalyzerPage}>Globalyzer Summary</a></h3>
+        <div className="lg_widget">
+        <h5>No issues found</h5>
+        </div>
+        <div className="clear"></div>
+        </div>
+        <div style={{clear: 'both'}}></div>
+        </div>
+        </div>
+
+      );
+    }
+
+
     return (
       <div className="block" id="block_28">
       <div className="lpgzsummaryruleswidget" style={{height:'100%'}}>

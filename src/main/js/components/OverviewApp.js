@@ -6,16 +6,19 @@
 import React from 'react';
 import {translate} from '../common/l10n.js'
 import {findgyzrSummary} from '../api.js'
-
+import {findlplrmsummary} from '../api_lrm.js'
 
 import OverviewGlobalyzerSummary from './OverviewGlobalyzerSummary'
+import OverviewLRMSummary from './OverviewLRMSummary'
+
 
 
 
 export default class OverviewApp extends React.PureComponent {
 
   state = {
-    gzsummary: []
+    gzsummary: [],
+    lrmsummary: []
   };
 
   componentDidMount() {
@@ -28,7 +31,16 @@ export default class OverviewApp extends React.PureComponent {
       }
     );
 
+    findlplrmsummary(this.props.project).then(
+      (valuesReturnedByAPI) => {
+        this.setState({
+        lrmsummary: valuesReturnedByAPI
+        });
+      }
+    );
   }
+
+
 
 
   render() {
@@ -46,9 +58,9 @@ export default class OverviewApp extends React.PureComponent {
               <div className="dashboard-column-wrapper" style={{width: '50%',margin: '0 -1px 0 0',float:'left'}}>
                 <div className="dashboard-column" id="dashboard-column-1" style={{margin: '0 5px 0 0px',padding:'0',overflow:'visible'}}>
 
-                {this.state.gzsummary.map(
+                {this.state.lrmsummary.map(
                     (value,idx) =>
-                    <OverviewGlobalyzerSummary
+                    <OverviewLRMSummary
                       measure={value}
                       key={idx}
                     />

@@ -10,18 +10,34 @@ import '../style.css';
 export default class OverviewLRMSummary extends React.PureComponent {
 
   render() {
-    var concatenation = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&rules=gyzr:GlobalyzerESConcatCheck,gyzr:GlobalyzerGPConcatCheck,gyzr:GlobalyzerLSMConcatCheck,gyzr:GlobalyzerSFRConcatCheck'
-    var Strings = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&rules=gyzr:GlobalyzerES1Check,gyzr:GlobalyzerES2Check,gyzr:GlobalyzerES3Check'
-    var Methods = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&rules=gyzr:GlobalyzerLSM1Check,gyzr:GlobalyzerLSM2Check,gyzr:GlobalyzerLSM3Check'
-    var Patterns = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&rules=gyzr:GlobalyzerGP1Check,gyzr:GlobalyzerGP2Check,gyzr:GlobalyzerGP3Check'
-    var References = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&rules=gyzr:GlobalyzerSFR1Check,gyzr:GlobalyzerSFR2Check,gyzr:GlobalyzerSFR3Check'
+    var LRMPage = '/project/extension/lingoport/lrm_page?id=' +this.props.measure.project+ '&qualifier=TRK'
+    var file = this.props.measure.nbfilesMSR
+
+    if(file===undefined){
+      return (
+        <div className="block" id="block_29">
+        <div className="lplrmsummaryruleswidget" style={{height:'100%'}}>
+        <div className="widget">
+        <link href="../style.css" rel="stylesheet"/>
+        <h3><a href ={LRMPage}>Resource Manager Summary Report</a></h3>
+        <div className="lg_widget">
+        <h5>No data found</h5>
+        </div>
+        <div className="clear"></div>
+        </div>
+        <div style={{clear: 'both'}}></div>
+        </div>
+        </div>
+
+      );
+    }
 
     return (
-      <div className="block" id="block_28">
-      <div className="lpgzsummaryruleswidget" style={{height:'100%'}}>
+      <div className="block" id="block_29">
+      <div className="lplrmsummaryruleswidget" style={{height:'100%'}}>
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
-      <h3>Globalyzer Summary</h3>
+      <h3><a href ={LRMPage}>Resource Manager Summary Report</a></h3>
       <div className="lg_widget">
 
 
@@ -29,29 +45,41 @@ export default class OverviewLRMSummary extends React.PureComponent {
       <tbody>
 
         <tr>
-          <td>Concatenations</td>
-          <td><a href ={concatenation}>{this.props.measure.concatenations}</a></td>
+          <td>Default Locale:	</td>
+          <td>{this.props.measure.dfltLocaleMSR}</td>
         </tr>
 
         <tr>
-          <td>Embedded Strings</td>
-          <td><a href ={Strings}>{this.props.measure.embedded}</a></td>
+          <td>Base Resource Files:</td>
+          <td>{this.props.measure.nbfilesMSR}</td>
         </tr>
 
         <tr>
-          <td>Locale-Sensitive Methods</td>
-          <td><a href ={Methods}>{this.props.measure.sensitive}</a></td>
+          <td>Base Resource Words:</td>
+          <td>{this.props.measure.nbwordsMSR}</td>
         </tr>
 
         <tr>
-          <td>General Patterns</td>
-          <td><a href ={Patterns}>{this.props.measure.general}</a></td>
+          <td>Target Locales</td>
+          <td>{this.props.measure.nblocalesMSR}</td>
         </tr>
 
         <tr>
-          <td>Static File References</td>
-          <td><a href ={References}>{this.props.measure.static}</a></td>
+          <td>% Complete</td>
+          <td>{this.props.measure.avgCompleteMSR}%</td>
         </tr>
+
+        <tr>
+          <td>Last Prepped Kit Version</td>
+          <td>{this.props.measure.versionNumMSR}</td>
+        </tr>
+
+        <tr>
+          <td>Last Prepped Kit Date</td>
+          <td>{this.props.measure.lastSendMSR}</td>
+        </tr>
+
+
         <br/>
 
         </tbody></table>

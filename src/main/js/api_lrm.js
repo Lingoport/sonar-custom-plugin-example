@@ -469,3 +469,75 @@ export function findJenkinsURL() {
      return response.settings[0].value;
   });
 }
+
+
+export function findlplrmsummary(project) {
+
+return getJSON('/api/project_analyses/search', {
+  project: project.key,
+  p: 1,
+  ps: 500,
+}).then(function (responseAnalyses) {
+  const numberOfAnalyses = responseAnalyses.analyses.length;
+  if (numberOfAnalyses > 0) {
+    return getJSON('/api/measures/search_history', {
+      component: project.key,
+      metrics: "lngprt-lrm-status-total-source-files,lngprt-lrm-status-total-locales,lngprt-lrm-status-total-source-words,lngprt-lrm-status-last-send-date,lngprt-lrm-status-last-prep-date,lngprt-lrm-status-total-remaining-files,lngprt-lrm-status-total-remaining-words,lngprt-lrm-status-last-version-num,lngprt-lrm-status-avg-completion-percent,lngprt-lrm-status-maximum-days-to-complete,lngprt-lrm-status-locale-of-maximum-days,lngprt-lrm-default-locale",
+      ps: 1000
+    }).then(function (responseMetrics) {
+      var data = [];
+      var numberOfVersions=0;
+
+      for (let i = 0; i < numberOfAnalyses; i++) {
+        let analysis = responseAnalyses.analyses[i];
+        for (let j = 0; j < analysis.events.length; j++) {
+          if (analysis.events[j].category === "VERSION") {
+            let result = {version: analysis.events[j].name,
+                          nbfilesMSR: "",
+                          nblocalesMSR:"",
+                          nbwordsMSR:"",
+                          lastSendMSR:"",
+                          lastPrepMSR:"",
+                          totalRemainingFilesMSR:"",
+                          totalRemainingWordsMSR:"",
+                          versionNumMSR:"",
+                          avgCompleteMSR:"",
+                          longestDaysToCompleteMSR:"",
+                          longestLocaleToCompleteMSR:"",
+                          dfltLocaleMSR:"",
+                          project:project.key
+                         };
+            const numberOfMeasuresRetrieved = 12;
+
+            for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
+              for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {
+                if ( responseMetrics.measures[k].history[d].date === responseAnalyses.analyses[i].date ) {
+                  //console.log(responseMetrics.measures[k].metric);
+                  if (responseMetrics.measures[k].metric === "lngprt-lrm-default-locale") {
+                    result.dfltLocaleMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-status-total-source-files") {
+                      result.nbfilesMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-status-total-source-words") {
+                      result.nbwordsMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-status-total-locales") {
+                      result.nblocalesMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-status-avg-completion-percent") {
+                      result.avgCompleteMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-status-last-version-num") {
+                      result.versionNumMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-status-last-send-date") {
+                      result.lastSendMSR = responseMetrics.measures[k].history[d].value;
+                  }
+                }
+              }
+            }
+            data[numberOfVersions] = result;
+            numberOfVersions++;
+          }
+        }
+      }
+      return data;
+    });
+  }
+ });
+}
