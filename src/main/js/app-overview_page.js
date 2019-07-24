@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2017-2017 SonarSource SA
+ * Copyright (C) 2011-2019 Lingoport Inc
  * All rights reserved
- * mailto:info AT sonarsource DOT com
+ * info AT lingoport DOT com
  */
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
