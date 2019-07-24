@@ -6,7 +6,6 @@
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import GlobalyzerApp from './components/GlobalyzerApp';
-import './style.css';
 
 window.registerExtension('lingoport/globalyzer_page', options => {
 

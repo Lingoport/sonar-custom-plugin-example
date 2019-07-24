@@ -6,7 +6,6 @@
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import OverviewApp from './components/OverviewApp';
-import './style.css';
 
 window.registerExtension('lingoport/overview_page', options => {
 

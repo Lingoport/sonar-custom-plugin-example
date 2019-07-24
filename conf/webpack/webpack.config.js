@@ -23,7 +23,7 @@ module.exports = {
   entry: {
     'lrm_page': ['./src/main/js/app-lrm_page.js'],
     'overview_page': ['./src/main/js/app-overview_page.js'],
-    'globalyzer_page': ['./src/main/js/app-zglobalyzer_page.js']
+    'globalyzer_page': ['./src/main/js/app-globalyzer_page.js']
   },
   output: {
     path: output,
