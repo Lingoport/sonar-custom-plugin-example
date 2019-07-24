@@ -10,16 +10,17 @@ public class MyPluginPageDefinition implements PageDefinition {
   @Override
   public void define(Context context) {
     context
-      .addPage(Page.builder("lingoport/overview_page")
-        .setName("Lingoport Overview")
+
+      .addPage(Page.builder("lingoport/globalyzer_page")
+        .setName("Globalyzer")
         .setScope(Scope.COMPONENT).build())
 
       .addPage(Page.builder("lingoport/lrm_page")
         .setName("Resource Manager")
         .setScope(Scope.COMPONENT).build())
 
-      .addPage(Page.builder("lingoport/globalyzer_page")
-        .setName("Globalyzer")
+      .addPage(Page.builder("lingoport/overview_page")
+        .setName("Lingoport Overview")
         .setScope(Scope.COMPONENT).build())
 
       .addPage(Page.builder("lingoport/custom_page_global")
