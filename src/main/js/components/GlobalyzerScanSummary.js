@@ -11,21 +11,8 @@ export default class GlobalyzerScanSummary extends React.PureComponent {
 
   render() {
     if(this.props.measure.Scan === undefined){
-      return (
-        <div className="block" id="block_2">
-        <div className="lpgzsummaryscanwidget" style={{height:'100%'}}>
-        <div className="widget">
-        <link href="../style.css" rel="stylesheet"/>
-        <div className="lg_widget">
-        <h5>No issues found</h5>
-        </div>
-        <div className="clear"></div>
-        </div>
-        <div style={{clear: 'both'}}></div>
-        </div>
-        </div>
+        var content= (<h5>No data found</h5>);
 
-      );
     }else{
       var scan = this.props.measure.Scan.split(";")
       var ruleset = this.props.measure.RuleSet.split(";")

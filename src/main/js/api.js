@@ -263,7 +263,7 @@ return getJSON('/api/project_analyses/search', {
 
           for(let d = 0; d < responseMetrics.measures[0].history.length; d++) {
                 result.gdate[d] = responseMetrics.measures[0].history[d].date;
-                result.value[d] = responseMetrics.measures[0].history[d].value;
+                result.value[d] = Number(responseMetrics.measures[0].history[d].value);
                 if(result.value[d]  === undefined)
                     result.value[d] =0;
 

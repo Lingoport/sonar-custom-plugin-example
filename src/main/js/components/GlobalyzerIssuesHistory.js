@@ -44,8 +44,8 @@ export default class GlobalyzerIssuesHistory extends React.PureComponent {
       <link href="../style.css" rel="stylesheet"/>
 
       <Chart
-        width={'430px'}
-        height={'250px'}
+        width={'600px'}
+        height={'280px'}
         chartType="LineChart"
         loader={<div>Loading Chart</div>}
         data={content}

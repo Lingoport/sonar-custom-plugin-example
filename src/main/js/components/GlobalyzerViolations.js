@@ -10,13 +10,14 @@ import '../style.css';
 export default class GlobalyzerViolations extends React.PureComponent {
 
   render() {
-    if(this.props.measure.distribution===undefined){
+    if(this.props.measure.rci===undefined||this.props.measure.distribution.length<2){
       return(
         <div className="block" id="block_5">
         <div className="timeline" style={{height:'100%'}}>
         <div className="widget">
         <link href="../style.css" rel="stylesheet"/>
-        <h5>No data found</h5>
+        <h3>Globalyzer Issues</h3>
+        <h5>No Issues found</h5>
         <div className="clear"></div>
         </div>
         <div style={{clear: 'both'}}></div>
