@@ -50,7 +50,30 @@ get(){
 
   render() {
     if(this.props.measure.localeMSR === undefined){
-       var content = "";
+      return (
+        <div className="block" id="block_6">
+        <div className="lplrmprewidget" style={{height:'100%'}}>
+        <div className="widget">
+        <link href="../style.css" rel="stylesheet"/>
+        <h3>Next Prep Kit Content</h3>
+        <div className="lg_widget">
+        <table className="lg_ds_progress_bar" border="0" width="500">
+        <thead>
+        <tr>
+            <th>Locale </th><th># of<br/>Files</th><th># of<br/>Keys</th><th># of<br/>Words</th>
+        </tr>
+        </thead>
+        <tbody>
+         <h5>No data found</h5>
+        </tbody></table>
+        </div>
+        <div className="clear"></div>
+        </div>
+        <div style={{clear: 'both'}}></div>
+        </div>
+        </div>
+
+      );
     }else{
       var locale = this.props.measure.localeMSR.split(";")
       var numFiles = this.props.measure.numFilesMSR.split(";")
@@ -71,6 +94,14 @@ get(){
 }
 
     return (
+      <div className="block" id="block_6">
+      <div className="lplrmprewidget" style={{height:'100%'}}>
+      <div className="widget">
+      <link href="../style.css" rel="stylesheet"/>
+      <h3>Next Prep Kit Content</h3>
+      <div className="lg_widget">
+
+
       <table className="lg_ds_progress_bar" border="0" width="500">
       <thead>
       <tr>
@@ -79,9 +110,18 @@ get(){
       </thead>
       <tbody>
           {content}
-          <input type="button" value="Prep Kit" onClick={this.get}/>
-
+      <td valign="top" align="left" nowrap="" colspan="4">
+      <div id="prepkit">
+      <input type="submit" value="Prep Kit" onClick={this.get}/>
+       <a target="_blank" title="Jenkins URL value in LRM global setting-Click to Verify" href={this.state.jenkins}>"Jenkins URL: {this.state.jenkins}"</a>
+       </div></td>
       </tbody></table>
+      </div>
+      <div className="clear"></div>
+      </div>
+      <div style={{clear: 'both'}}></div>
+      </div>
+      </div>
 
     );
   }

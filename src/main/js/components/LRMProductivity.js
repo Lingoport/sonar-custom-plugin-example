@@ -11,7 +11,21 @@ export default class LRMProductivity extends React.PureComponent {
 
   render() {
     if(this.props.measure.ids === undefined){
-       var content = "";
+      return (
+        <div className="block" id="block_7">
+        <div className="lplrmperformancewidget" style={{height:'100%'}}>
+        <div className="widget">
+        <link href="../style.css" rel="stylesheet"/>
+        <div className="lg_widget">
+        <h3>Resource Manager Productivity Report</h3>
+        <h5>No data found</h5>
+        </div>
+        <div className="clear"></div>
+        </div>
+        <div style={{clear: 'both'}}></div>
+        </div>
+        </div>
+    );
     }
     else{
       var ids = this.props.measure.ids.split(";")
@@ -33,10 +47,13 @@ export default class LRMProductivity extends React.PureComponent {
   }
 
     return (
+      <div className="block" id="block_7">
+      <div className="lplrmperformancewidget" style={{height:'100%'}}>
       <div className="widget">
-      <table>
+      <link href="../style.css" rel="stylesheet"/>
+      <div className="lg_widget">
       <h3>Resource Manager Productivity Report</h3>
-
+      <table>
       <tbody>
       <tr>
       <td>
@@ -58,6 +75,11 @@ export default class LRMProductivity extends React.PureComponent {
          </tr>
         </thead>
         <tbody>{content}</tbody></table>
+        </div>
+        <div className="clear"></div>
+        </div>
+        <div style={{clear: 'both'}}></div>
+        </div>
         </div>
     );
   }

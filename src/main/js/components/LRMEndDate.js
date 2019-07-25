@@ -11,13 +11,14 @@ export default class LRMEndDate extends React.PureComponent {
 
   render() {
 
-    return (
-      <table className="lg_ds_progress_bar" border="0" width="500">
-      <tbody>
-          <tr>Your LRM License is valid until {this.props.measure.endDate}</tr>
-          <tr>Your InContextQA License is valid until {this.props.measure.lqaendDate}</tr>
-      </tbody></table>
-
-    );
+    if(this.props.measure.endDate===undefined){
+      return (
+        <h5 style={{textAlign: 'right'}}>NA LRM License</h5>
+      );
+    }else{
+      return (
+        <h5 style={{textAlign: 'right'}}>LRM License valid until {this.props.measure.endDate}.  InContextQA License valid until {this.props.measure.lqaendDate}</h5>
+      );
+    }
   }
 }

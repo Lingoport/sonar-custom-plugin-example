@@ -2,6 +2,23 @@
  * Copyright (C) 2011-2019 Lingoport Inc
  * All rights reserved
  * info AT lingoport DOT com
+ {this.state.violation.map(
+     (value,idx) =>
+     <LRMViolations
+       measure={value}
+       key={idx}
+     />
+     )
+ }
+
+ {this.state.violation_tr.map(
+     (value,idx) =>
+     <LRMTransViolations
+       measure={value}
+       key={idx}
+     />
+     )
+ }
  */
 import React from 'react';
 import { Chart } from "react-google-charts";
@@ -98,92 +115,77 @@ export default class LRMApp extends React.PureComponent {
 
 
   render() {
-    // Data Gathered: {JSON.stringify(this.state.data)}
     return (
-      <div className="page page-limited">
-
-        <table className="data zebra">
-          <thead><tr className="code-components-header">
-            {this.state.endDate.map(
-                (value,idx) =>
-                <LRMEndDate
-                  measure={value}
-                  key={idx}
-                />
-                )
-            }
-            <br/>
-          </tr></thead>
-          <h3>Next Prep Kit Content</h3>
-          <tbody>
-
-          {this.state.preLocal.map(
+      <div id="body" className="page-container">
+      <div id="content">
+      <div className="page" id="dashboard">
+        <span className="hidden" id="is-project-dashboard"></span>
+        <header className="page-header">
+          <h1 className="page-title">Resource Manager</h1>
+          {this.state.endDate.map(
               (value,idx) =>
-              <LRMPrepKitContent
+              <LRMEndDate
                 measure={value}
                 key={idx}
               />
               )
           }
-          <br/>
-          <br/>
-          {this.state.violation.map(
-              (value,idx) =>
-              <LRMViolations
-                measure={value}
-                key={idx}
-              />
-              )
-          }
-          <br/>
-          <br/>
-          {this.state.violation_tr.map(
-              (value,idx) =>
-              <LRMTransViolations
-                measure={value}
-                key={idx}
-              />
-              )
-          }
-          <br/>
-          <br/>
+          </header>
+          <div style={{width: '100%',display: 'block', float: 'none'}}>
 
-          {this.state.completion.map(
-              (value,idx) =>
-              <LRMCompletion
-                measure={value}
-                key={idx}
-              />
-              )
-          }
-          <br/>
-          <br/>
+              <div className="dashboard-column-wrapper" style={{width: '50%',margin: '0 -1px 0 0',float:'left'}}>
+                <div className="dashboard-column" id="dashboard-column-1" style={{margin: '0 5px 0 0px',padding:'0',overflow:'visible'}}>
 
-          {this.state.productivity.map(
-              (value,idx) =>
-              <LRMProductivity
-                measure={value}
-                key={idx}
-              />
-              )
-          }
-          <br/>
-          <br/>
+                {this.state.preLocal.map(
+                    (value,idx) =>
+                    <LRMPrepKitContent
+                      measure={value}
+                      key={idx}
+                    />
+                    )
+                }
 
-          {this.state.history.map(
-              (value,idx) =>
-              <LRMHistory
-                measure={value}
-                key={idx}
-              />
-              )
-          }
-          <br/>
-          <br/>
-          </tbody>
-        </table>
+                {this.state.productivity.map(
+                    (value,idx) =>
+                    <LRMProductivity
+                      measure={value}
+                      key={idx}
+                    />
+                    )
+                }
 
+                </div>
+               </div>
+
+
+               <div className="dashboard-column-wrapper" style={{width: '50%',margin: '0 -1px 0 0',float:'left'}}>
+                 <div className="dashboard-column" id="dashboard-column-2" style={{margin: '0 0px 0 5px',float:'rignt',padding:'0',overflow:'visible'}}>
+
+
+                 {this.state.completion.map(
+                     (value,idx) =>
+                     <LRMCompletion
+                       measure={value}
+                       key={idx}
+                     />
+                     )
+                 }
+
+                 {this.state.history.map(
+                     (value,idx) =>
+                     <LRMHistory
+                       measure={value}
+                       key={idx}
+                     />
+                     )
+                 }
+                 </div>
+                </div>
+             </div>
+            </div>
+          </div>
       </div>
+
     );
   }
 }

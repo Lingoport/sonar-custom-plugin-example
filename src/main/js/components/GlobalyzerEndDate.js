@@ -10,10 +10,14 @@ import '../style.css';
 export default class GlobalyzerEndDate extends React.PureComponent {
 
   render() {
-
-    return (
-      <h5 style={{textAlign: 'right'}}>Your Globalyzer License is valid until {this.props.measure.endDate}</h5>
-
-    );
+   if(this.props.measure.endDate===undefined){
+     return (
+       <h5 style={{textAlign: 'right'}}>NA Globalyzer License</h5>
+     );
+   }else{
+     return (
+       <h5 style={{textAlign: 'right'}}>Your Globalyzer License is valid until {this.props.measure.endDate}</h5>
+     );
+   }
   }
 }

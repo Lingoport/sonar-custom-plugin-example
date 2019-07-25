@@ -13,7 +13,18 @@ export default class LRMHistory extends React.PureComponent {
   render() {
 
     if(this.props.measure.gdate === undefined){
-       var content = "";
+      return(
+        <div className="block" id="block_44">
+        <div className="timeline" style={{height:'100%'}}>
+        <div className="widget">
+        <link href="../style.css" rel="stylesheet"/>
+        <h5>No data found</h5>
+        <div className="clear"></div>
+        </div>
+        <div style={{clear: 'both'}}></div>
+        </div>
+        </div>
+      );
     }else{
     var content = new Array(this.props.measure.gdate.length+1);
     content[0] = ['x', 'Remaining Words','Remaining Files'];
@@ -27,11 +38,10 @@ export default class LRMHistory extends React.PureComponent {
 }
 
     return (
-      <table className="lg_ds_progress_bar" border="0" width="500">
-      <thead>
-      <tr>
-
-      </tr>
+      <div className="block" id="block_44">
+      <div className="timeline" style={{height:'100%'}}>
+      <div className="widget">
+      <link href="../style.css" rel="stylesheet"/>
 
       <Chart
         width={'480px'}
@@ -45,11 +55,11 @@ export default class LRMHistory extends React.PureComponent {
           },
         }}
       />
-
-      </thead>
-      <tbody>
-      </tbody></table>
-
+      <div className="clear"></div>
+      </div>
+      <div style={{clear: 'both'}}></div>
+      </div>
+      </div>
     );
   }
 }
