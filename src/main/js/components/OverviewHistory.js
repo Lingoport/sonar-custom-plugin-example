@@ -8,48 +8,60 @@ import { Chart } from "react-google-charts";
 import '../style.css';
 
 
-export default class LRMHistory extends React.PureComponent {
+export default class OverviewHistory extends React.PureComponent {
 
   render() {
 
     if(this.props.measure.gdate === undefined){
-       var content = "";
+       return(
+         <div className="block" id="block_44">
+         <div className="timeline" style={{height:'100%'}}>
+         <div className="widget">
+         <link href="../style.css" rel="stylesheet"/>
+         <h5>No data found</h5>
+         <div className="clear"></div>
+         </div>
+         <div style={{clear: 'both'}}></div>
+         </div>
+         </div>
+       );
     }else{
     var content = new Array(this.props.measure.gdate.length+1);
-    content[0] = ['x', 'Remaining Words','Remaining Files'];
+    content[0] = ['x', 'Globalyzer Issues','LRM Remaining Words'];
     let m = 0;
     for(let d = 1; d < content.length; d++){
       content[d]  = (
-        [new Date(this.props.measure.gdate[m]), this.props.measure.words[m],this.props.measure.files[m]]
+        [new Date(this.props.measure.gdate[m]), this.props.measure.gz[m],this.props.measure.lrm[m]]
     );
      m++;
   }
 }
 
     return (
-      <table className="lg_ds_progress_bar" border="0" width="500">
-      <thead>
-      <tr>
-
-      </tr>
+      <div className="block" id="block_44">
+      <div className="timeline" style={{height:'100%'}}>
+      <div className="widget">
+      <link href="../style.css" rel="stylesheet"/>
 
       <Chart
-        width={'480px'}
+        width={'520px'}
         height={'250px'}
         chartType="LineChart"
         loader={<div>Loading Chart</div>}
         data={content}
         options={{
+          legend: { position: 'bottom' },
           chart: {
-           title: 'LRM Remaining Words',
+           title: 'Remaining Words',
           },
         }}
       />
 
-      </thead>
-      <tbody>
-      </tbody></table>
-
+      <div className="clear"></div>
+      </div>
+      <div style={{clear: 'both'}}></div>
+      </div>
+      </div>
     );
   }
 }

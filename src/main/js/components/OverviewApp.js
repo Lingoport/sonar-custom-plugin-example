@@ -7,9 +7,11 @@ import React from 'react';
 import {translate} from '../common/l10n.js'
 import {findgyzrSummary} from '../api.js'
 import {findlplrmsummary} from '../api_lrm.js'
+import {findgzLrmHistory} from '../api_lrm.js'
 
 import OverviewGlobalyzerSummary from './OverviewGlobalyzerSummary'
 import OverviewLRMSummary from './OverviewLRMSummary'
+import OverviewHistory from './OverviewHistory'
 
 
 
@@ -18,7 +20,8 @@ export default class OverviewApp extends React.PureComponent {
 
   state = {
     gzsummary: [],
-    lrmsummary: []
+    lrmsummary: [],
+    history:[]
   };
 
   componentDidMount() {
@@ -35,6 +38,14 @@ export default class OverviewApp extends React.PureComponent {
       (valuesReturnedByAPI) => {
         this.setState({
         lrmsummary: valuesReturnedByAPI
+        });
+      }
+    );
+
+    findgzLrmHistory(this.props.project).then(
+      (valuesReturnedByAPI) => {
+        this.setState({
+          history: valuesReturnedByAPI
         });
       }
     );
@@ -66,6 +77,14 @@ export default class OverviewApp extends React.PureComponent {
                     />
                     )
                 }
+                {this.state.gzsummary.map(
+                    (value,idx) =>
+                    <OverviewGlobalyzerSummary
+                      measure={value}
+                      key={idx}
+                    />
+                    )
+                }
 
                 </div>
                </div>
@@ -74,9 +93,10 @@ export default class OverviewApp extends React.PureComponent {
                <div className="dashboard-column-wrapper" style={{width: '50%',margin: '0 -1px 0 0',float:'left'}}>
                  <div className="dashboard-column" id="dashboard-column-2" style={{margin: '0 0px 0 5px',float:'rignt',padding:'0',overflow:'visible'}}>
 
-                 {this.state.gzsummary.map(
+
+                 {this.state.history.map(
                      (value,idx) =>
-                     <OverviewGlobalyzerSummary
+                     <OverviewHistory
                        measure={value}
                        key={idx}
                      />

@@ -287,7 +287,6 @@ return getJSON('/api/project_analyses/search', {
                     value: []
                    };
 
-      //for (let i = 0; i < numberOfAnalyses; i++) {
           for(let d = 0; d < responseMetrics.measures[0].history.length; d++) {
                 result.gdate[d] = responseMetrics.measures[0].history[d].date;
                 result.value[d] = responseMetrics.measures[0].history[d].value;
@@ -296,9 +295,7 @@ return getJSON('/api/project_analyses/search', {
 
           }
             data[numberOfVersions] = result;
-          //  numberOfVersions++;
-    //  }
-      //console.table(data);
+
       return data;
     });
   }

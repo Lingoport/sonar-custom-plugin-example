@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2017-2017 SonarSource SA
+ * Copyright (C) 2011-2019 Lingoport Inc
  * All rights reserved
- * mailto:info AT sonarsource DOT com
+ * info AT lingoport DOT com
  */
 import {getJSON} from 'sonar-request'; // see https://github.com/SonarSource/sonarqube/blob/master/server/sonar-web/src/main/js/app/utils/exposeLibraries.js
 
@@ -535,6 +535,50 @@ return getJSON('/api/project_analyses/search', {
             numberOfVersions++;
           }
         }
+      }
+      return data;
+    });
+  }
+ });
+}
+
+
+
+export function findgzLrmHistory(project) {
+
+return getJSON('/api/project_analyses/search', {
+  project: project.key,
+  p: 1,
+  ps: 500,
+}).then(function (responseAnalyses) {
+  const numberOfAnalyses = responseAnalyses.analyses.length;
+  if (numberOfAnalyses > 0) {
+    return getJSON('/api/measures/search_history', {
+      component: project.key,
+      metrics: "lngprt-lrm-status-total-remaining-words,lngprt-gyzr-violations",
+      ps: 1000
+    }).then(function (responseMetrics) {
+      var data = [];
+      var numberOfVersions=0;
+      let result = {
+                    gdate: [],
+                    lrm: [],
+                    gz: []
+                   };
+     const numberOfMeasuresRetrieved = 2;
+     for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
+          for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {
+                if (responseMetrics.measures[k].metric === "lngprt-lrm-status-total-remaining-words") {
+                  result.lrm[d] = Number(responseMetrics.measures[k].history[d].value);
+                  if(result.lrm[d]===undefined) result.lrm[d] = 0;
+                }else if (responseMetrics.measures[k].metric === "lngprt-gyzr-violations") {
+                  result.gz[d] = Number(responseMetrics.measures[k].history[d].value);
+                  if(result.gz[d]===undefined) result.gz[d]=0;
+                  result.gdate[d] = responseMetrics.measures[k].history[d].date;
+                }
+
+          }
+            data[numberOfVersions] = result;
       }
       return data;
     });

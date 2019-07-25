@@ -1,26 +1,7 @@
 /*
- * Copyright (C) 2017-2017 SonarSource SA
+ * Copyright (C) 2011-2019 Lingoport Inc
  * All rights reserved
- * mailto:info AT sonarsource DOT com
- <div className="lpgzsummaryscanwidget" style="height:100%;">
-
-   <div className="widget">
-     <h3>Globalyzer Scans</h3>
-    <div className="lg_widget">
-    [
-      ['x', 'Globalyzer Issues'],
-      [new Date(this.props.measure.gdate[0].substring(0,4), Number(this.props.measure.gdate[1].substring(5,7))-1, this.props.measure.gdate[2].substring(8,10)), this.props.measure.value[0]],
-      [new Date(2019, 9, 5), 10],
-      [new Date(2019, 9, 5), 23],
-      [new Date(2019, 10, 25), 17],
-      [new Date(2019, 11, 9), 27],
-      [new Date(2019, 11, 20), 87],
-      [new Date(2020, 0, 5), 67],
-      [new Date(2020, 0, 30), 47],
-      [new Date(2020, 1, 2), 37],
-      [new Date(this.props.measure.gdate[m].substring(0,4), Number(this.props.measure.gdate[m].substring(5,7))-1, this.props.measure.gdate[m].substring(8,10)), this.props.measure.value[m]]
-
-    ]
+ * info AT lingoport DOT com
  */
 import React from 'react';
 import { Chart } from "react-google-charts";
