@@ -1,12 +1,7 @@
 /*
- * Copyright (C) 2017-2017 SonarSource SA
+ * Copyright (C) 2011-2019 Lingoport Inc
  * All rights reserved
- * mailto:info AT sonarsource DOT com
- <div className="lpgzsummaryscanwidget" style="height:100%;">
-
-   <div className="widget">
-     <h3>Globalyzer Scans</h3>
-    <div className="lg_widget">
+ * info AT lingoport DOT com
  */
 import React from 'react';
 import '../style.css';
@@ -16,7 +11,21 @@ export default class GlobalyzerScanSummary extends React.PureComponent {
 
   render() {
     if(this.props.measure.Scan === undefined){
-       var content = "";
+      return (
+        <div className="block" id="block_2">
+        <div className="lpgzsummaryscanwidget" style={{height:'100%'}}>
+        <div className="widget">
+        <link href="../style.css" rel="stylesheet"/>
+        <div className="lg_widget">
+        <h5>No issues found</h5>
+        </div>
+        <div className="clear"></div>
+        </div>
+        <div style={{clear: 'both'}}></div>
+        </div>
+        </div>
+
+      );
     }else{
       var scan = this.props.measure.Scan.split(";")
       var ruleset = this.props.measure.RuleSet.split(";")
@@ -37,6 +46,14 @@ export default class GlobalyzerScanSummary extends React.PureComponent {
   }
 }
     return (
+
+      <div className="block" id="block_2">
+      <div className="lpgzsummaryscanwidget" style={{height:'100%'}}>
+      <div className="widget">
+      <link href="../style.css" rel="stylesheet"/>
+      <h3>Globalyzer Scans</h3>
+      <div className="lg_widget">
+
       <table className="lg_ds_progress_bar" border="0" width="500">
       <thead>
       <tr>
@@ -46,6 +63,13 @@ export default class GlobalyzerScanSummary extends React.PureComponent {
       <tbody>
           {content}
       </tbody></table>
+
+      </div>
+      <div className="clear"></div>
+      </div>
+      <div style={{clear: 'both'}}></div>
+      </div>
+      </div>
 
     );
   }

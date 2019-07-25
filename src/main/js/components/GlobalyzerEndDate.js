@@ -1,12 +1,7 @@
 /*
- * Copyright (C) 2017-2017 SonarSource SA
+ * Copyright (C) 2011-2019 Lingoport Inc
  * All rights reserved
- * mailto:info AT sonarsource DOT com
- <div className="lpgzsummaryscanwidget" style="height:100%;">
-
-   <div className="widget">
-     <h3>Globalyzer Scans</h3>
-    <div className="lg_widget">
+ * info AT lingoport DOT com
  */
 import React from 'react';
 import '../style.css';

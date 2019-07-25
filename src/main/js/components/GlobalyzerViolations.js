@@ -1,14 +1,7 @@
 /*
- * Copyright (C) 2017-2017 SonarSource SA
+ * Copyright (C) 2011-2019 Lingoport Inc
  * All rights reserved
- * mailto:info AT sonarsource DOT com
- <div className="lpgzsummaryscanwidget" style="height:100%;">
-
-   <div className="widget">
-     <h3>Globalyzer Scans</h3>
-    <div className="lg_widget">
-    <span className="big"><a href="/component_issues/index?id=" +{this.props.measure.project}+ "#resolved=false|tags=gz">
-
+ * info AT lingoport DOT com
  */
 import React from 'react';
 import '../style.css';
@@ -17,6 +10,20 @@ import '../style.css';
 export default class GlobalyzerViolations extends React.PureComponent {
 
   render() {
+    if(this.props.measure.distribution===undefined){
+      return(
+        <div className="block" id="block_5">
+        <div className="timeline" style={{height:'100%'}}>
+        <div className="widget">
+        <link href="../style.css" rel="stylesheet"/>
+        <h5>No data found</h5>
+        <div className="clear"></div>
+        </div>
+        <div style={{clear: 'both'}}></div>
+        </div>
+        </div>
+      );
+    }else{
     var distri = this.props.measure.distribution.split(";")
     var ch = "";
     var chl = "";
@@ -31,11 +38,17 @@ export default class GlobalyzerViolations extends React.PureComponent {
     var chart = ch.substring(0,ch.length-1) + "&chl="  +chl.substring(0,chl.length-1);
     var proj = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&tags=gz'
     chart = 'https://chart.googleapis.com/chart?chs=400x160&chco=7AAF00&cht=p3&chd=t:' +chart
-
+}
     return (
+      <div className="block" id="block_5">
+      <div className="lpgzsummaryissuewidget" style={{height:'100%'}}>
+      <div className="widget">
+      <link href="../style.css" rel="stylesheet"/>
+      <h3>Globalyzer Issues</h3>
+      <div className="lg_widget">
+
 
       <table className="lg_ds_progress_bar" border="0" width="500">
-      <h3>Globalyzer Issues</h3>
 
       <tbody>
       <p>
@@ -49,6 +62,12 @@ export default class GlobalyzerViolations extends React.PureComponent {
           <img src={chart}/>
     </tbody></table>
 
+    </div>
+    <div className="clear"></div>
+    </div>
+    <div style={{clear: 'both'}}></div>
+    </div>
+    </div>
     );
   }
 }

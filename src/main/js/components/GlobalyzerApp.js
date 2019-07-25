@@ -1,7 +1,16 @@
 /*
- * Copyright (C) 2017-2017 SonarSource SA
+ * Copyright (C) 2011-2019 Lingoport Inc
  * All rights reserved
- * mailto:info AT sonarsource DOT com
+ * info AT lingoport DOT com
+
+       {this.state.endDate.map(
+           (value,idx) =>
+           <GlobalyzerEndDate
+             measure={value}
+             key={idx}
+           />
+           )
+       }
 
  */
 import React from 'react';
@@ -16,6 +25,7 @@ import GlobalyzerScanSummary from './GlobalyzerScanSummary'
 import GlobalyzerViolations from './GlobalyzerViolations'
 import GlobalyzerRulesSummary from './GlobalyzerRulesSummary'
 import GlobalyzerIssuesHistory from './GlobalyzerIssuesHistory'
+import OverviewGlobalyzerSummary from './OverviewGlobalyzerSummary'
 
 
 export default class GlobalyzerApp extends React.PureComponent {
@@ -72,69 +82,69 @@ export default class GlobalyzerApp extends React.PureComponent {
   }
 
   render() {
-    // Data Gathered: {JSON.stringify(this.state.data)}
     return (
-      <div className="page page-limited">
-        <table className="data zebra">
-          <thead><tr className="code-components-header">
-            {this.state.endDate.map(
-                (value,idx) =>
-                <GlobalyzerEndDate
-                  measure={value}
-                  key={idx}
-                />
-                )
-            }
-            <br/>
-          </tr></thead>
-          <h3>Globalyzer Scans</h3>
-          <tbody>
-          {this.state.data.map(
-              (value,idx) =>
-              <GlobalyzerScanSummary
-                measure={value}
-                key={idx}
-              />
-              )
-          }
-          <br/>
-          <br/>
-          {this.state.violation.map(
-                (value,idx) =>
-                <GlobalyzerViolations
-                  measure={value}
-                  key={idx}
-                  />
-                  )
-          }
-          <br/>
-          <br/>
-          <h3>Globalyzer Summary</h3>
-          {this.state.summary.map(
-                (value,idx) =>
-                <GlobalyzerRulesSummary
-                  measure={value}
-                  key={idx}
-                  />
-                  )
-          }
-          <br/>
-          <br/>
+      <div id="body" className="page-container">
+      <div id="content">
+      <div className="page" id="dashboard">
+        <span className="hidden" id="is-project-dashboard"></span>
+        <header className="page-header">
+          <h1 className="page-title">Globalyzer</h1>
+          </header>
+          <div style={{width: '100%',display: 'block', float: 'none'}}>
 
-          {this.state.history.map(
-                (value,idx) =>
-                <GlobalyzerIssuesHistory
-                  measure={value}
-                  key={idx}
-                  />
-                  )
-          }
+              <div className="dashboard-column-wrapper" style={{width: '50%',margin: '0 -1px 0 0',float:'left'}}>
+                <div className="dashboard-column" id="dashboard-column-1" style={{margin: '0 5px 0 0px',padding:'0',overflow:'visible'}}>
+
+                {this.state.summary.map(
+                    (value,idx) =>
+                    <OverviewGlobalyzerSummary
+                      measure={value}
+                      key={idx}
+                    />
+                    )
+                }
+
+                {this.state.violation.map(
+                      (value,idx) =>
+                      <GlobalyzerViolations
+                        measure={value}
+                        key={idx}
+                        />
+                        )
+                }
+
+                </div>
+               </div>
 
 
-          </tbody>
-        </table>
+               <div className="dashboard-column-wrapper" style={{width: '50%',margin: '0 -1px 0 0',float:'left'}}>
+                 <div className="dashboard-column" id="dashboard-column-2" style={{margin: '0 0px 0 5px',float:'rignt',padding:'0',overflow:'visible'}}>
 
+                 {this.state.data.map(
+                     (value,idx) =>
+                     <GlobalyzerScanSummary
+                       measure={value}
+                       key={idx}
+                     />
+                     )
+                 }
+                 {this.state.history.map(
+                       (value,idx) =>
+                       <GlobalyzerIssuesHistory
+                         measure={value}
+                         key={idx}
+                         />
+                         )
+                 }
+
+                 </div>
+                </div>
+             </div>
+            </div>
+          </div>
       </div>
+
+
     );
   }
 }
