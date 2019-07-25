@@ -10,16 +10,14 @@ import '../style.css';
 export default class OverviewLicense extends React.PureComponent {
 
   render() {
-    var LRMPage = '/project/extension/lingoport/lrm_page?id=' +this.props.measure.project+ '&qualifier=TRK'
-    var file = this.props.measure.nbfilesMSR
+    var gyzrExist = this.props.measure.gyzrExists
 
-    if(file===undefined){
+    if(gyzrExist===undefined&&this.props.measure.lrmExists===undefined){
       return (
-        <div className="block" id="block_29">
-        <div className="lplrmsummaryruleswidget" style={{height:'100%'}}>
+        <div className="block" id="block_1">
+        <div className="lplicensewidget" style={{height:'100%'}}>
         <div className="widget">
         <link href="../style.css" rel="stylesheet"/>
-        <h3><a href ={LRMPage}>Resource Manager Summary Report</a></h3>
         <div className="lg_widget">
         <h5>No data found</h5>
         </div>
@@ -30,58 +28,37 @@ export default class OverviewLicense extends React.PureComponent {
         </div>
 
       );
-    }
+    }else if(gyzrExist===undefined){
 
     return (
-      <div className="block" id="block_29">
-      <div className="lplrmsummaryruleswidget" style={{height:'100%'}}>
+      <div className="block" id="block_1">
+      <div className="lplicensewidget" style={{height:'100%'}}>
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
-      <h3><a href ={LRMPage}>Resource Manager Summary Report</a></h3>
+      <h3>Licensing</h3>
       <div className="lg_widget">
-
-
       <table>
       <tbody>
-
         <tr>
-          <td>Default Locale:	</td>
-          <td>{this.props.measure.dfltLocaleMSR}</td>
+          <td>LRM License End Date:		</td>
+          <td>{this.props.measure.lrmEndDate}</td>
         </tr>
-
         <tr>
-          <td>Base Resource Files:</td>
-          <td>{this.props.measure.nbfilesMSR}</td>
+          <td>LRM Version:	</td>
+          <td>{this.props.measure.lrmVersion}</td>
         </tr>
-
         <tr>
-          <td>Base Resource Words:</td>
-          <td>{this.props.measure.nbwordsMSR}</td>
+          <td>LRM License Company Name:</td>
+          <td>{this.props.measure.lrmCompanyName}</td>
         </tr>
-
         <tr>
-          <td>Target Locales</td>
-          <td>{this.props.measure.nblocalesMSR}</td>
+          <td>LRM Number of Projects Allowed	</td>
+          <td>{this.props.measure.lrmProjects}</td>
         </tr>
-
         <tr>
-          <td>% Complete</td>
-          <td>{this.props.measure.avgCompleteMSR}%</td>
+          <td>InContextQA License End Date:	</td>
+          <td>{this.props.measure.lrmLqaEndDate}</td>
         </tr>
-
-        <tr>
-          <td>Last Prepped Kit Version</td>
-          <td>{this.props.measure.versionNumMSR}</td>
-        </tr>
-
-        <tr>
-          <td>Last Prepped Kit Date</td>
-          <td>{this.props.measure.lastSendMSR}</td>
-        </tr>
-
-
-        <br/>
-
         </tbody></table>
          </div>
          <div className="clear"></div>
@@ -90,5 +67,120 @@ export default class OverviewLicense extends React.PureComponent {
          </div>
          </div>
     );
+  }else if(this.props.measure.lrmExists===undefined){
+    return (
+      <div className="block" id="block_1">
+      <div className="lplicensewidget" style={{height:'100%'}}>
+      <div className="widget">
+      <link href="../style.css" rel="stylesheet"/>
+      <h3>Licensing</h3>
+      <div className="lg_widget">
+      <table>
+      <tbody>
+        <tr>
+          <td>GYZR License End Date:		</td>
+          <td>{this.props.measure.gyzrEndDate}</td>
+        </tr>
+        <tr>
+          <td>GYZR Client Version:		</td>
+          <td>{this.props.measure.gyzrClientVersion}</td>
+        </tr>
+        <tr>
+          <td>GYZR License Company Name:	</td>
+          <td>{this.props.measure.gyzrCompanyName}</td>
+        </tr>
+        <tr>
+          <td>GYZR Number of Projects Allowed		</td>
+          <td>{this.props.measure.gyzrProjects}</td>
+        </tr>
+        <tr>
+          <td>GYZR Number of Products Allowed		</td>
+          <td>{this.props.measure.gyzrProducts}</td>
+        </tr>
+        <tr>
+          <td>GYZR Number of Repo Allowed	</td>
+          <td>{this.props.measure.gyzrRepo}</td>
+        </tr>
+        <tr>
+          <td>GYZR Number of Lines Allowed	</td>
+          <td>{this.props.measure.gyzrLines}</td>
+        </tr>
+        <br/>
+        </tbody></table>
+         </div>
+         <div className="clear"></div>
+         </div>
+         <div style={{clear: 'both'}}></div>
+         </div>
+         </div>
+    );
+  }else{
+    return (
+      <div className="block" id="block_1">
+      <div className="lplicensewidget" style={{height:'100%'}}>
+      <div className="widget">
+      <link href="../style.css" rel="stylesheet"/>
+      <h3>Licensing</h3>
+      <div className="lg_widget">
+      <table>
+      <tbody>
+      <tr>
+        <td>LRM License End Date:		</td>
+        <td>{this.props.measure.lrmEndDate}</td>
+      </tr>
+      <tr>
+        <td>LRM Version:	</td>
+        <td>{this.props.measure.lrmVersion}</td>
+      </tr>
+      <tr>
+        <td>LRM License Company Name:</td>
+        <td>{this.props.measure.lrmCompanyName}</td>
+      </tr>
+      <tr>
+        <td>LRM Number of Projects Allowed	</td>
+        <td>{this.props.measure.lrmProjects}</td>
+      </tr>
+      <tr>
+        <td>InContextQA License End Date:	</td>
+        <td>{this.props.measure.lrmLqaEndDate}</td>
+      </tr>
+      <tr>
+        <td>GYZR License End Date:		</td>
+        <td>{this.props.measure.gyzrEndDate}</td>
+      </tr>
+      <tr>
+        <td>GYZR Client Version:		</td>
+        <td>{this.props.measure.gyzrClientVersion}</td>
+      </tr>
+      <tr>
+        <td>GYZR License Company Name:	</td>
+        <td>{this.props.measure.gyzrCompanyName}</td>
+      </tr>
+      <tr>
+        <td>GYZR Number of Projects Allowed		</td>
+        <td>{this.props.measure.gyzrProjects}</td>
+      </tr>
+      <tr>
+        <td>GYZR Number of Products Allowed		</td>
+        <td>{this.props.measure.gyzrProducts}</td>
+      </tr>
+      <tr>
+        <td>GYZR Number of Repo Allowed	</td>
+        <td>{this.props.measure.gyzrRepo}</td>
+      </tr>
+      <tr>
+        <td>GYZR Number of Lines Allowed	</td>
+        <td>{this.props.measure.gyzrLines}</td>
+      </tr>
+        <br/>
+        </tbody></table>
+         </div>
+         <div className="clear"></div>
+         </div>
+         <div style={{clear: 'both'}}></div>
+         </div>
+         </div>
+    );
+  }
   }
 }

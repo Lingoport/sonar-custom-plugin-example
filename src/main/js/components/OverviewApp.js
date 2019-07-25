@@ -46,7 +46,7 @@ export default class OverviewApp extends React.PureComponent {
     findlpLicense(this.props.project).then(
       (valuesReturnedByAPI) => {
         this.setState({
-          history: valuesReturnedByAPI
+          license: valuesReturnedByAPI
         });
       }
     );
@@ -54,7 +54,7 @@ export default class OverviewApp extends React.PureComponent {
     findgzLrmHistory(this.props.project).then(
       (valuesReturnedByAPI) => {
         this.setState({
-          license: valuesReturnedByAPI
+          history: valuesReturnedByAPI
         });
       }
     );
