@@ -22,8 +22,8 @@ export default class GlobalyzerScanSummary extends React.PureComponent {
     var content = new Array(scan.length);
     for(let d = 0; d < scan.length; d++){
      content[d]  = (
-        <tr height="30" class="alt">
-        <td className="label">{scan[d]}</td>
+        <tr height="30" className="alt">
+        <td className="label">  {scan[d]}</td>
         <td className="label">{ruleset[d]}</td>
         <td className="label">{issues[d]}</td>
         <td className="label">{lines[d]}</td>

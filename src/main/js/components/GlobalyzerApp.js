@@ -2,16 +2,6 @@
  * Copyright (C) 2011-2019 Lingoport Inc
  * All rights reserved
  * info AT lingoport DOT com
-
-       {this.state.endDate.map(
-           (value,idx) =>
-           <GlobalyzerEndDate
-             measure={value}
-             key={idx}
-           />
-           )
-       }
-
  */
 import React from 'react';
 import {translate} from '../common/l10n.js'
@@ -89,6 +79,14 @@ export default class GlobalyzerApp extends React.PureComponent {
         <span className="hidden" id="is-project-dashboard"></span>
         <header className="page-header">
           <h1 className="page-title">Globalyzer</h1>
+          {this.state.endDate.map(
+              (value,idx) =>
+              <GlobalyzerEndDate
+                measure={value}
+                key={idx}
+              />
+              )
+          }
           </header>
           <div style={{width: '100%',display: 'block', float: 'none'}}>
 

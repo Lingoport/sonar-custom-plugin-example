@@ -12,10 +12,7 @@ export default class GlobalyzerEndDate extends React.PureComponent {
   render() {
 
     return (
-      <table className="lg_ds_progress_bar" border="0" width="500">
-      <tbody>
-          <td>Your Globalyzer License is valid until {this.props.measure.endDate}</td>
-      </tbody></table>
+      <h5 style={{textAlign: 'right'}}>Your Globalyzer License is valid until {this.props.measure.endDate}</h5>
 
     );
   }
