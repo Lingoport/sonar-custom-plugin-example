@@ -8,12 +8,12 @@ import {translate} from '../common/l10n.js'
 import {findgyzrSummary} from '../api.js'
 import {findlplrmsummary} from '../api_lrm.js'
 import {findgzLrmHistory} from '../api_lrm.js'
+import {findlpLicense} from '../api.js'
 
 import OverviewGlobalyzerSummary from './OverviewGlobalyzerSummary'
 import OverviewLRMSummary from './OverviewLRMSummary'
 import OverviewHistory from './OverviewHistory'
-
-
+import OverviewLicense from './OverviewLicense'
 
 
 export default class OverviewApp extends React.PureComponent {
@@ -21,7 +21,8 @@ export default class OverviewApp extends React.PureComponent {
   state = {
     gzsummary: [],
     lrmsummary: [],
-    history:[]
+    history:[],
+    license:[]
   };
 
   componentDidMount() {
@@ -42,10 +43,18 @@ export default class OverviewApp extends React.PureComponent {
       }
     );
 
-    findgzLrmHistory(this.props.project).then(
+    findlpLicense(this.props.project).then(
       (valuesReturnedByAPI) => {
         this.setState({
           history: valuesReturnedByAPI
+        });
+      }
+    );
+
+    findgzLrmHistory(this.props.project).then(
+      (valuesReturnedByAPI) => {
+        this.setState({
+          license: valuesReturnedByAPI
         });
       }
     );
@@ -93,6 +102,14 @@ export default class OverviewApp extends React.PureComponent {
                <div className="dashboard-column-wrapper" style={{width: '50%',margin: '0 -1px 0 0',float:'left'}}>
                  <div className="dashboard-column" id="dashboard-column-2" style={{margin: '0 0px 0 5px',float:'rignt',padding:'0',overflow:'visible'}}>
 
+                 {this.state.license.map(
+                     (value,idx) =>
+                     <OverviewLicense
+                       measure={value}
+                       key={idx}
+                     />
+                     )
+                 }
 
                  {this.state.history.map(
                      (value,idx) =>

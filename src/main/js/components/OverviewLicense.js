@@ -92,4 +92,3 @@ export default class OverviewLicense extends React.PureComponent {
     );
   }
 }
-//

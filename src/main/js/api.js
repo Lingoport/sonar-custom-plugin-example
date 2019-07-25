@@ -61,7 +61,6 @@ return getJSON('/api/project_analyses/search', {
             for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
               for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {
                 if ( responseMetrics.measures[k].history[d].date === responseAnalyses.analyses[i].date ) {
-                  //console.log(responseMetrics.measures[k].metric);
                   if (responseMetrics.measures[k].metric === "lngprt-gyzr-scan-line-count") {
                     result.Lines = responseMetrics.measures[k].history[d].value;
                   } else if (responseMetrics.measures[k].metric === "lngprt-gyzr-scan-rule-set-name") {
@@ -90,7 +89,6 @@ return getJSON('/api/project_analyses/search', {
           }
         }
       }
-      //console.table(data);
       return data;
     });
   }
@@ -127,7 +125,6 @@ return getJSON('/api/project_analyses/search', {
             for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
               for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {
                 if ( responseMetrics.measures[k].history[d].date === responseAnalyses.analyses[i].date ) {
-                  //console.log(responseMetrics.measures[k].metric);
                   if (responseMetrics.measures[k].metric === "lngprt-globalyzer-license-enddate") {
                     result.endDate = responseMetrics.measures[k].history[d].value;
                   }
@@ -141,7 +138,6 @@ return getJSON('/api/project_analyses/search', {
           }
         }
       }
-      //console.table(data);
       return data;
     });
   }
@@ -179,7 +175,6 @@ return getJSON('/api/project_analyses/search', {
             for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
               for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {
                 if ( responseMetrics.measures[k].history[d].date === responseAnalyses.analyses[i].date ) {
-                  //console.log(responseMetrics.measures[k].metric);
                   if (responseMetrics.measures[k].metric === "lngprt-gyzr-violations") {
                     result.violation = responseMetrics.measures[k].history[d].value;
                   }else if (responseMetrics.measures[k].metric === "lngprt-gyzr-violations-count-ratio") {
@@ -198,7 +193,6 @@ return getJSON('/api/project_analyses/search', {
           }
         }
       }
-      //console.table(data);
       return data;
     });
   }
@@ -237,7 +231,6 @@ return getJSON('/api/project_analyses/search', {
             for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
               for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {
                 if ( responseMetrics.measures[k].history[d].date === responseAnalyses.analyses[i].date ) {
-                  //console.log(responseMetrics.measures[k].metric);
                   if (responseMetrics.measures[k].metric === "lngprt-gyzr-rules-concatenations") {
                     result.concatenations = responseMetrics.measures[k].history[d].value;
                   } else if (responseMetrics.measures[k].metric === "lngprt-gyzr-rules-static-files") {
@@ -258,7 +251,6 @@ return getJSON('/api/project_analyses/search', {
           }
         }
       }
-      //console.table(data);
       return data;
     });
   }
@@ -296,6 +288,81 @@ return getJSON('/api/project_analyses/search', {
           }
             data[numberOfVersions] = result;
 
+      return data;
+    });
+  }
+ });
+}
+
+export function findlpLicense(project) {
+
+return getJSON('/api/project_analyses/search', {
+  project: project.key,
+  p: 1,
+  ps: 500,
+}).then(function (responseAnalyses) {
+  const numberOfAnalyses = responseAnalyses.analyses.length;
+  if (numberOfAnalyses > 0) {
+    return getJSON('/api/measures/search_history', {
+      component: project.key,
+      metrics: "lngprt-globalyzer-lines,lngprt-globalyzer-client-version,lngprt-globalyzer-license-name,lngprt-globalyzer-license-enddate,lngprt-globalyzer-license-products,lngprt-globalyzer-license-lines,lngprt-globalyzer-license-projects,lngprt-globalyzer-license-repos,lngprt-lrm-ncloc,lngprt-lrm-version,lngprt-lrm-license-enddate,lngprt-lqa-license-enddate,lngprt-lrm-license-projects,lngprt-lrm-company_name",
+      ps: 1000
+    }).then(function (responseMetrics) {
+      var data = [];
+      var numberOfVersions=0;
+
+      for (let i = 0; i < numberOfAnalyses; i++) {
+        let analysis = responseAnalyses.analyses[i];
+        for (let j = 0; j < analysis.events.length; j++) {
+          if (analysis.events[j].category === "VERSION") {
+            let result = {version: analysis.events[j].name,
+                          gyzrClientVersion:"", gyzrExists:"",
+                          gyzrCompanyName:"", gyzrEndDate:"", gyzrProducts:"",gyzrLines:"",gyzrProjects:"",gyzrRepo:"",
+                          lrmExists:"", lrmVersion:"", lrmEndDate:"", lrmLqaEndDate:"", lrmProjects:"", lrmCompanyName:""
+                         };
+            const numberOfMeasuresRetrieved = 14;
+
+            for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
+              for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {
+                if ( responseMetrics.measures[k].history[d].date === responseAnalyses.analyses[i].date ) {
+                  if (responseMetrics.measures[k].metric === "lngprt-globalyzer-lines") {
+                    result.gyzrExists = responseMetrics.measures[k].history[d].value;
+                  } else if (responseMetrics.measures[k].metric === "lngprt-globalyzer-client-version") {
+                    result.gyzrClientVersion = responseMetrics.measures[k].history[d].value;
+                  } else if (responseMetrics.measures[k].metric === "lngprt-globalyzer-license-name") {
+                    result.gyzrCompanyName = responseMetrics.measures[k].history[d].value;
+                  } else if (responseMetrics.measures[k].metric === "lngprt-globalyzer-license-enddate") {
+                    result.gyzrEndDate = responseMetrics.measures[k].history[d].value;
+                  } else if (responseMetrics.measures[k].metric === "lngprt-globalyzer-license-products") {
+                    result.gyzrProducts = responseMetrics.measures[k].history[d].value;
+                  } else if (responseMetrics.measures[k].metric === "lngprt-globalyzer-license-lines") {
+                    result.gyzrLines = responseMetrics.measures[k].history[d].value;
+                  } else if (responseMetrics.measures[k].metric === "lngprt-globalyzer-license-projects") {
+                    result.gyzrProjects = responseMetrics.measures[k].history[d].value;
+                  } else if (responseMetrics.measures[k].metric === "lngprt-globalyzer-license-repos") {
+                    result.gyzrRepo = responseMetrics.measures[k].history[d].value;
+                  } else if (responseMetrics.measures[k].metric === "lngprt-lrm-ncloc") {
+                    result.lrmExists = responseMetrics.measures[k].history[d].value;
+                  } else if (responseMetrics.measures[k].metric === "lngprt-lrm-version") {
+                    result.lrmVersion = responseMetrics.measures[k].history[d].value;
+                  } else if (responseMetrics.measures[k].metric === "lngprt-lrm-license-enddate") {
+                    result.lrmEndDate = responseMetrics.measures[k].history[d].value;
+                  } else if (responseMetrics.measures[k].metric === "lngprt-lqa-license-enddate") {
+                    result.lrmLqaEndDate = responseMetrics.measures[k].history[d].value;
+                  } else if (responseMetrics.measures[k].metric === "lngprt-lrm-license-projects") {
+                    result.lrmProjects = responseMetrics.measures[k].history[d].value;
+                  } else if (responseMetrics.measures[k].metric === "lngprt-lrm-company_name") {
+                    result.lrmCompanyName = responseMetrics.measures[k].history[d].value;
+                  }
+                }
+              }
+            }
+
+            data[numberOfVersions] = result;
+            numberOfVersions++;
+          }
+        }
+      }
       return data;
     });
   }

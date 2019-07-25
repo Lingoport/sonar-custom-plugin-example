@@ -44,8 +44,8 @@ export default class OverviewHistory extends React.PureComponent {
       <link href="../style.css" rel="stylesheet"/>
 
       <Chart
-        width={'520px'}
-        height={'250px'}
+        width={'550px'}
+        height={'280px'}
         chartType="LineChart"
         loader={<div>Loading Chart</div>}
         data={content}
