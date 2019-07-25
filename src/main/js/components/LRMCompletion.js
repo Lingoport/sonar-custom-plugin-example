@@ -48,12 +48,13 @@ export default class LRMCompletion extends React.PureComponent {
         totalpercent = Number(percent[d])+ Number(totalpercent);
         content[d]  = (
          <tr>
-         <td title={display[d]}>{ids[d]}</td>
+         <td className="label" title={display[d]}>{ids[d]}</td>
+         <td className="bar" valign="middle">
 
          <div style={{width: '100%', height: '17px', backgroundColor: '#DDDDDD'}}>
          <div style={{width:p, height:'11px',lineHeight:'11px',backgroundColor: '#BBBBBB',borderTop:'3px solid #DDDDDD',color:'#4F7007',fontSize:'12px'}}>{percent[d]}%</div>
          </div>
-
+        </td>
          <td>{tfiles[d].substring(0,tfiles[d].length-2)}</td>
          <td>{tkeys[d].substring(0,tkeys[d].length-2)}</td>
          <td>{twords[d].substring(0,twords[d].length-2)}</td>

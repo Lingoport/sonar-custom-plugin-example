@@ -32,7 +32,7 @@ componentDidMount() {
 get(){
    $.ajax({
              type:'POST',
-             url:this.state.jenkins + '/buildByToken/buildWithParameters'+"?" +'job=DashboardPrepKit&token=DASHBOARDPREPKIT&lrm_group_project=' + this.props.measure.project  + '&dashboard_user=' + 'dash',
+             url:jenkins + '/buildByToken/buildWithParameters'+"?" +'job=DashboardPrepKit&token=DASHBOARDPREPKIT&lrm_group_project=' + this.props.measure.project  + '&dashboard_user=' + 'dash',
           //   url:'http://ec2-34-234-66-56.compute-1.amazonaws.com/jenkins'+ '/buildByToken/buildWithParameters'+"?" +'job=DashboardPrepKit&token=DASHBOARDPREPKIT&lrm_group_project=' + 'CET.OpenMind' + '&dashboard_user=' + 'dash',
              contentType:'application/x-www-form-urlencoded; charset=UTF-8',
              beforeSend: function (jqXHR, settings) {
@@ -113,7 +113,7 @@ get(){
       <td valign="top" align="left" nowrap="" colspan="4">
       <div id="prepkit">
       <input type="submit" value="Prep Kit" onClick={this.get}/>
-       <a target="_blank" title="Jenkins URL value in LRM global setting-Click to Verify" href={this.state.jenkins}>"Jenkins URL: {this.state.jenkins}"</a>
+       <a target="_blank" title="Jenkins URL value in LRM global setting-Click to Verify" href={this.state.jenkins}>     Jenkins URL: {this.state.jenkins}</a>
        </div></td>
       </tbody></table>
       </div>

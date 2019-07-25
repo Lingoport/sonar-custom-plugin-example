@@ -27,7 +27,7 @@ export default class LRMHistory extends React.PureComponent {
       );
     }else{
     var content = new Array(this.props.measure.gdate.length+1);
-    content[0] = ['x', 'Remaining Words','Remaining Files'];
+    content[0] = ['x', 'LRM Remaining Words','LRM Remaining Files'];
     let m = 0;
     for(let d = 1; d < content.length; d++){
       content[d]  = (
@@ -44,12 +44,13 @@ export default class LRMHistory extends React.PureComponent {
       <link href="../style.css" rel="stylesheet"/>
 
       <Chart
-        width={'480px'}
-        height={'250px'}
+        width={'600px'}
+        height={'280px'}
         chartType="LineChart"
         loader={<div>Loading Chart</div>}
         data={content}
         options={{
+          legend: { position: 'bottom' },
           chart: {
            title: 'LRM Remaining Words',
           },
