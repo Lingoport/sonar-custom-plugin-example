@@ -13,7 +13,7 @@ import {findTraLRMViolations} from '../api_lrm.js'
 import {findLrmCompletion} from '../api_lrm.js'
 import {findLrmProductivity} from '../api_lrm.js'
 import {findLrmHistory} from '../api_lrm.js'
-
+import {findlrmDueDate} from '../api_lrm.js'
 import LRMEndDate from './LRMEndDate'
 import LRMPrepKitContent from './LRMPrepKitContent'
 import LRMViolations from './LRMViolations'
@@ -21,7 +21,7 @@ import LRMTransViolations from './LRMTransViolations'
 import LRMCompletion from './LRMCompletion'
 import LRMProductivity from './LRMProductivity'
 import LRMHistory from './LRMHistory'
-
+import LrmPrepKitDue from './LrmPrepKitDue'
 
 export default class LRMApp extends React.PureComponent {
 
@@ -33,7 +33,8 @@ export default class LRMApp extends React.PureComponent {
     chart: [],
     completion:[],
     productivity:[],
-    history:[]
+    history:[],
+    dueDate:[]
   };
 
   componentDidMount() {
@@ -45,6 +46,15 @@ export default class LRMApp extends React.PureComponent {
         });
       }
     );
+
+    findlrmDueDate(this.props.project).then(
+      (valuesReturnedByAPI) => {
+        this.setState({
+          dueDate: valuesReturnedByAPI
+        });
+      }
+    );
+
 
     findLrmHistory(this.props.project).then(
       (valuesReturnedByAPI) => {
@@ -127,7 +137,14 @@ export default class LRMApp extends React.PureComponent {
                     />
                     )
                 }
-
+                {this.state.dueDate.map(
+                    (value,idx) =>
+                    <LrmPrepKitDue
+                      measure={value}
+                      key={idx}
+                    />
+                    )
+                }
 
                 {this.state.productivity.map(
                     (value,idx) =>

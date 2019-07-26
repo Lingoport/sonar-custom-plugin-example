@@ -10,6 +10,7 @@ import '../style.css';
 export default class LRMTransViolations extends React.PureComponent {
 
   render() {
+/*    
     var distri = this.props.measure.distribution.split(";")
     var ch = "";
     var chl = "";
@@ -22,8 +23,9 @@ export default class LRMTransViolations extends React.PureComponent {
   }
 
     var chart = ch.substring(0,ch.length-1) + "&chl="  +chl.substring(0,chl.length-1);
-    var proj = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&tags=lrm-translation'
     chart = 'https://chart.googleapis.com/chart?chs=400x160&chco=7AAF00&cht=p3&chd=t:' +chart
+*/
+    var proj = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&tags=lrm-translation'
 
     return (
 

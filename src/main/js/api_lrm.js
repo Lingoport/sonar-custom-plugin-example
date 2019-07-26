@@ -525,7 +525,74 @@ return getJSON('/api/project_analyses/search', {
  });
 }
 
+export function findlrmDueDate(project) {
 
+return getJSON('/api/project_analyses/search', {
+  project: project.key,
+  p: 1,
+  ps: 500,
+}).then(function (responseAnalyses) {
+  const numberOfAnalyses = responseAnalyses.analyses.length;
+  if (numberOfAnalyses > 0) {
+    return getJSON('/api/measures/search_history', {
+      component: project.key,
+      metrics: "lngprt-lrm-kit-status-locale-ids,lngprt-lrm-kit-status-version-numbers,lngprt-lrm-kit-status-sent-dates,lngprt-lrm-kit-status-due-dates,lngprt-lrm-num-of-files-in-prep-kit,lngprt-lrm-num-of-words-in-prep-kit,lngprt-lrm-kit-status-days-late,lngprt-lrm-kit-status-locale-names",
+      ps: 1000
+    }).then(function (responseMetrics) {
+      var data = [];
+      var numberOfVersions=0;
+
+      for (let i = 0; i < numberOfAnalyses; i++) {
+        let analysis = responseAnalyses.analyses[i];
+        for (let j = 0; j < analysis.events.length; j++) {
+          if (analysis.events[j].category === "VERSION") {
+            let result = {version: analysis.events[j].name,
+                          localeMSR: "",
+                          versionMSR:"",
+                          sentDatesMSR:"",
+                          dueDatesMSR:"",
+                          numFilesMSR:"",
+                          numWordsMSR:"",
+                          daysLateMSR:"",
+                          displayNameMSR:"",
+                          project:project.key
+                         };
+            const numberOfMeasuresRetrieved = 8;
+
+            for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
+              for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {
+                if ( responseMetrics.measures[k].history[d].date === responseAnalyses.analyses[i].date ) {
+                  //console.log(responseMetrics.measures[k].metric);
+                  if (responseMetrics.measures[k].metric === "lngprt-lrm-kit-status-locale-ids") {
+                    result.localeMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-kit-status-version-numbers") {
+                      result.versionMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-kit-status-sent-dates") {
+                      result.sentDatesMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-kit-status-due-dates") {
+                      result.dueDatesMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-num-of-files-in-prep-kit") {
+                      result.numFilesMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-num-of-words-in-prep-kit") {
+                      result.numWordsMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-kit-status-days-late") {
+                      result.daysLateMSR = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-kit-status-locale-names") {
+                      result.displayNameMSR = responseMetrics.measures[k].history[d].value;
+                  }
+                }
+              }
+            }
+            data[numberOfVersions] = result;
+            numberOfVersions++;
+          }
+        }
+      }
+      return data;
+    });
+  }
+ });
+}
 
 export function findgzLrmHistory(project) {
 
