@@ -13,11 +13,6 @@ export default class LRMPrepKitContent extends React.PureComponent {
   state = {
     jenkins: '',
   };
-//  var jobName=document.getElementById("job_name").value;
-//  var dashboardUser=document.getElementById("current_user").value;
-//  var formData = 'job=DashboardPrepKit&token=DASHBOARDPREPKIT&lrm_group_project=' + jobName + '&dashboard_user=' + dashboardUser;
-
-//  var urljob= url + "/buildByToken/buildWithParameters";
 
 componentDidMount() {
   findJenkinsURL().then(
@@ -29,7 +24,8 @@ componentDidMount() {
   );
 }
 
-get(){
+get(jenkins,e){
+  e.preventDefault();
    $.ajax({
              type:'POST',
              url:jenkins + '/buildByToken/buildWithParameters'+"?" +'job=DashboardPrepKit&token=DASHBOARDPREPKIT&lrm_group_project=' + this.props.measure.project  + '&dashboard_user=' + 'dash',
@@ -112,7 +108,7 @@ get(){
           {content}
       <td valign="top" align="left" nowrap="" colspan="4">
       <div id="prepkit">
-      <input type="submit" value="Prep Kit" onClick={this.get}/>
+      <input type="submit" value="Prep Kit" onClick={this.get.bind(this,this.state.jenkins)}/>
        <a target="_blank" title="Jenkins URL value in LRM global setting-Click to Verify" href={this.state.jenkins}>     Jenkins URL: {this.state.jenkins}</a>
        </div></td>
       </tbody></table>

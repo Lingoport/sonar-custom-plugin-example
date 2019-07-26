@@ -16,6 +16,7 @@ import GlobalyzerViolations from './GlobalyzerViolations'
 import GlobalyzerRulesSummary from './GlobalyzerRulesSummary'
 import GlobalyzerIssuesHistory from './GlobalyzerIssuesHistory'
 import OverviewGlobalyzerSummary from './OverviewGlobalyzerSummary'
+import gremlinAsset3 from "./gremlinAsset3.png"
 
 
 export default class GlobalyzerApp extends React.PureComponent {
@@ -79,6 +80,8 @@ export default class GlobalyzerApp extends React.PureComponent {
         <span className="hidden" id="is-project-dashboard"></span>
         <header className="page-header">
           <h1 className="page-title">Globalyzer</h1>
+          <img style={{width:'25px',height:'30px'}} src={gremlinAsset3} alt=""/>
+
           {this.state.endDate.map(
               (value,idx) =>
               <GlobalyzerEndDate
