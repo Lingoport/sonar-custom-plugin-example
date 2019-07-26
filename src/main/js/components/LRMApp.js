@@ -2,23 +2,6 @@
  * Copyright (C) 2011-2019 Lingoport Inc
  * All rights reserved
  * info AT lingoport DOT com
- {this.state.violation.map(
-     (value,idx) =>
-     <LRMViolations
-       measure={value}
-       key={idx}
-     />
-     )
- }
-
- {this.state.violation_tr.map(
-     (value,idx) =>
-     <LRMTransViolations
-       measure={value}
-       key={idx}
-     />
-     )
- }
  */
 import React from 'react';
 import { Chart } from "react-google-charts";
@@ -145,6 +128,7 @@ export default class LRMApp extends React.PureComponent {
                     )
                 }
 
+
                 {this.state.productivity.map(
                     (value,idx) =>
                     <LRMProductivity
@@ -161,6 +145,34 @@ export default class LRMApp extends React.PureComponent {
                <div className="dashboard-column-wrapper" style={{width: '50%',margin: '0 -1px 0 0',float:'left'}}>
                  <div className="dashboard-column" id="dashboard-column-2" style={{margin: '0 0px 0 5px',float:'rignt',padding:'0',overflow:'visible'}}>
 
+                 <div className="block" id="block_7">
+                 <div className="widget">
+                 <link href="../style.css" rel="stylesheet"/>
+                 <div className="lg_widget">
+                 <table width="100%" align="center">
+                 <tr>
+                 <td width="50%" style={{float: 'left',margin: '0px',padding: '0px'}}>
+                 {this.state.violation.map(
+                     (value,idx) =>
+                     <LRMViolations
+                       measure={value}
+                       key={idx}
+                     />
+                     )
+                 }
+                 </td>
+                 <td width="50%" style={{float: 'right',margin: '0px',padding: '0px'}}>
+                 {this.state.violation_tr.map(
+                     (value,idx) =>
+                     <LRMTransViolations
+                       measure={value}
+                       key={idx}
+                     />
+                     )
+                 }
+                 </td>
+                 </tr>
+                 </table></div></div></div>
 
                  {this.state.completion.map(
                      (value,idx) =>

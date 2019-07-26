@@ -39,7 +39,6 @@ export default class LRMViolations extends React.PureComponent {
       <br/>
       <span>{this.props.measure.ratio} rules activated</span>
       <br/>
-          <img src={chart}/>
     </tbody></table>
 
     );
