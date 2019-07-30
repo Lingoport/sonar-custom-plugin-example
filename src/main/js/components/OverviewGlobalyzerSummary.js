@@ -5,6 +5,11 @@
  */
 import React from 'react';
 import '../style.css';
+import gremlinAsset1 from "./gremlinAsset1.png"
+import gremlinAsset2 from "./gremlinAsset2.png"
+import gremlinAsset3 from "./gremlinAsset3.png"
+import gremlinAsset4 from "./gremlinAsset4.png"
+import gremlinAsset5 from "./gremlinAsset5.png"
 
 
 export default class OverviewGlobalyzerSummary extends React.PureComponent {
@@ -50,26 +55,31 @@ export default class OverviewGlobalyzerSummary extends React.PureComponent {
       <tbody>
 
         <tr>
+      <td>  <img style={{width:'25px',height:'30px'}} src={gremlinAsset1} alt=""/></td>
           <td>Concatenations</td>
           <td><a href ={concatenation}>{this.props.measure.concatenations}</a></td>
         </tr>
 
         <tr>
+        <td><img style={{width:'25px',height:'30px'}} src={gremlinAsset2} alt=""/></td>
           <td>Embedded Strings</td>
           <td><a href ={Strings}>{this.props.measure.embedded}</a></td>
         </tr>
 
         <tr>
+        <td><img style={{width:'25px',height:'30px'}} src={gremlinAsset3} alt=""/></td>
           <td>Locale-Sensitive Methods</td>
           <td><a href ={Methods}>{this.props.measure.sensitive}</a></td>
         </tr>
 
         <tr>
+        <td><img style={{width:'25px',height:'30px'}} src={gremlinAsset4} alt=""/></td>
           <td>General Patterns</td>
           <td><a href ={Patterns}>{this.props.measure.general}</a></td>
         </tr>
 
         <tr>
+        <td><img style={{width:'25px',height:'30px'}} src={gremlinAsset5} alt=""/></td>
           <td>Static File References</td>
           <td><a href ={References}>{this.props.measure.static}</a></td>
         </tr>
