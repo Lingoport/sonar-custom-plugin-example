@@ -1,9 +1,8 @@
-SonarQube Custom Plugin Example [![Build Status](https://travis-ci.org/SonarSource/sonar-custom-plugin-example.svg)](https://travis-ci.org/SonarSource/sonar-custom-plugin-example)
+Lingoport Dashboard SQ plugin [![Build Status](https://travis-ci.org/SonarSource/sonar-custom-plugin-example.svg)](https://travis-ci.org/SonarSource/sonar-custom-plugin-example)
 ==========
 
-Shows how to write a SonarQube plugin compatible with SonarQube 6.7 LTS
 
-Custom Pages (React)
+Lingoport Pages (React)
 ====================
 
 Prerequisites
