@@ -80,7 +80,6 @@ export default class GlobalyzerApp extends React.PureComponent {
         <span className="hidden" id="is-project-dashboard"></span>
         <header className="page-header">
           <h1 className="page-title">Globalyzer</h1>
-          <img style={{width:'25px',height:'30px'}} src={gremlinAsset3} alt=""/>
 
           {this.state.endDate.map(
               (value,idx) =>
