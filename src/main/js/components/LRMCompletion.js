@@ -46,7 +46,7 @@ export default class LRMCompletion extends React.PureComponent {
         totalwords = Number(twords[d])+ Number(totalwords);
         totalkeys = Number(tkeys[d])+ Number(totalkeys);
         totalpercent = Number(percent[d])+ Number(totalpercent);
-        if(p==="100%"){
+        if(p=="100.0%"){
           content[d]  = (
            <tr>
            <td className="label" title={display[d]}>{ids[d]}</td>
