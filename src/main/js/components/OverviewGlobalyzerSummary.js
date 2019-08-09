@@ -5,11 +5,11 @@
  */
 import React from 'react';
 import '../style.css';
-import gremlinAsset1 from "./gremlinAsset1.png"
-import gremlinAsset2 from "./gremlinAsset2.png"
-import gremlinAsset3 from "./gremlinAsset3.png"
-import gremlinAsset4 from "./gremlinAsset4.png"
-import gremlinAsset5 from "./gremlinAsset5.png"
+import gremlinAsset1 from '../img/gremlinAsset1.png'
+import gremlinAsset2 from '../img/gremlinAsset2.png'
+import gremlinAsset3 from '../img/gremlinAsset3.png'
+import gremlinAsset4 from '../img/gremlinAsset4.png'
+import gremlinAsset5 from '../img/gremlinAsset5.png'
 
 
 export default class OverviewGlobalyzerSummary extends React.PureComponent {

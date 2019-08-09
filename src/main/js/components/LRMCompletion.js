@@ -46,6 +46,24 @@ export default class LRMCompletion extends React.PureComponent {
         totalwords = Number(twords[d])+ Number(totalwords);
         totalkeys = Number(tkeys[d])+ Number(totalkeys);
         totalpercent = Number(percent[d])+ Number(totalpercent);
+        if(p==="100%"){
+          content[d]  = (
+           <tr>
+           <td className="label" title={display[d]}>{ids[d]}</td>
+           <td className="bar" valign="middle">
+
+           <div style={{width: '100%', height: '17px', backgroundColor: '#DDDDDD'}}>
+           <div style={{width:p, height:'11px',lineHeight:'11px',backgroundColor: '#4F7007',borderTop:'3px solid #DDDDDD',color:'#BBBBBB',fontSize:'12px'}}>{percent[d]}%</div>
+           </div>
+          </td>
+           <td>{tfiles[d].substring(0,tfiles[d].length-2)}</td>
+           <td>{tkeys[d].substring(0,tkeys[d].length-2)}</td>
+           <td>{twords[d].substring(0,twords[d].length-2)}</td>
+           </tr>
+        );
+
+        }
+        else{
         content[d]  = (
          <tr>
          <td className="label" title={display[d]}>{ids[d]}</td>
@@ -59,7 +77,7 @@ export default class LRMCompletion extends React.PureComponent {
          <td>{tkeys[d].substring(0,tkeys[d].length-2)}</td>
          <td>{twords[d].substring(0,twords[d].length-2)}</td>
          </tr>
-      );
+      );}
     }
     var tpercent = Math.round(Number(totalpercent)/ids.length) +"%";
   }

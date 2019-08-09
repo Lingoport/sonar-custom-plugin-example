@@ -16,7 +16,6 @@ import GlobalyzerViolations from './GlobalyzerViolations'
 import GlobalyzerRulesSummary from './GlobalyzerRulesSummary'
 import GlobalyzerIssuesHistory from './GlobalyzerIssuesHistory'
 import OverviewGlobalyzerSummary from './OverviewGlobalyzerSummary'
-import gremlinAsset3 from "./gremlinAsset3.png"
 
 
 export default class GlobalyzerApp extends React.PureComponent {
