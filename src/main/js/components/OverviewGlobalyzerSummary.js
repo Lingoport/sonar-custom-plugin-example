@@ -55,31 +55,37 @@ export default class OverviewGlobalyzerSummary extends React.PureComponent {
       <tbody>
 
         <tr>
-      <td>  <img style={{width:'25px',height:'30px'}} src={gremlinAsset1} alt=""/></td>
+      <td>
+      <a href="https://wiki.lingoport.com/Gremlins#I18n_Gremlins"><img style={{width:'25px',height:'30px'}} src={gremlinAsset1} alt=""/></a>
+      </td>
           <td>Concatenations</td>
           <td><a href ={concatenation}>{this.props.measure.concatenations}</a></td>
         </tr>
 
         <tr>
-        <td><img style={{width:'25px',height:'30px'}} src={gremlinAsset2} alt=""/></td>
+        <td>
+        <a href="https://wiki.lingoport.com/Gremlins#I18n_Gremlins"><img style={{width:'25px',height:'30px'}} src={gremlinAsset2} alt=""/></a></td>
           <td>Embedded Strings</td>
           <td><a href ={Strings}>{this.props.measure.embedded}</a></td>
         </tr>
 
         <tr>
-        <td><img style={{width:'25px',height:'30px'}} src={gremlinAsset3} alt=""/></td>
+        <td>
+        <a href="https://wiki.lingoport.com/Gremlins#I18n_Gremlins"><img style={{width:'25px',height:'30px'}} src={gremlinAsset3} alt=""/></a></td>
           <td>Locale-Sensitive Methods</td>
           <td><a href ={Methods}>{this.props.measure.sensitive}</a></td>
         </tr>
 
         <tr>
-        <td><img style={{width:'25px',height:'30px'}} src={gremlinAsset4} alt=""/></td>
+        <td>
+        <a href="https://wiki.lingoport.com/Gremlins#I18n_Gremlins"><img style={{width:'25px',height:'30px'}} src={gremlinAsset4} alt=""/></a></td>
           <td>General Patterns</td>
           <td><a href ={Patterns}>{this.props.measure.general}</a></td>
         </tr>
 
         <tr>
-        <td><img style={{width:'25px',height:'30px'}} src={gremlinAsset5} alt=""/></td>
+        <td>
+        <a href="https://wiki.lingoport.com/Gremlins#I18n_Gremlins"><img style={{width:'25px',height:'30px'}} src={gremlinAsset5} alt=""/></a></td>
           <td>Static File References</td>
           <td><a href ={References}>{this.props.measure.static}</a></td>
         </tr>
