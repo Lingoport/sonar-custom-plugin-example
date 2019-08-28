@@ -43,7 +43,7 @@ export default class LRMCompletion extends React.PureComponent {
 
       for(let d = 0; d < ids.length; d++){
         var p = percent[d] +"%";
-        if(out[d]=='0')
+        if(out[d]=='1')
           ids[d] = ids[d]+'*'
         totalfiles = Number(tfiles[d]) + Number(totalfiles);
         totalwords = Number(twords[d])+ Number(totalwords);
