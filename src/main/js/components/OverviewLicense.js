@@ -30,7 +30,7 @@ export default class OverviewLicense extends React.PureComponent {
 
       );
     }else if(gyzrExist===undefined){
-      var lrmDate = new Data(this.props.measure.lrmEndDate);
+      var lrmDate = new Date(this.props.measure.lrmEndDate);
       var diff = lrmDate - current;
       var content = '';
       if(diff>2592000000){
