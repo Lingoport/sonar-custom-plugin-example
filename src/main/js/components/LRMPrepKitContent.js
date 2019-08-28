@@ -76,10 +76,11 @@ get(jenkins,e){
       var numKeys = this.props.measure.numKeysMSR.split(";")
       var numWords = this.props.measure.numWordsMSR.split(";")
       var displayName = this.props.measure.displayNameMSR.split(";")
+      var errorCount =   this.props.measure.errorCountMSR
     var content = new Array(locale.length);
     for(let d = 0; d < locale.length; d++){
      content[d]  = (
-        <tr height="30" class="alt">
+        <tr height="30" className="alt">
         <td className="label" title={displayName[d]}>{locale[d]}</td>
         <td className="label">{numFiles[d]}</td>
         <td className="label">{numKeys[d]}</td>
@@ -87,7 +88,12 @@ get(jenkins,e){
         </tr>
     );
   }
-}
+  if(errorCount=='0'){
+    content = (
+      <tr height="30">
+      <td className="error_label_href error_hover_href" style={{backgroundColor:'#ff0000',color: '#ffffff'}}>There is critical error preventing a kit being prepped.</td>
+      </tr>
+    );
 
     return (
       <div className="block" id="block_6">
@@ -96,8 +102,31 @@ get(jenkins,e){
       <link href="../style.css" rel="stylesheet"/>
       <h3>Next Prep Kit Content</h3>
       <div className="lg_widget">
+      <table className="lg_ds_progress_bar" border="0" width="500">
+      <thead>
+      <tr>
+          <th>Locale </th><th># of<br/>Files</th><th># of<br/>Keys</th><th># of<br/>Words</th>
+      </tr>
+      </thead>
+      <tbody>
+          {content}
+      </tbody></table>
+      </div>
+      <div className="clear"></div>
+      </div>
+      <div style={{clear: 'both'}}></div>
+      </div>
+      </div>
+    );
 
-
+  }else{
+    return (
+      <div className="block" id="block_6">
+      <div className="lplrmprewidget" style={{height:'100%'}}>
+      <div className="widget">
+      <link href="../style.css" rel="stylesheet"/>
+      <h3>Next Prep Kit Content</h3>
+      <div className="lg_widget">
       <table className="lg_ds_progress_bar" border="0" width="500">
       <thead>
       <tr>
@@ -120,5 +149,7 @@ get(jenkins,e){
       </div>
 
     );
+  }
+}
   }
 }
