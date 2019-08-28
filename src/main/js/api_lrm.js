@@ -270,7 +270,7 @@ return getJSON('/api/project_analyses/search', {
         for (let j = 0; j < analysis.events.length; j++) {
           if (analysis.events[j].category === "VERSION") {
             let result = {version: analysis.events[j].name,
-                          files: "0", keys: "", words: "0", versionnum: "",project: project.key,d_local:"",ids:"",display:"",tfiles:"",tkeys:"",twords:"",percent:"",
+                          files: "0", keys: "", words: "0", versionnum: "",project: project.key,d_local:"",ids:"",display:"",tfiles:"",tkeys:"",twords:"",percent:"",outstanding:""
                          };
             const numberOfMeasuresRetrieved = 14;
 
@@ -300,6 +300,8 @@ return getJSON('/api/project_analyses/search', {
                     result.twords = responseMetrics.measures[k].history[d].value;
                   }else if (responseMetrics.measures[k].metric === "lngprt-lrm-percent-complete-for-locales") {
                     result.percent = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-is-outstanding-prepkits") {
+                    result.outstanding = responseMetrics.measures[k].history[d].value;
                   }
                 }
               }
