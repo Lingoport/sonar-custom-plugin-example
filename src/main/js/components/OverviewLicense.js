@@ -8,21 +8,12 @@ import '../style.css';
 
 
 export default class OverviewLicense extends React.PureComponent {
-
-  function DateDifference(Date1,Date2) { //Date1和Date2是2017-07-10格式
-    var sDate, newDate1, newDate2, Days
-    aDate = Date1.split("-");
-    newDate1 = new Date(aDate[1] + '-' + aDate[2] + '-' + aDate[0]); //转换为07-10-2017格式
-    aDate = Date2.split("-");
-    newDate2 = new Date(aDate[1] + '-' + aDate[2] + '-' + aDate[0]);
-    Days = parseInt((newDate1 - newDate2) / 1000 / 60 / 60 / 24); //把差的毫秒数转换为天数
-    return Days;
-}
-
   render() {
-    var gyzrExist = this.props.measure.gyzrExists
+    var gyzrExist = this.props.measure.gyzrExists;
     var current = new Date();
+
     if(gyzrExist===undefined&&this.props.measure.lrmExists===undefined){
+      console.log(current);
       return (
         <div className="block" id="block_1">
         <div className="lplicensewidget" style={{height:'100%'}}>
@@ -39,13 +30,32 @@ export default class OverviewLicense extends React.PureComponent {
 
       );
     }else if(gyzrExist===undefined){
-    var lrmDate = this.props.measure.lrmEndDate;
-    var diff = DateDifference(current,lrmDate);
-    var lrm_diff;
-    if(Number(diff)>0){
-      lrm_diff = (
-        <td>LRM License End Date (expired):		</td>
-      );
+      var lrmDate = new Data(this.props.measure.lrmEndDate);
+      var diff = lrmDate - current;
+      var content = '';
+      if(diff>2592000000){
+          content= (
+          <tr>
+            <td>LRM License End Date:		</td>
+            <td>{this.props.measure.lrmEndDate}</td>
+          </tr>
+         );
+    }else{
+      if(diff<0){
+        content= (
+         <tr>
+         <td  style={{backgroundColor:'#ff0000'}}>LRM License End Date(expired):		</td>
+           <td>{this.props.measure.lrmEndDate}</td>
+         </tr>
+       );
+      }else{//warning
+        content= (
+         <tr>
+         <td  style={{backgroundColor:'#ffff00'}}>LRM License End Date:		</td>
+           <td>{this.props.measure.lrmEndDate}</td>
+         </tr>
+       );
+      }
     }
     return (
       <div className="block" id="block_1">
@@ -56,11 +66,7 @@ export default class OverviewLicense extends React.PureComponent {
       <div className="lg_widget">
       <table>
       <tbody>
-        <tr>
-          <td>LRM License End Date:		</td>
-          {lrm_diff}
-          <td>{this.props.measure.lrmEndDate}</td>
-        </tr>
+        {content}
         <tr>
           <td>LRM Version:	</td>
           <td>{this.props.measure.lrmVersion}</td>
@@ -86,6 +92,33 @@ export default class OverviewLicense extends React.PureComponent {
          </div>
     );
   }else if(this.props.measure.lrmExists===undefined){
+    var gzDate = new Date(this.props.measure.gyzrEndDate);
+    var diff = gzDate - current;
+    var content = '';
+    if(diff>2592000000){
+        content= (
+         <tr>
+         <td>GYZR License End Date:		</td>
+           <td>{this.props.measure.gyzrEndDate}</td>
+         </tr>
+       );
+  }else{
+    if(diff<0){
+      content= (
+       <tr>
+       <td  style={{backgroundColor:'#ff0000'}}>GYZR License End Date(expired):		</td>
+         <td>{this.props.measure.gyzrEndDate}</td>
+       </tr>
+     );
+    }else{//warning
+      content= (
+       <tr>
+       <td  style={{backgroundColor:'#ffff00'}}>GYZR License End Date:		</td>
+         <td>{this.props.measure.gyzrEndDate}</td>
+       </tr>
+     );
+    }
+  }
     return (
       <div className="block" id="block_1">
       <div className="lplicensewidget" style={{height:'100%'}}>
@@ -95,10 +128,7 @@ export default class OverviewLicense extends React.PureComponent {
       <div className="lg_widget">
       <table>
       <tbody>
-        <tr>
-          <td>GYZR License End Date:		</td>
-          <td>{this.props.measure.gyzrEndDate}</td>
-        </tr>
+        {content}
         <tr>
           <td>GYZR Client Version:		</td>
           <td>{this.props.measure.gyzrClientVersion}</td>
@@ -133,6 +163,62 @@ export default class OverviewLicense extends React.PureComponent {
          </div>
     );
   }else{
+    var lrmDate = new Data(this.props.measure.lrmEndDate);
+    var diffl = lrmDate - current;
+    var contentl = '';
+    if(diffl>2592000000){
+        contentl= (
+        <tr>
+          <td>LRM License End Date:		</td>
+          <td>{this.props.measure.lrmEndDate}</td>
+        </tr>
+       );
+  }else{
+    if(diffl<0){
+      contentl= (
+       <tr>
+       <td  style={{backgroundColor:'#ff0000'}}>LRM License End Date(expired):		</td>
+         <td>{this.props.measure.lrmEndDate}</td>
+       </tr>
+     );
+    }else{//warning
+      contentl= (
+       <tr>
+       <td  style={{backgroundColor:'#ffff00'}}>LRM License End Date:		</td>
+         <td>{this.props.measure.lrmEndDate}</td>
+       </tr>
+     );
+    }
+  }
+
+
+    var gzDate = new Date(this.props.measure.gyzrEndDate);
+    var diff = gzDate - current;
+    var content = '';
+    if(diff>2592000000){
+        content= (
+         <tr>
+         <td>GYZR License End Date:		</td>
+           <td>{this.props.measure.gyzrEndDate}</td>
+         </tr>
+       );
+  }else{
+    if(diff<0){
+      content= (
+       <tr>
+       <td  style={{backgroundColor:'#ff0000'}}>GYZR License End Date(expired):		</td>
+         <td>{this.props.measure.gyzrEndDate}</td>
+       </tr>
+     );
+    }else{//warning
+      content= (
+       <tr>
+       <td  style={{backgroundColor:'#ffff00'}}>GYZR License End Date:		</td>
+         <td>{this.props.measure.gyzrEndDate}</td>
+       </tr>
+     );
+    }
+  }
     return (
       <div className="block" id="block_1">
       <div className="lplicensewidget" style={{height:'100%'}}>
@@ -142,10 +228,7 @@ export default class OverviewLicense extends React.PureComponent {
       <div className="lg_widget">
       <table>
       <tbody>
-      <tr>
-        <td>LRM License End Date:		</td>
-        <td>{this.props.measure.lrmEndDate}</td>
-      </tr>
+      {contentl}
       <tr>
         <td>LRM Version:	</td>
         <td>{this.props.measure.lrmVersion}</td>
@@ -162,10 +245,7 @@ export default class OverviewLicense extends React.PureComponent {
         <td>InContextQA License End Date:	</td>
         <td>{this.props.measure.lrmLqaEndDate}</td>
       </tr>
-      <tr>
-        <td>GYZR License End Date:		</td>
-        <td>{this.props.measure.gyzrEndDate}</td>
-      </tr>
+         {content}
       <tr>
         <td>GYZR Client Version:		</td>
         <td>{this.props.measure.gyzrClientVersion}</td>
