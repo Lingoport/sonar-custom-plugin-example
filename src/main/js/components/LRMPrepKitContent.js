@@ -88,7 +88,7 @@ get(jenkins,e){
         </tr>
     );
   }
-  if(errorCount=='0'){
+  if(errorCount!='0'){
     content = (
       <tr height="30">
       <td className="error_label_href error_hover_href" style={{backgroundColor:'#ff0000',color: '#ffffff'}}>There is critical error preventing a kit being prepped.</td>
