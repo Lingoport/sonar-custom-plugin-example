@@ -19,8 +19,14 @@ export default class GlobalyzerScanSummary extends React.PureComponent {
       var issues = this.props.measure.Issues.split(";")
       var lines = this.props.measure.Lines.split(";")
       var files = this.props.measure.Files.split(";")
+      var local = this.props.measure.local.split(";")
     var content = new Array(scan.length);
     for(let d = 0; d < scan.length; d++){
+      if(local[d]==='1')
+        ruleset[d] = ruleset[d]+'(Local)';
+      else {
+        ruleset[d] = ruleset[d]+'(Remote)';
+      }
      content[d]  = (
         <tr height="30" className="alt">
         <td className="label">  {scan[d]}</td>
