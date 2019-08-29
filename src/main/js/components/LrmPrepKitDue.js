@@ -5,9 +5,36 @@
  */
 import React from 'react';
 import '../style.css';
+import {findLate} from '../api_lrm.js'
+import {findWarn} from '../api_lrm.js'
 
 
 export default class LrmPrepKitDue extends React.PureComponent {
+
+  state = {
+    late: '14',
+    warn:'7'
+  };
+
+componentDidMount() {
+  findLate().then(
+    (valuesReturnedByAPI) => {
+      this.setState({
+        late: valuesReturnedByAPI
+      });
+    }
+  );
+
+  findWarn().then(
+    (valuesReturnedByAPI) => {
+      this.setState({
+        warn: valuesReturnedByAPI
+      });
+    }
+  );
+
+}
+
 
   render() {
     if(this.props.measure.localeMSR === undefined ||this.props.measure.localeMSR.length<2 ){
@@ -26,8 +53,8 @@ export default class LrmPrepKitDue extends React.PureComponent {
     //  arrDaysLate = daysLateMSR.data.split(";").map(&:to_i)
      var arrDaysLate = this.props.measure.daysLateMSR.split(";")
 
-    var content = new Array(scan.length);
-    for(let d = 0; d < scan.length; d++){
+    var content = new Array(this.props.measure.localeMSR.length);
+    for(let d = 0; d < this.props.measure.localeMSR.length; d++){
      content[d]  = (
         <tr height="30" className="alt">
         <td className="label">  {arrVersion[d]}</td>
