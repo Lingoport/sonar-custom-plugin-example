@@ -53,20 +53,45 @@ componentDidMount() {
     //  arrDaysLate = daysLateMSR.data.split(";").map(&:to_i)
      var arrDaysLate = this.props.measure.daysLateMSR.split(";")
 
-    var content = new Array(this.props.measure.localeMSR.length);
-    for(let d = 0; d < this.props.measure.localeMSR.length; d++){
-     content[d]  = (
-        <tr height="30" className="alt">
-        <td className="label">  {arrVersion[d]}</td>
-        <td title={arrDisplayName[d]} className="label">{arrLocale[d]}</td>
-        <td className="label">{arrNumFiles[d]}</td>
-        <td className="label">{arrSentDates[d]}</td>
-        <td className="label">{arrDueDates[d]}</td>
-        <td className="label">{arrDaysLate[d]}</td>
-        </tr>
-    );
-  }
-}
+    var content = new Array(arrLocale.length);
+    for(let d = 0; d < arrLocale.length; d++){
+      if(arrDaysLate> this.state.late){
+        content[d]  = (
+           <tr height="30" className="alt">
+           <td className="label">  {arrVersion[d]}</td>
+           <td title={arrDisplayName[d]} className="label">{arrLocale[d]}</td>
+           <td className="label">{arrNumFiles[d]}</td>
+           <td className="label">{arrSentDates[d]}</td>
+           <td className="label">{arrDueDates[d]}</td>
+           <td className="label" style={{backgroundColor: '#ff0000'}}>{arrDaysLate[d]}</td>
+           </tr>);
+      }else{
+          if(arrDaysLate> this.state.warn){
+            content[d]  = (
+               <tr height="30" className="alt">
+               <td className="label">  {arrVersion[d]}</td>
+               <td title={arrDisplayName[d]} className="label">{arrLocale[d]}</td>
+               <td className="label">{arrNumFiles[d]}</td>
+               <td className="label">{arrSentDates[d]}</td>
+               <td className="label">{arrDueDates[d]}</td>
+               <td className="label" style={{backgroundColor: '#ffff00'}>{arrDaysLate[d]}</td>
+               </tr>
+           );
+          }else{
+            content[d]  = (
+              <tr height="30" className="alt">
+              <td className="label">  {arrVersion[d]}</td>
+              <td title={arrDisplayName[d]} className="label">{arrLocale[d]}</td>
+              <td className="label">{arrNumFiles[d]}</td>
+              <td className="label">{arrSentDates[d]}</td>
+              <td className="label">{arrDueDates[d]}</td>
+              <td className="label">{arrDaysLate[d]}</td>
+              </tr>
+              );
+            }
+          }
+       }
+   }
     return (
 
       <div className="block" id="block_2">
