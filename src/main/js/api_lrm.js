@@ -96,7 +96,8 @@ return getJSON('/api/project_analyses/search', {
                           displayNameMSR:"",
                           filesToPrepMSR:"",
                           errorCountMSR:"",
-                          project: project.key.substring(0,project.key.length-5)
+                          project: project.key.substring(0,project.key.length-5),
+                          projectKey : project.key
                          };
             const numberOfMeasuresRetrieved = 7;
 

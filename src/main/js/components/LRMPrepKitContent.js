@@ -45,7 +45,7 @@ get(jenkins,e){
     }
 
   render() {
-    if(this.props.measure.localeMSR === undefined){
+    if((this.props.measure.localeMSR === undefined || this.props.measure.localeMSR.length<2)&&(this.props.measure.errorCountMSR===undefined||this.props.measure.errorCountMSR<1)){
       return (
         <div className="block" id="block_6">
         <div className="lplrmprewidget" style={{height:'100%'}}>
@@ -60,7 +60,7 @@ get(jenkins,e){
         </tr>
         </thead>
         <tbody>
-         <h5>No data found</h5>
+         <h5>No files to prep and send for translation</h5>
         </tbody></table>
         </div>
         <div className="clear"></div>
@@ -89,9 +89,10 @@ get(jenkins,e){
     );
   }
   if(errorCount!='0'){
+    var link = '/project/issues?id='+this.props.measure.projectKey+'&resolved=false&severities=CRITICAL&tags=lrm-base&types=BUG'
     content = (
       <tr height="30">
-      <td className="error_label_href error_hover_href" style={{backgroundColor:'#ff0000',color: '#ffffff'}}>There is critical error preventing a kit being prepped.</td>
+      <td className="error_label_href error_hover_href" style={{backgroundColor:'#ff0000',color: '#ffffff'}}><a href ={link}>There is critical error preventing a kit being prepped.</a></td>
       </tr>
     );
 

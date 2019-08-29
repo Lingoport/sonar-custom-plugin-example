@@ -74,7 +74,7 @@ componentDidMount() {
                <td className="label">{arrNumFiles[d]}</td>
                <td className="label">{arrSentDates[d]}</td>
                <td className="label">{arrDueDates[d]}</td>
-               <td className="label" style={{backgroundColor: '#ffff00'}>{arrDaysLate[d]}</td>
+               <td className="label" style={{backgroundColor: '#ffff00'}}>{arrDaysLate[d]}</td>
                </tr>
            );
           }else{
