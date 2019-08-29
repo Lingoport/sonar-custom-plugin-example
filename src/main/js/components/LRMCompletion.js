@@ -40,11 +40,17 @@ export default class LRMCompletion extends React.PureComponent {
       var percent = this.props.measure.percent.split(";")
       var out = this.props.measure.outstanding.split(";")
       var content = new Array(ids.length);
-
+      var outstand = ''
       for(let d = 0; d < ids.length; d++){
         var p = percent[d] +"%";
-        if(out[d]=='1')
+        if(out[d]=='1'){
           ids[d] = ids[d]+'*'
+          outstand = (
+               <tr>
+                    <td colspan="5">* There are outstanding prep kits for this locale</td>
+                </tr>
+          );
+        }
         totalfiles = Number(tfiles[d]) + Number(totalfiles);
         totalwords = Number(twords[d])+ Number(totalwords);
         totalkeys = Number(tkeys[d])+ Number(totalkeys);
@@ -125,9 +131,7 @@ export default class LRMCompletion extends React.PureComponent {
             </div></th>
             <th>{totalfiles}</th><th>{totalkeys}</th><th>{totalwords}</th>
          </tr>
-         <tr>
-                 <td colspan="5">* There are outstanding prep kits for this locale</td>
-             </tr>
+         {outstand}
         </tbody></table>
         </div>
         <div className="clear"></div>
