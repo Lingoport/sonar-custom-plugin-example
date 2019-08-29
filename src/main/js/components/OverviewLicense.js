@@ -163,7 +163,7 @@ export default class OverviewLicense extends React.PureComponent {
          </div>
     );
   }else{
-    var lrmDate = new Data(this.props.measure.lrmEndDate);
+    var lrmDate = new Date(this.props.measure.lrmEndDate);
     var diffl = lrmDate - current;
     var contentl = '';
     if(diffl>2592000000){
