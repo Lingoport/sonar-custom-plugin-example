@@ -16,15 +16,15 @@ export default class LrmPrepKitDue extends React.PureComponent {
         );
 
     }else{
-      var arrLocale = this.props.measure.arrLocale.split(";")
-      var arrVersion = this.props.measure.arrVersion.split(";")
-      var arrSentDates = this.props.measure.arrSentDates.split(";")
-      var arrDueDates = this.props.measure.arrDueDates.split(";")
-      var arrNumFiles = this.props.measure.arrNumFiles.split(";")
-      //var arrNumWords = this.props.measure.arrNumWords.split(";")
-      var arrDisplayName = this.props.measure.arrDisplayName.split(";")
+      var arrLocale = this.props.measure.localeMSR.split(";")
+      var arrVersion = this.props.measure.versionMSR.split(";")
+      var arrSentDates = this.props.measure.sentDatesMSR.split(";")
+      var arrDueDates = this.props.measure.dueDatesMSR.split(";")
+      var arrNumFiles = this.props.measure.numFilesMSR.split(";")
+      //var arrNumWords = this.props.measure.numWordsMSR.split(";")
+      var arrDisplayName = this.props.measure.displayNameMSR.split(";")
     //  arrDaysLate = daysLateMSR.data.split(";").map(&:to_i)
-     var arrDaysLate = this.props.measure.arrDaysLate.split(";")
+     var arrDaysLate = this.props.measure.daysLateMSR.split(";")
 
     var content = new Array(scan.length);
     for(let d = 0; d < scan.length; d++){
