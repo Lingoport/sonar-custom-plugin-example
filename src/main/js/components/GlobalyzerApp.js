@@ -16,7 +16,7 @@ import GlobalyzerViolations from './GlobalyzerViolations'
 import GlobalyzerRulesSummary from './GlobalyzerRulesSummary'
 import GlobalyzerIssuesHistory from './GlobalyzerIssuesHistory'
 import OverviewGlobalyzerSummary from './OverviewGlobalyzerSummary'
-
+import globalyzer_wide from '../img/Globalyzer_Wide.png'
 
 export default class GlobalyzerApp extends React.PureComponent {
 
@@ -78,7 +78,7 @@ export default class GlobalyzerApp extends React.PureComponent {
       <div className="page" id="dashboard">
         <span className="hidden" id="is-project-dashboard"></span>
         <header className="page-header">
-          <h1 className="page-title">Globalyzer</h1>
+          <img style={{width:'225px',height:'50px'}} src={globalyzer_wide} alt=""/>
 
           {this.state.endDate.map(
               (value,idx) =>

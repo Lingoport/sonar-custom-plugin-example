@@ -22,6 +22,8 @@ import LRMCompletion from './LRMCompletion'
 import LRMProductivity from './LRMProductivity'
 import LRMHistory from './LRMHistory'
 import LrmPrepKitDue from './LrmPrepKitDue'
+import lrm_wide from '../img/LRM_Wide.png'
+
 
 export default class LRMApp extends React.PureComponent {
 
@@ -114,7 +116,7 @@ export default class LRMApp extends React.PureComponent {
       <div className="page" id="dashboard">
         <span className="hidden" id="is-project-dashboard"></span>
         <header className="page-header">
-          <h1 className="page-title">Resource Manager</h1>
+        <img style={{width:'225px',height:'50px'}} src={lrm_wide} alt=""/>
           {this.state.endDate.map(
               (value,idx) =>
               <LRMEndDate
