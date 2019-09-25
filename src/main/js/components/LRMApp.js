@@ -115,21 +115,11 @@ export default class LRMApp extends React.PureComponent {
       <div id="content">
       <div className="page" id="dashboard">
         <span className="hidden" id="is-project-dashboard"></span>
-        <header className="page-header">
-        <img style={{width:'225px',height:'50px'}} src={lrm_wide} alt=""/>
-          {this.state.endDate.map(
-              (value,idx) =>
-              <LRMEndDate
-                measure={value}
-                key={idx}
-              />
-              )
-          }
-          </header>
           <div style={{width: '100%',display: 'block', float: 'none'}}>
 
               <div className="dashboard-column-wrapper" style={{width: '50%',margin: '0 -1px 0 0',float:'left'}}>
                 <div className="dashboard-column" id="dashboard-column-1" style={{margin: '0 5px 0 0px',padding:'0',overflow:'visible'}}>
+                <img style={{width:'225px',height:'45px',textAlign: 'right'}} src={lrm_wide} alt=""/>
 
                 {this.state.preLocal.map(
                     (value,idx) =>
@@ -163,6 +153,16 @@ export default class LRMApp extends React.PureComponent {
 
                <div className="dashboard-column-wrapper" style={{width: '50%',margin: '0 -1px 0 0',float:'left'}}>
                  <div className="dashboard-column" id="dashboard-column-2" style={{margin: '0 0px 0 5px',float:'rignt',padding:'0',overflow:'visible'}}>
+                 {this.state.endDate.map(
+                     (value,idx) =>
+                     <LRMEndDate
+                       measure={value}
+                       key={idx}
+                     />
+                     )
+                 }
+                 <br />
+                 <br />
 
                  <div className="block" id="block_7">
                  <div className="widget">
@@ -171,6 +171,7 @@ export default class LRMApp extends React.PureComponent {
                  <table width="100%" align="center">
                  <tr>
                  <td width="50%" style={{float: 'left',margin: '0px',padding: '0px'}}>
+
                  {this.state.violation.map(
                      (value,idx) =>
                      <LRMViolations
