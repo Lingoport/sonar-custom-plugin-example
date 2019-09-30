@@ -456,6 +456,15 @@ export function findJenkinsURL() {
   });
 }
 
+export function findWordCost(projectkey) {
+  return getJSON('/api/settings/values', {
+  component: projectkey,
+  keys: "sonar.lrm.cost.per.word",
+}).then(function (response) {
+     return response.settings[0].value;
+  });
+}
+
 export function findLate() {
   return getJSON('/api/settings/values', {
   keys: "sonar.lrm.prepkit.days.late.error",

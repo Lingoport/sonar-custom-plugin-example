@@ -7,11 +7,12 @@ import React from 'react';
 import '../style.css';
 import {findJenkinsURL} from '../api_lrm.js'
 import $ from 'jquery';
-
+import {findWordCost} from '../api_lrm.js'
 
 export default class LRMPrepKitContent extends React.PureComponent {
   state = {
     jenkins: '',
+    wordcost:'0',
   };
 
 componentDidMount() {
@@ -19,6 +20,13 @@ componentDidMount() {
     (valuesReturnedByAPI) => {
       this.setState({
         jenkins: valuesReturnedByAPI
+      });
+    }
+  );
+  findWordCost(this.props.measure.projectKey).then(
+    (valuesReturnedByAPI) => {
+      this.setState({
+        wordcost: valuesReturnedByAPI
       });
     }
   );
@@ -78,12 +86,15 @@ get(jenkins,e){
       var displayName = this.props.measure.displayNameMSR.split(";")
       var filename = this.props.measure.filesToPrepMSR.split(";")
       var errorCount =   this.props.measure.errorCountMSR
-    var content = new Array(locale.length);
-    var ftp = '';
+      var content = new Array(locale.length);
+      var ftp = '';
+      var totalword = 0;
+      var totalcost = 0;
     for(let m = 0; m < filename.length; m++){
       ftp = ftp + filename[m] + '\n'
     }
     for(let d = 0; d < locale.length; d++){
+     totalword = totalword + Number(numWords[d]);
      content[d]  = (
         <tr height="30" className="alt">
         <td className="label" title={displayName[d]}>{locale[d]}</td>
@@ -93,6 +104,22 @@ get(jenkins,e){
         </tr>
     );
   }
+  if(this.state.wordcost!=undefined && Number(this.state.wordcost)>0){
+     totalcost = totalword * Number(this.state.wordcost);
+   }
+   var totaltable = '';
+   if(totalcost>0){
+     totaltable =(
+       <table>
+          <tbody><tr>
+            <td valign="top" align="left" nowrap="">
+              Cost per Word: ${this.state.wordcost}<br/>
+              Total Cost: ${totalcost}<br/>
+            </td>
+          </tr>
+        </tbody></table>
+     );
+   }
   if(errorCount!='0'){
     var link = '/project/issues?id='+this.props.measure.projectKey+'&resolved=false&severities=CRITICAL&tags=lrm-base&types=BUG'
     content = (
@@ -108,6 +135,7 @@ get(jenkins,e){
       <link href="../style.css" rel="stylesheet"/>
       <h3>Next Prep Kit Content</h3>
       <div className="lg_widget">
+      {totaltable}
       <table className="lg_ds_progress_bar" border="0" width="500">
       <thead>
       <tr>
@@ -133,6 +161,7 @@ get(jenkins,e){
       <link href="../style.css" rel="stylesheet"/>
       <h3 title={ftp}>Next Prep Kit Content</h3>
       <div className="lg_widget">
+      {totaltable}
       <table className="lg_ds_progress_bar" border="0" width="500">
       <thead>
       <tr>
