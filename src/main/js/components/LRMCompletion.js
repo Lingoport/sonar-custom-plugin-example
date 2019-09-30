@@ -14,7 +14,7 @@ export default class LRMCompletion extends React.PureComponent {
     var totalwords = 0;
     var totalkeys =0;
     var totalpercent = 0;
-    if(this.props.measure.ids === undefined){
+    if(this.props.measure.ids === undefined || this.props.measure.outstanding === undefined){
       return (
         <div className="block" id="block_8">
         <div className="lplrmcompletionwidget" style={{height:'100%'}}>

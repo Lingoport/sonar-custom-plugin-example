@@ -76,8 +76,13 @@ get(jenkins,e){
       var numKeys = this.props.measure.numKeysMSR.split(";")
       var numWords = this.props.measure.numWordsMSR.split(";")
       var displayName = this.props.measure.displayNameMSR.split(";")
+      var filename = this.props.measure.filesToPrepMSR.split(";")
       var errorCount =   this.props.measure.errorCountMSR
     var content = new Array(locale.length);
+    var ftp = '';
+    for(let m = 0; m < filename.length; m++){
+      ftp = ftp + filename[m] + '\n'
+    }
     for(let d = 0; d < locale.length; d++){
      content[d]  = (
         <tr height="30" className="alt">
@@ -126,7 +131,7 @@ get(jenkins,e){
       <div className="lplrmprewidget" style={{height:'100%'}}>
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
-      <h3>Next Prep Kit Content</h3>
+      <h3 title={ftp}>Next Prep Kit Content</h3>
       <div className="lg_widget">
       <table className="lg_ds_progress_bar" border="0" width="500">
       <thead>
