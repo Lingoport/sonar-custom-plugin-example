@@ -212,11 +212,11 @@ export default class LRMApp extends React.PureComponent {
                      )
                  }
                  </div>
-                </div>
+               </div>
              </div>
             </div>
           </div>
-      </div>
+        </div>
 
     );
   }

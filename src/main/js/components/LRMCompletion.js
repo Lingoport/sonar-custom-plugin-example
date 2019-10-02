@@ -29,7 +29,7 @@ export default class LRMCompletion extends React.PureComponent {
         <div style={{clear: 'both'}}></div>
         </div>
         </div>
-    );
+      );
     }
     else{
       var ids = this.props.measure.ids.split(";")
@@ -64,7 +64,7 @@ export default class LRMCompletion extends React.PureComponent {
            <div style={{width: '100%', height: '17px', backgroundColor: '#DDDDDD'}}>
            <div style={{width:p, height:'11px',lineHeight:'11px',backgroundColor: '#EAE9FF',borderTop:'3px solid #DDDDDD',color:'#0a0000',fontSize:'12px'}}>{percent[d]}%</div>
            </div>
-          </td>
+           </td>
            <td>{tfiles[d].substring(0,tfiles[d].length-2)}</td>
            <td>{tkeys[d].substring(0,tkeys[d].length-2)}</td>
            <td>{twords[d].substring(0,twords[d].length-2)}</td>
@@ -73,23 +73,23 @@ export default class LRMCompletion extends React.PureComponent {
 
         }
         else{
-        content[d]  = (
-         <tr>
-         <td className="label" title={display[d]}>{ids[d]}</td>
-         <td className="bar" valign="middle">
+          content[d]  = (
+           <tr>
+           <td className="label" title={display[d]}>{ids[d]}</td>
+           <td className="bar" valign="middle">
 
-         <div style={{width: '100%', height: '17px', backgroundColor: '#DDDDDD'}}>
-         <div style={{width:p, height:'11px',lineHeight:'11px',backgroundColor: '#BBBBBB',borderTop:'3px solid #DDDDDD',color:'#2D2970',fontSize:'12px'}}>{percent[d]}%</div>
-         </div>
-        </td>
-         <td>{tfiles[d].substring(0,tfiles[d].length-2)}</td>
-         <td>{tkeys[d].substring(0,tkeys[d].length-2)}</td>
-         <td>{twords[d].substring(0,twords[d].length-2)}</td>
-         </tr>
-      );}
+           <div style={{width: '100%', height: '17px', backgroundColor: '#DDDDDD'}}>
+           <div style={{width:p, height:'11px',lineHeight:'11px',backgroundColor: '#BBBBBB',borderTop:'3px solid #DDDDDD',color:'#2D2970',fontSize:'12px'}}>{percent[d]}%</div>
+           </div>
+           </td>
+           <td>{tfiles[d].substring(0,tfiles[d].length-2)}</td>
+           <td>{tkeys[d].substring(0,tkeys[d].length-2)}</td>
+           <td>{twords[d].substring(0,twords[d].length-2)}</td>
+           </tr>
+        );}
+      }
+      var tpercent = Math.round(Number(totalpercent)/ids.length) +"%";
     }
-    var tpercent = Math.round(Number(totalpercent)/ids.length) +"%";
-  }
 
     return (
       <div className="block" id="block_8">

@@ -50,8 +50,8 @@ componentDidMount() {
       var arrNumFiles = this.props.measure.numFilesMSR.split(";")
       //var arrNumWords = this.props.measure.numWordsMSR.split(";")
       var arrDisplayName = this.props.measure.displayNameMSR.split(";")
-    //  arrDaysLate = daysLateMSR.data.split(";").map(&:to_i)
-     var arrDaysLate = this.props.measure.daysLateMSR.split(";")
+     //arrDaysLate = daysLateMSR.data.split(";").map(&:to_i)
+      var arrDaysLate = this.props.measure.daysLateMSR.split(";")
 
     var content = new Array(arrLocale.length);
     for(let d = 0; d < arrLocale.length; d++){

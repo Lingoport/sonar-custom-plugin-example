@@ -90,43 +90,43 @@ get(jenkins,e){
       var ftp = '';
       var totalword = 0;
       var totalcost = 0;
-    for(let m = 0; m < filename.length; m++){
-      ftp = ftp + filename[m] + '\n'
-    }
-    for(let d = 0; d < locale.length; d++){
-     totalword = totalword + Number(numWords[d]);
-     content[d]  = (
-        <tr height="30" className="alt">
-        <td className="label" title={displayName[d]}>{locale[d]}</td>
-        <td className="label">{numFiles[d]}</td>
-        <td className="label">{numKeys[d]}</td>
-        <td className="label">{numWords[d]}</td>
-        </tr>
-    );
-  }
-  if(this.state.wordcost!=undefined && Number(this.state.wordcost)>0){
-     totalcost = totalword * Number(this.state.wordcost);
-   }
-   var totaltable = '';
-   if(totalcost>0){
-     totaltable =(
-       <table>
-          <tbody><tr>
-            <td valign="top" align="left" nowrap="">
-              Cost per Word: ${this.state.wordcost}<br/>
-              Total Cost: ${totalcost}<br/>
-            </td>
+      for(let m = 0; m < filename.length; m++){
+        ftp = ftp + filename[m] + '\n'
+      }
+      for(let d = 0; d < locale.length; d++){
+         totalword = totalword + Number(numWords[d]);
+         content[d]  = (
+           <tr height="30" className="alt">
+           <td className="label" title={displayName[d]}>{locale[d]}</td>
+           <td className="label">{numFiles[d]}</td>
+           <td className="label">{numKeys[d]}</td>
+           <td className="label">{numWords[d]}</td>
           </tr>
-        </tbody></table>
-     );
-   }
-  if(errorCount!='0'){
-    var link = '/project/issues?id='+this.props.measure.projectKey+'&resolved=false&severities=CRITICAL&tags=lrm-base&types=BUG'
-    content = (
-      <tr height="30">
-      <td className="error_label_href error_hover_href" style={{backgroundColor:'#ff0000',color: '#ffffff'}}><a href ={link}>There is critical error preventing a kit being prepped.</a></td>
-      </tr>
-    );
+         );
+      }
+     if(this.state.wordcost!=undefined && Number(this.state.wordcost)>0){
+        totalcost = totalword * Number(this.state.wordcost);
+     }
+     var totaltable = '';
+     if(totalcost>0){
+        totaltable =(
+          <table>
+             <tbody><tr>
+              <td valign="top" align="left" nowrap="">
+                Cost per Word: ${this.state.wordcost}<br/>
+                Total Cost: ${totalcost}<br/>
+              </td>
+           </tr>
+          </tbody></table>
+       );
+     }
+    if(errorCount!='0'){
+       var link = '/project/issues?id='+this.props.measure.projectKey+'&resolved=false&severities=CRITICAL&tags=lrm-base&types=BUG'
+       content = (
+         <tr height="30">
+         <td className="error_label_href error_hover_href" style={{backgroundColor:'#ff0000',color: '#ffffff'}}><a href ={link}>There is critical error preventing a kit being prepped.</a></td>
+         </tr>
+      );
 
     return (
       <div className="block" id="block_6">

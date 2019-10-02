@@ -122,11 +122,11 @@ export default class OverviewApp extends React.PureComponent {
                      )
                  }
 
-                 </div>
+                  </div>
                 </div>
-             </div>
-            </div>
-          </div>
+              </div>
+           </div>
+         </div>
       </div>
     );
   }

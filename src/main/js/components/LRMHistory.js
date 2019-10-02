@@ -26,16 +26,16 @@ export default class LRMHistory extends React.PureComponent {
         </div>
       );
     }else{
-    var content = new Array(this.props.measure.gdate.length+1);
-    content[0] = ['x', 'LRM Remaining Words','LRM Remaining Files'];
-    let m = 0;
-    for(let d = 1; d < content.length; d++){
-      content[d]  = (
-        [new Date(this.props.measure.gdate[m]), this.props.measure.words[m],this.props.measure.files[m]]
-    );
-     m++;
+      var content = new Array(this.props.measure.gdate.length+1);
+      content[0] = ['x', 'LRM Remaining Words','LRM Remaining Files'];
+      let m = 0;
+      for(let d = 1; d < content.length; d++){
+        content[d]  = (
+          [new Date(this.props.measure.gdate[m]), this.props.measure.words[m],this.props.measure.files[m]]
+      );
+       m++;
+    }
   }
-}
 
     return (
       <div className="block" id="block_44">

@@ -25,21 +25,21 @@ export default class GlobalyzerViolations extends React.PureComponent {
         </div>
       );
     }else{
-    var distri = this.props.measure.distribution.split(";")
-    var ch = "";
-    var chl = "";
-    for(let d = 0; d < distri.length; d++){
-      var char_d = distri[d]
-       ch = ch + char_d.substring(char_d.length-1,char_d.length);
-       ch = ch +",";
-       chl = chl + char_d.substring(0,char_d.length-2);
-       chl = chl +"|";
-  }
+      var distri = this.props.measure.distribution.split(";")
+      var ch = "";
+      var chl = "";
+      for(let d = 0; d < distri.length; d++){
+        var char_d = distri[d]
+         ch = ch + char_d.substring(char_d.length-1,char_d.length);
+         ch = ch +",";
+         chl = chl + char_d.substring(0,char_d.length-2);
+         chl = chl +"|";
+       }
 
-    var chart = ch.substring(0,ch.length-1) + "&chl="  +chl.substring(0,chl.length-1);
-    var proj = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&tags=gz'
-    chart = 'https://chart.googleapis.com/chart?chs=400x160&chco=7AAF00&cht=p3&chd=t:' +chart
-}
+      var chart = ch.substring(0,ch.length-1) + "&chl="  +chl.substring(0,chl.length-1);
+      var proj = '/project/issues?id=' +this.props.measure.project+ '&resolved=false&tags=gz'
+      chart = 'https://chart.googleapis.com/chart?chs=400x160&chco=7AAF00&cht=p3&chd=t:' +chart
+  }
     return (
       <div className="block" id="block_5">
       <div className="lpgzsummaryissuewidget" style={{height:'100%'}}>
@@ -61,14 +61,14 @@ export default class GlobalyzerViolations extends React.PureComponent {
       <span>{this.props.measure.ratio} rules activated</span>
       <br/>
           <img src={chart}/>
-    </tbody></table>
+      </tbody></table>
 
-    </div>
-    <div className="clear"></div>
-    </div>
-    <div style={{clear: 'both'}}></div>
-    </div>
-    </div>
+      </div>
+      <div className="clear"></div>
+      </div>
+      <div style={{clear: 'both'}}></div>
+      </div>
+      </div>
     );
   }
 }

@@ -39,7 +39,7 @@ export default class LRMViolations extends React.PureComponent {
       <br/>
       <span>{this.props.measure.ratio} rules activated</span>
       <br/>
-    </tbody></table>
+      </tbody></table>
 
     );
   }

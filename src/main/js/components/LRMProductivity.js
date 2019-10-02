@@ -36,15 +36,15 @@ export default class LRMProductivity extends React.PureComponent {
 
       for(let d = 0; d < ids.length; d++){
           var days = Math.round(Number(numWordsToTranslate[d])/Number(twords[d]));
-        content[d]  = (
-         <tr>
-         <td title={display[d]}>{ids[d]}</td>
-         <td>{twords[d].substring(0,twords[d].length-2)}</td>
-         <td>{days} day(s) for {numWordsToTranslate[d].substring(0,numWordsToTranslate[d].length-2)} word(s)</td>
-         </tr>
-      );
-    }
-  }
+          content[d]  = (
+            <tr>
+            <td title={display[d]}>{ids[d]}</td>
+            <td>{twords[d].substring(0,twords[d].length-2)}</td>
+            <td>{days} day(s) for {numWordsToTranslate[d].substring(0,numWordsToTranslate[d].length-2)} word(s)</td>
+            </tr>
+         );
+       }
+     }
 
     return (
       <div className="block" id="block_7">
