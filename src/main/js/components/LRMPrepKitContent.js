@@ -122,9 +122,10 @@ get(jenkins,e){
      }
     if(errorCount!='0'){
        var link = '/project/issues?id='+this.props.measure.projectKey+'&resolved=false&severities=CRITICAL&tags=lrm-base&types=BUG'
+      // var messa = There is this.props.measure.errorCountMSR
        content = (
          <tr height="30">
-         <td className="error_label_href error_hover_href" style={{backgroundColor:'#ff0000',color: '#ffffff'}}><a href ={link}>There is critical error preventing a kit being prepped.</a></td>
+         <td className="error_label_href error_hover_href" style={{backgroundColor:'#ff0000',color: '#ffffff'}}><a href ={link}>There are {errorCount} critical errors preventing a kit being prepped.</a></td>
          </tr>
       );
 
