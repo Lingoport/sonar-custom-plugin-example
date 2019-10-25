@@ -56,7 +56,7 @@ get(jenkins,e){
   		var inputs = document.getElementsByTagName("input");
   		for(var i = 0;i<inputs.length;i++){
   			if(inputs[i].type.toLowerCase()=="submit"){
-        //  inputs[i].value='Sending';
+          inputs[i].value='Your request has been sent';
   				inputs[i].disabled=true;
         }
   		}
@@ -182,7 +182,7 @@ get(jenkins,e){
           {content}
       <td valign="top" align="left" nowrap="" colspan="4">
       <div id="prepkit">
-      <input type="submit" value="Prep Kit" onClick={this.get.bind(this,this.state.jenkins)}/>
+      <input type="submit" title="" value="Prep Kit" onClick={this.get.bind(this,this.state.jenkins)}/>
        <a target="_blank" title="Jenkins URL value in LRM global setting-Click to Verify" href={this.state.jenkins}>     Jenkins URL: {this.state.jenkins}</a>
        </div></td>
       </tbody></table>
