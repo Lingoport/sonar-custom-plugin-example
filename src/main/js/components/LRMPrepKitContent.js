@@ -33,6 +33,7 @@ componentDidMount() {
 }
 
 get(jenkins,e){
+  this.disabledButton();
   e.preventDefault();
    $.ajax({
              type:'POST',
@@ -51,7 +52,15 @@ get(jenkins,e){
               console.log("Prep Kit job queued if no connection error occurred.")
        });
     }
-
+     disabledButton(){
+  		var inputs = document.getElementsByTagName("input");
+  		for(var i = 0;i<inputs.length;i++){
+  			if(inputs[i].type.toLowerCase()=="submit"){
+        //  inputs[i].value='Sending';
+  				inputs[i].disabled=true;
+        }
+  		}
+  	}
   render() {
     if((this.props.measure.localeMSR === undefined || this.props.measure.localeMSR.length<2)&&(this.props.measure.errorCountMSR===undefined||this.props.measure.errorCountMSR<1)){
       return (
