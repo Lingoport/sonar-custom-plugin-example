@@ -452,6 +452,10 @@ export function findJenkinsURL() {
   return getJSON('/api/settings/values', {
   keys: "sonar.lrm.jenkins.url",
 }).then(function (response) {
+  var str = response.settings[0].value;
+  if(str.charAt(str.length-1)==="/")
+     return str.substring(0,str.length-1);
+  else
      return response.settings[0].value;
   });
 }
