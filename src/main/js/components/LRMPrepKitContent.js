@@ -8,7 +8,7 @@ import '../style.css';
 import {findJenkinsURL} from '../api_lrm.js'
 import $ from 'jquery';
 import {findWordCost} from '../api_lrm.js'
-
+import {translate} from '../common/l10n.js'//      <input type="submit" title="" value={translate('lingoport.prepkit')} onClick={this.get.bind(this,this.state.jenkins)}/>
 export default class LRMPrepKitContent extends React.PureComponent {
   state = {
     jenkins: '',
