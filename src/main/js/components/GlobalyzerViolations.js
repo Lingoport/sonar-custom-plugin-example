@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import '../style.css';
-
+import {translate} from '../common/l10n.js'
 
 export default class GlobalyzerViolations extends React.PureComponent {
 
@@ -16,8 +16,8 @@ export default class GlobalyzerViolations extends React.PureComponent {
         <div className="timeline" style={{height:'100%'}}>
         <div className="widget">
         <link href="../style.css" rel="stylesheet"/>
-        <h3>Globalyzer Issues</h3>
-        <h5>No Issues found</h5>
+        <h3>{translate('lingoport.gzissues')}</h3>
+        <h5>{translate('lingoport.noissue')}</h5>
         <div className="clear"></div>
         </div>
         <div style={{clear: 'both'}}></div>
@@ -45,7 +45,7 @@ export default class GlobalyzerViolations extends React.PureComponent {
       <div className="lpgzsummaryissuewidget" style={{height:'100%'}}>
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
-      <h3>Globalyzer Issues</h3>
+      <h3>{translate('lingoport.gzissues')}</h3>
       <div className="lg_widget">
 
 
@@ -56,9 +56,9 @@ export default class GlobalyzerViolations extends React.PureComponent {
        <span className="big"><a href={proj}>
        <span id="m_lngprt-gyzr-violations">{this.props.measure.violation}</span> </a></span>
       </p>
-      <span><span id="m_lngprt-gyzr-violations-rci" class="alert_OK">{this.props.measure.rci}%</span> compliance</span>
+      <span><span id="m_lngprt-gyzr-violations-rci" class="alert_OK">{this.props.measure.rci}%</span>{translate('lingoport.compliance')}</span>
       <br/>
-      <span>{this.props.measure.ratio} rules activated</span>
+      <span>{this.props.measure.ratio} {translate('lingoport.ruleactive')}</span>
       <br/>
           <img src={chart}/>
       </tbody></table>

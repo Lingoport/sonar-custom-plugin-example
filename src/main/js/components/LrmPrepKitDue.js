@@ -7,7 +7,7 @@ import React from 'react';
 import '../style.css';
 import {findLate} from '../api_lrm.js'
 import {findWarn} from '../api_lrm.js'
-
+import {translate} from '../common/l10n.js'
 
 export default class LrmPrepKitDue extends React.PureComponent {
 
@@ -39,7 +39,7 @@ componentDidMount() {
   render() {
     if(this.props.measure.localeMSR === undefined ||this.props.measure.localeMSR.length<2 ){
         var content= (
-          <tr><td colspan='6'>No outstanding prep kits</td></tr>
+          <tr><td colspan='6'>{translate('lingoport.noprep')}</td></tr>
         );
 
     }else{
@@ -98,13 +98,13 @@ componentDidMount() {
       <div className="lplrmprepwidget" style={{height:'100%'}}>
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
-      <h3>Prep Kit Due Dates</h3>
+      <h3>{translate('lingoport.kitdue')}</h3>
       <div className="lg_widget">
 
       <table className="lg_ds_progress_bar" border="0" width="500">
       <thead>
           <tr>
-          <th>Kit #</th><th>Locale</th><th># of<br/>Files</th><th>Sent<br/>Date (UTC)</th><th>Due<br/>Date (UTC)</th><th>Days<br/>Late</th>
+          <th>Kit #</th><th>{translate('lingoport.locale')}</th><th># of<br/>{translate('lingoport.files')}</th><th>{translate('lingoport.sent')}<br/>{translate('lingoport.date')}</th><th>{translate('lingoport.due')}<br/>{translate('lingoport.date')}</th><th>{translate('lingoport.days')}<br/>{translate('lingoport.late')}</th>
           </tr>
       </thead>
       <tbody>

@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import '../style.css';
-
+import {translate} from '../common/l10n.js'
 
 export default class OverviewLicense extends React.PureComponent {
   render() {
@@ -20,7 +20,7 @@ export default class OverviewLicense extends React.PureComponent {
         <div className="widget">
         <link href="../style.css" rel="stylesheet"/>
         <div className="lg_widget">
-        <h5>No data found</h5>
+        <h5>{translate('lingoport.nodata')}</h5>
         </div>
         <div className="clear"></div>
         </div>
@@ -36,7 +36,7 @@ export default class OverviewLicense extends React.PureComponent {
       if(diff>2592000000){
           content= (
           <tr>
-            <td>LRM License End Date:		</td>
+            <td>{translate('lingoport.lrmlicensedate')}:		</td>
             <td>{this.props.measure.lrmEndDate}</td>
           </tr>
          );
@@ -44,14 +44,14 @@ export default class OverviewLicense extends React.PureComponent {
       if(diff<0){
         content= (
          <tr>
-         <td  style={{backgroundColor:'#ff0000'}}>LRM License End Date(expired):		</td>
+         <td  style={{backgroundColor:'#ff0000'}}>{translate('lingoport.lrmexpireddate')}:		</td>
            <td>{this.props.measure.lrmEndDate}</td>
          </tr>
        );
       }else{//warning
         content= (
          <tr>
-         <td  style={{backgroundColor:'#ffff00'}}>LRM License End Date:		</td>
+         <td  style={{backgroundColor:'#ffff00'}}>{translate('lingoport.lrmlicensedate')}:		</td>
            <td>{this.props.measure.lrmEndDate}</td>
          </tr>
        );
@@ -68,19 +68,19 @@ export default class OverviewLicense extends React.PureComponent {
       <tbody>
         {content}
         <tr>
-          <td>LRM Version:	</td>
+          <td>{translate('lingoport.lrmversion')}	</td>
           <td>{this.props.measure.lrmVersion}</td>
         </tr>
         <tr>
-          <td>LRM License Company Name:</td>
+          <td>{translate('lingoport.lrmCompanyName')}</td>
           <td>{this.props.measure.lrmCompanyName}</td>
         </tr>
         <tr>
-          <td>LRM Number of Projects Allowed	</td>
+          <td>{translate('lingoport.lrmProjects')}	</td>
           <td>{this.props.measure.lrmProjects}</td>
         </tr>
         <tr>
-          <td>InContextQA License End Date:	</td>
+          <td>{translate('lingoport.lrmLqaEndDate')}	</td>
           <td>{this.props.measure.lrmLqaEndDate}</td>
         </tr>
         </tbody></table>
@@ -98,7 +98,7 @@ export default class OverviewLicense extends React.PureComponent {
     if(diff>2592000000){
         content= (
          <tr>
-         <td>GYZR License End Date:		</td>
+         <td>{translate('lingoport.gzlicensedate')}:		</td>
            <td>{this.props.measure.gyzrEndDate}</td>
          </tr>
        );
@@ -106,14 +106,14 @@ export default class OverviewLicense extends React.PureComponent {
     if(diff<0){
       content= (
        <tr>
-       <td  style={{backgroundColor:'#ff0000'}}>GYZR License End Date(expired):		</td>
+       <td  style={{backgroundColor:'#ff0000'}}>{translate('lingoport.gzexpireddate')}:		</td>
          <td>{this.props.measure.gyzrEndDate}</td>
        </tr>
      );
     }else{//warning
       content= (
        <tr>
-       <td  style={{backgroundColor:'#ffff00'}}>GYZR License End Date:		</td>
+       <td  style={{backgroundColor:'#ffff00'}}>{translate('lingoport.gzlicensedate')}:		</td>
          <td>{this.props.measure.gyzrEndDate}</td>
        </tr>
      );
@@ -130,27 +130,27 @@ export default class OverviewLicense extends React.PureComponent {
       <tbody>
         {content}
         <tr>
-          <td>GYZR Client Version:		</td>
+          <td>{translate('lingoport.gyzrClientVersion')}		</td>
           <td>{this.props.measure.gyzrClientVersion}</td>
         </tr>
         <tr>
-          <td>GYZR License Company Name:	</td>
+          <td>{translate('lingoport.gyzrCompanyName')}	</td>
           <td>{this.props.measure.gyzrCompanyName}</td>
         </tr>
         <tr>
-          <td>GYZR Number of Projects Allowed		</td>
+          <td>{translate('lingoport.gyzrProjects')}		</td>
           <td>{this.props.measure.gyzrProjects}</td>
         </tr>
         <tr>
-          <td>GYZR Number of Products Allowed		</td>
+          <td>{translate('lingoport.gyzrProducts')}	</td>
           <td>{this.props.measure.gyzrProducts}</td>
         </tr>
         <tr>
-          <td>GYZR Number of Repo Allowed	</td>
+          <td>{translate('lingoport.gyzrRepo')}	</td>
           <td>{this.props.measure.gyzrRepo}</td>
         </tr>
         <tr>
-          <td>GYZR Number of Lines Allowed	</td>
+          <td>{translate('lingoport.gyzrLines')}	</td>
           <td>{this.props.measure.gyzrLines}</td>
         </tr>
         <br/>
@@ -169,7 +169,7 @@ export default class OverviewLicense extends React.PureComponent {
     if(diffl>2592000000){
         contentl= (
         <tr>
-          <td>LRM License End Date:		</td>
+          <td>{translate('lingoport.lrmlicensedate')}:		</td>
           <td>{this.props.measure.lrmEndDate}</td>
         </tr>
        );
@@ -177,14 +177,14 @@ export default class OverviewLicense extends React.PureComponent {
     if(diffl<0){
       contentl= (
        <tr>
-       <td  style={{backgroundColor:'#ff0000'}}>LRM License End Date(expired):		</td>
+       <td  style={{backgroundColor:'#ff0000'}}>{translate('lingoport.lrmexpireddate')}:		</td>
          <td>{this.props.measure.lrmEndDate}</td>
        </tr>
      );
     }else{//warning
       contentl= (
        <tr>
-       <td  style={{backgroundColor:'#ffff00'}}>LRM License End Date:		</td>
+       <td  style={{backgroundColor:'#ffff00'}}>{translate('lingoport.lrmlicensedate')}:		</td>
          <td>{this.props.measure.lrmEndDate}</td>
        </tr>
      );
@@ -198,7 +198,7 @@ export default class OverviewLicense extends React.PureComponent {
     if(diff>2592000000){
         content= (
          <tr>
-         <td>GYZR License End Date:		</td>
+         <td>{translate('lingoport.gzlicensedate')}:		</td>
            <td>{this.props.measure.gyzrEndDate}</td>
          </tr>
        );
@@ -206,14 +206,14 @@ export default class OverviewLicense extends React.PureComponent {
     if(diff<0){
       content= (
        <tr>
-       <td  style={{backgroundColor:'#ff0000'}}>GYZR License End Date(expired):		</td>
+       <td  style={{backgroundColor:'#ff0000'}}>{translate('lingoport.gzexpireddate')}:		</td>
          <td>{this.props.measure.gyzrEndDate}</td>
        </tr>
      );
     }else{//warning
       content= (
        <tr>
-       <td  style={{backgroundColor:'#ffff00'}}>GYZR License End Date:		</td>
+       <td  style={{backgroundColor:'#ffff00'}}>{translate('lingoport.gzlicensedate')}:		</td>
          <td>{this.props.measure.gyzrEndDate}</td>
        </tr>
      );
@@ -230,44 +230,44 @@ export default class OverviewLicense extends React.PureComponent {
       <tbody>
       {contentl}
       <tr>
-        <td>LRM Version:	</td>
+        <td>{translate('lingoport.lrmversion')}</td>
         <td>{this.props.measure.lrmVersion}</td>
       </tr>
       <tr>
-        <td>LRM License Company Name:</td>
+        <td>{translate('lingoport.lrmCompanyName')}</td>
         <td>{this.props.measure.lrmCompanyName}</td>
       </tr>
       <tr>
-        <td>LRM Number of Projects Allowed	</td>
+        <td>{translate('lingoport.lrmProjects')}	</td>
         <td>{this.props.measure.lrmProjects}</td>
       </tr>
       <tr>
-        <td>InContextQA License End Date:	</td>
+        <td>{translate('lingoport.lrmLqaEndDate')}	</td>
         <td>{this.props.measure.lrmLqaEndDate}</td>
       </tr>
          {content}
       <tr>
-        <td>GYZR Client Version:		</td>
+        <td>{translate('lingoport.gyzrClientVersion')}		</td>
         <td>{this.props.measure.gyzrClientVersion}</td>
       </tr>
       <tr>
-        <td>GYZR License Company Name:	</td>
+        <td>{translate('lingoport.gyzrCompanyName')}	</td>
         <td>{this.props.measure.gyzrCompanyName}</td>
       </tr>
       <tr>
-        <td>GYZR Number of Projects Allowed		</td>
+        <td>{translate('lingoport.gyzrProjects')}		</td>
         <td>{this.props.measure.gyzrProjects}</td>
       </tr>
       <tr>
-        <td>GYZR Number of Products Allowed		</td>
+        <td>{translate('lingoport.gyzrProducts')}		</td>
         <td>{this.props.measure.gyzrProducts}</td>
       </tr>
       <tr>
-        <td>GYZR Number of Repo Allowed	</td>
+        <td>{translate('lingoport.gyzrRepo')}</td>
         <td>{this.props.measure.gyzrRepo}</td>
       </tr>
       <tr>
-        <td>GYZR Number of Lines Allowed	</td>
+        <td>{translate('lingoport.gyzrLines')}	</td>
         <td>{this.props.measure.gyzrLines}</td>
       </tr>
         <br/>

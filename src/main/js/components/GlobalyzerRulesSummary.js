@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import '../style.css';
-
+import {translate} from '../common/l10n.js'
 
 export default class GlobalyzerRulesSummary extends React.PureComponent {
 
@@ -31,27 +31,27 @@ export default class GlobalyzerRulesSummary extends React.PureComponent {
       <tbody>
 
         <tr>
-          <td>Concatenations</td>
+          <td>{translate('lingoport.concatenations')}</td>
           <td><a href ={concatenation}>{this.props.measure.concatenations}</a></td>
         </tr>
 
         <tr>
-          <td>Embedded Strings</td>
+          <td>{translate('lingoport.embedded')}</td>
           <td><a href ={Strings}>{this.props.measure.embedded}</a></td>
         </tr>
 
         <tr>
-          <td>Locale-Sensitive Methods</td>
+          <td>{translate('lingoport.sensitive')}</td>
           <td><a href ={Methods}>{this.props.measure.sensitive}</a></td>
         </tr>
 
         <tr>
-          <td>General Patterns</td>
+          <td>{translate('lingoport.general')}</td>
           <td><a href ={Patterns}>{this.props.measure.general}</a></td>
         </tr>
 
         <tr>
-          <td>Static File References</td>
+          <td>{translate('lingoport.static')}</td>
           <td><a href ={References}>{this.props.measure.static}</a></td>
         </tr>
         <br/>
@@ -61,4 +61,3 @@ export default class GlobalyzerRulesSummary extends React.PureComponent {
     );
   }
 }
-//

@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import '../style.css';
-
+import {translate} from '../common/l10n.js'
 
 export default class GlobalyzerScanSummary extends React.PureComponent {
 
@@ -44,13 +44,13 @@ export default class GlobalyzerScanSummary extends React.PureComponent {
       <div className="lpgzsummaryscanwidget" style={{height:'100%'}}>
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
-      <h3>Globalyzer Scans</h3>
+      <h3>{translate('lingoport.gzscan')}</h3>
       <div className="lg_widget">
 
       <table className="lg_ds_progress_bar" border="0" width="500">
       <thead>
       <tr>
-       <th>Scan</th><th>Rule Set</th><th>Issues</th><th>Lines</th><th>Files</th>
+       <th>{translate('lingoport.scan')}</th><th>{translate('lingoport.ruleset')}</th><th>{translate('issues')}</th><th>{translate('lingoport.lines')}</th><th>{translate('lingoport.files')}</th>
       </tr>
       </thead>
       <tbody>

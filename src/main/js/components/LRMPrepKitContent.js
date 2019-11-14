@@ -8,7 +8,7 @@ import '../style.css';
 import {findJenkinsURL} from '../api_lrm.js'
 import $ from 'jquery';
 import {findWordCost} from '../api_lrm.js'
-import {translate} from '../common/l10n.js'//      <input type="submit" title="" value={translate('lingoport.prepkit')} onClick={this.get.bind(this,this.state.jenkins)}/>
+import {translate} from '../common/l10n.js'
 export default class LRMPrepKitContent extends React.PureComponent {
   state = {
     jenkins: '',
@@ -68,16 +68,16 @@ get(jenkins,e){
         <div className="lplrmprewidget" style={{height:'100%'}}>
         <div className="widget">
         <link href="../style.css" rel="stylesheet"/>
-        <h3>Next Prep Kit Content</h3>
+        <h3>{translate('lingoport.nextprepkit')}</h3>
         <div className="lg_widget">
         <table className="lg_ds_progress_bar" border="0" width="500">
         <thead>
         <tr>
-            <th>Locale </th><th># of<br/>Files</th><th># of<br/>Keys</th><th># of<br/>Words</th>
+            <th>{translate('lingoport.locale')} </th><th># of<br/>{translate('lingoport.files')}</th><th># of<br/>{translate('lingoport.keys')}</th><th># of<br/>{translate('lingoport.words')}</th>
         </tr>
         </thead>
         <tbody>
-         <h5>No files to prep and send for translation</h5>
+         <h5>{translate('lingoport.nofiles')}</h5>
         </tbody></table>
         </div>
         <div className="clear"></div>
@@ -122,8 +122,8 @@ get(jenkins,e){
           <table>
              <tbody><tr>
               <td valign="top" align="left" nowrap="">
-                Cost per Word: ${this.state.wordcost}<br/>
-                Total Cost: ${totalcost}<br/>
+                {translate('lingoport.wordcost')}: ${this.state.wordcost}<br/>
+                {translate('lingoport.totalcost')}: ${totalcost}<br/>
               </td>
            </tr>
           </tbody></table>
@@ -134,7 +134,7 @@ get(jenkins,e){
       // var messa = There is this.props.measure.errorCountMSR
        content = (
          <tr height="30">
-         <td className="error_label_href error_hover_href" style={{backgroundColor:'#ff0000',color: '#ffffff'}}><a href ={link}>There are {errorCount} critical errors preventing a kit being prepped.</a></td>
+         <td className="error_label_href error_hover_href" style={{backgroundColor:'#ff0000',color: '#ffffff'}}><a href ={link}>There are {errorCount} critical errors preventing a translation being sent.</a></td>
          </tr>
       );
 
@@ -143,13 +143,13 @@ get(jenkins,e){
       <div className="lplrmprewidget" style={{height:'100%'}}>
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
-      <h3>Next Prep Kit Content</h3>
+      <h3>{translate('lingoport.nextprepkit')}</h3>
       <div className="lg_widget">
       {totaltable}
       <table className="lg_ds_progress_bar" border="0" width="500">
       <thead>
       <tr>
-          <th>Locale </th><th># of<br/>Files</th><th># of<br/>Keys</th><th># of<br/>Words</th>
+      <th>{translate('lingoport.locale')} </th><th># of<br/>{translate('lingoport.files')}</th><th># of<br/>{translate('lingoport.keys')}</th><th># of<br/>{translate('lingoport.words')}</th>
       </tr>
       </thead>
       <tbody>
@@ -169,20 +169,20 @@ get(jenkins,e){
       <div className="lplrmprewidget" style={{height:'100%'}}>
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
-      <h3 title={ftp}>Next Prep Kit Content</h3>
+      <h3 title={ftp}>{translate('lingoport.nextprepkit')}</h3>
       <div className="lg_widget">
       {totaltable}
       <table className="lg_ds_progress_bar" border="0" width="500">
       <thead>
       <tr>
-          <th>Locale </th><th># of<br/>Files</th><th># of<br/>Keys</th><th># of<br/>Words</th>
+      <th>{translate('lingoport.locale')} </th><th># of<br/>{translate('lingoport.files')}</th><th># of<br/>{translate('lingoport.keys')}</th><th># of<br/>{translate('lingoport.words')}</th>
       </tr>
       </thead>
       <tbody>
           {content}
       <td valign="top" align="left" nowrap="" colspan="4">
       <div id="prepkit">
-      <input type="submit" title="" value="Prep Kit" onClick={this.get.bind(this,this.state.jenkins)}/>
+      <input type="submit" title="" value={translate('lingoport.prepkit')} onClick={this.get.bind(this,this.state.jenkins)}/>
        <a target="_blank" title="Jenkins URL value in LRM global setting-Click to Verify" href={this.state.jenkins}>     Jenkins URL: {this.state.jenkins}</a>
        </div></td>
       </tbody></table>

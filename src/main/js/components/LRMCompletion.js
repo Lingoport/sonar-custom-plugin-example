@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import '../style.css';
-
+import {translate} from '../common/l10n.js'
 
 export default class LRMCompletion extends React.PureComponent {
 
@@ -21,8 +21,8 @@ export default class LRMCompletion extends React.PureComponent {
         <div className="widget">
         <link href="../style.css" rel="stylesheet"/>
         <div className="lg_widget">
-        <h3>Resource Manager Completion Report</h3>
-        <h5>No data found</h5>
+        <h3>{translate('lingoport.lrmreport')}</h3>
+        <h5>{translate('lingoport.nodata')}</h5>
         </div>
         <div className="clear"></div>
         </div>
@@ -47,7 +47,7 @@ export default class LRMCompletion extends React.PureComponent {
           ids[d] = ids[d]+'*'
           outstand = (
                <tr>
-                    <td colspan="5">* There are outstanding prep kits for this locale</td>
+                    <td colspan="5">* {translate('lingoport.lrmoutstanding')}</td>
                 </tr>
           );
         }
@@ -97,20 +97,20 @@ export default class LRMCompletion extends React.PureComponent {
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
       <div className="lg_widget">
-      <h3>Resource Manager Completion Report</h3>
+      <h3>{translate('lingoport.lrmreport')}</h3>
 
       <table>
       <tbody>
       <tr>
       <td>
-      Base Resource Files: <span>{this.props.measure.files}</span> <br/>
-      Base Resource Keys: <span>{this.props.measure.keys}</span> <br/>
-      Base Resource Words: <span>{this.props.measure.words}</span> <br/>
+      {translate('lingoport.basefile')}: <span>{this.props.measure.files}</span> <br/>
+      {translate('lingoport.basekey')}: <span>{this.props.measure.keys}</span> <br/>
+      {translate('lingoport.baseword')}: <span>{this.props.measure.words}</span> <br/>
 
       </td>
       <td valign="top" align="left" nowrap="">
-            Last Sent Kit:  {this.props.measure.versionnum} <br/>
-            Default Locale: {this.props.measure.d_local} <br/>
+            {translate('lingoport.lrmlastsend')}:  {this.props.measure.versionnum} <br/>
+            {translate('lingoport.defaultlocale')}: {this.props.measure.d_local} <br/>
       </td>
       </tr>
       </tbody></table>
@@ -118,12 +118,12 @@ export default class LRMCompletion extends React.PureComponent {
       <table className="lg_ds_progress_bar" border="0" width="500">
         <thead>
           <tr>
-            <th>Locale</th><th>Percent Complete</th><th>Files<br/>Remaining </th><th>Keys<br/>Remaining </th><th>Words<br/>Remaining </th>
+            <th>Locale</th><th>{translate('lingoport.percentcomplete')}</th><th>{translate('lingoport.files')}<br/>{translate('lingoport.remaining')} </th><th>{translate('lingoport.keys')}<br/>{translate('lingoport.remaining')} </th><th>{translate('lingoport.words')}<br/>{translate('lingoport.remaining')} </th>
          </tr>
         </thead>
         <tbody>{content}
         <tr>
-            <th>Totals</th>
+            <th>{translate('lingoport.totals')}</th>
             <th className="bar" valign="middle" nowrap="">
               <div style={{width: '100%', height: '17px', backgroundColor: '#DDDDDD'}}>
               <div style={{width:tpercent, height:'11px',lineHeight:'11px',backgroundColor: '#BBBBBB',borderTop:'3px solid #DDDDDD',color:'#2D2970',fontSize:'12px'}}>{tpercent}</div>

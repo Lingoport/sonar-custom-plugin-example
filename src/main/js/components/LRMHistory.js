@@ -6,7 +6,7 @@
 import React from 'react';
 import { Chart } from "react-google-charts";
 import '../style.css';
-
+import {translate} from '../common/l10n.js'
 
 export default class LRMHistory extends React.PureComponent {
 
