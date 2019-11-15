@@ -92,4 +92,3 @@ export default class OverviewLRMSummary extends React.PureComponent {
     );
   }
 }
-//

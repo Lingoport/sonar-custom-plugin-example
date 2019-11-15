@@ -62,7 +62,7 @@ export default class OverviewLicense extends React.PureComponent {
       <div className="lplicensewidget" style={{height:'100%'}}>
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
-      <h3>Licensing</h3>
+      <h3>{translate('lingoport.Licensing')}</h3>
       <div className="lg_widget">
       <table>
       <tbody>
@@ -124,7 +124,7 @@ export default class OverviewLicense extends React.PureComponent {
       <div className="lplicensewidget" style={{height:'100%'}}>
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
-      <h3>Licensing</h3>
+      <h3>{translate('lingoport.Licensing')}</h3>
       <div className="lg_widget">
       <table>
       <tbody>
@@ -224,7 +224,7 @@ export default class OverviewLicense extends React.PureComponent {
       <div className="lplicensewidget" style={{height:'100%'}}>
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
-      <h3>Licensing</h3>
+      <h3>{translate('lingoport.Licensing')}</h3>
       <div className="lg_widget">
       <table>
       <tbody>
