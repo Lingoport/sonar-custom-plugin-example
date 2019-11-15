@@ -35,7 +35,7 @@ return getJSON('/api/project_analyses/search', {
             let result = {version: analysis.events[j].name,
                           Scan:"",
                           RuleSet:"",
-                           Issues:"0", Lines:"0",Files:"0"
+                           Issues:"0", Lines:"0",Files:"0",local:""
 
                          };
             const numberOfMeasuresRetrieved = 7;
@@ -48,11 +48,7 @@ return getJSON('/api/project_analyses/search', {
                   } else if (responseMetrics.measures[k].metric === "lngprt-gyzr-scan-rule-set-name") {
                     result.RuleSet = responseMetrics.measures[k].history[d].value;
                   } else if (responseMetrics.measures[k].metric === "lngprt-gyzr-scan-local-ruleset") {
-                    if(responseMetrics.measures[k].history[d].value === "0")
-                        result.RuleSet = result.RuleSet + "(Remote)";
-                    else {
-                      result.RuleSet = result.RuleSet + "(Local)";
-                    }
+                        result.local = responseMetrics.measures[k].history[d].value;
                   } else if (responseMetrics.measures[k].metric === "lngprt-gyzr-scan-violation-count") {
                     result.Issues = responseMetrics.measures[k].history[d].value;
                   } else if (responseMetrics.measures[k].metric === "lngprt-gyzr-scan-file-count") {

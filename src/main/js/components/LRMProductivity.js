@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import '../style.css';
-
+import {translate} from '../common/l10n.js'
 
 export default class LRMProductivity extends React.PureComponent {
 
@@ -17,8 +17,8 @@ export default class LRMProductivity extends React.PureComponent {
         <div className="widget">
         <link href="../style.css" rel="stylesheet"/>
         <div className="lg_widget">
-        <h3>Resource Manager Productivity Report</h3>
-        <h5>No data found</h5>
+        <h3>{translate('lingoport.proreport')}</h3>
+        <h5>{translate('lingoport.nodata')}</h5>
         </div>
         <div className="clear"></div>
         </div>
@@ -36,15 +36,15 @@ export default class LRMProductivity extends React.PureComponent {
 
       for(let d = 0; d < ids.length; d++){
           var days = Math.round(Number(numWordsToTranslate[d])/Number(twords[d]));
-        content[d]  = (
-         <tr>
-         <td title={display[d]}>{ids[d]}</td>
-         <td>{twords[d].substring(0,twords[d].length-2)}</td>
-         <td>{days} day(s) for {numWordsToTranslate[d].substring(0,numWordsToTranslate[d].length-2)} word(s)</td>
-         </tr>
-      );
-    }
-  }
+          content[d]  = (
+            <tr>
+            <td title={display[d]}>{ids[d]}</td>
+            <td>{twords[d].substring(0,twords[d].length-2)}</td>
+            <td>{days} day(s) for {numWordsToTranslate[d].substring(0,numWordsToTranslate[d].length-2)} word(s)</td>
+            </tr>
+         );
+       }
+     }
 
     return (
       <div className="block" id="block_7">
@@ -52,18 +52,18 @@ export default class LRMProductivity extends React.PureComponent {
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
       <div className="lg_widget">
-      <h3>Resource Manager Productivity Report</h3>
+      <h3>{translate('lingoport.proreport')}t</h3>
       <table>
       <tbody>
       <tr>
       <td>
-      Base Resource Files: <span>{this.props.measure.files}</span> <br/>
-      Base Resource Keys: <span>{this.props.measure.keys}</span> <br/>
-      Base Resource Words: <span>{this.props.measure.words}</span> <br/>
+      {translate('lingoport.basefile')}: <span>{this.props.measure.files}</span> <br/>
+      {translate('lingoport.basekey')}: <span>{this.props.measure.keys}</span> <br/>
+      {translate('lingoport.baseword')}: <span>{this.props.measure.words}</span> <br/>
       </td>
       <td valign="top" align="left" nowrap="">
-            Last Sent Kit:  {this.props.measure.versionnum} <br/>
-            Default Locale: {this.props.measure.d_local} <br/>
+            {translate('lingoport.lrmlastsend')}:  {this.props.measure.versionnum} <br/>
+            {translate('lingoport.defaultlocale')}: {this.props.measure.d_local} <br/>
       </td>
       </tr>
       </tbody></table>
@@ -71,7 +71,7 @@ export default class LRMProductivity extends React.PureComponent {
       <table className="lg_ds_progress_bar" border="0" width="500">
         <thead>
           <tr>
-            <th>Locale</th><th>Words Per Day </th><th>Estimated Completion Time  </th>
+            <th>Locale</th><th>{translate('lingoport.wordperday')} </th><th>{translate('lingoport.estimated')}  </th>
          </tr>
         </thead>
         <tbody>{content}</tbody></table>

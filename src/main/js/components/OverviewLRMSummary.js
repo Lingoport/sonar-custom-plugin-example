@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import '../style.css';
-
+import {translate} from '../common/l10n.js'
 
 export default class OverviewLRMSummary extends React.PureComponent {
 
@@ -19,9 +19,9 @@ export default class OverviewLRMSummary extends React.PureComponent {
         <div className="lplrmsummaryruleswidget" style={{height:'100%'}}>
         <div className="widget">
         <link href="../style.css" rel="stylesheet"/>
-        <h3><a href ={LRMPage}>Resource Manager Summary Report</a></h3>
+        <h3><a href ={LRMPage}>{translate('lingoport.summaryreport')}</a></h3>
         <div className="lg_widget">
-        <h5>No data found</h5>
+        <h5>{translate('lingoport.nodata')}</h5>
         </div>
         <div className="clear"></div>
         </div>
@@ -37,7 +37,7 @@ export default class OverviewLRMSummary extends React.PureComponent {
       <div className="lplrmsummaryruleswidget" style={{height:'100%'}}>
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
-      <h3><a href ={LRMPage}>Resource Manager Summary Report</a></h3>
+      <h3><a href ={LRMPage}>{translate('lingoport.summaryreport')}</a></h3>
       <div className="lg_widget">
 
 
@@ -45,37 +45,37 @@ export default class OverviewLRMSummary extends React.PureComponent {
       <tbody>
 
         <tr>
-          <td>Default Locale:	</td>
+          <td>{translate('lingoport.defaultlocale')}:	</td>
           <td>{this.props.measure.dfltLocaleMSR}</td>
         </tr>
 
         <tr>
-          <td>Base Resource Files:</td>
+          <td>{translate('lingoport.basefile')}:</td>
           <td>{this.props.measure.nbfilesMSR}</td>
         </tr>
 
         <tr>
-          <td>Base Resource Words:</td>
+          <td>{translate('lingoport.baseword')}:</td>
           <td>{this.props.measure.nbwordsMSR}</td>
         </tr>
 
         <tr>
-          <td>Target Locales</td>
+          <td>{translate('lingoport.targetlocale')}</td>
           <td>{this.props.measure.nblocalesMSR}</td>
         </tr>
 
         <tr>
-          <td>% Complete</td>
+          <td>% {translate('lingoport.complete')}</td>
           <td>{this.props.measure.avgCompleteMSR}%</td>
         </tr>
 
         <tr>
-          <td>Last Prepped Kit Version</td>
+          <td>{translate('lingoport.lastprepversion')}</td>
           <td>{this.props.measure.versionNumMSR}</td>
         </tr>
 
         <tr>
-          <td>Last Prepped Kit Date</td>
+          <td>{translate('lingoport.lastprepdate')}</td>
           <td>{this.props.measure.lastSendMSR}</td>
         </tr>
 
@@ -92,4 +92,3 @@ export default class OverviewLRMSummary extends React.PureComponent {
     );
   }
 }
-//

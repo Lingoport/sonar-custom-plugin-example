@@ -96,7 +96,8 @@ return getJSON('/api/project_analyses/search', {
                           displayNameMSR:"",
                           filesToPrepMSR:"",
                           errorCountMSR:"",
-                          project: project.key.substring(0,project.key.length-4)
+                          project: project.key.substring(0,project.key.length-5),
+                          projectKey : project.key
                          };
             const numberOfMeasuresRetrieved = 7;
 
@@ -270,7 +271,7 @@ return getJSON('/api/project_analyses/search', {
         for (let j = 0; j < analysis.events.length; j++) {
           if (analysis.events[j].category === "VERSION") {
             let result = {version: analysis.events[j].name,
-                          files: "0", keys: "", words: "0", versionnum: "",project: project.key,d_local:"",ids:"",display:"",tfiles:"",tkeys:"",twords:"",percent:"",
+                          files: "0", keys: "", words: "0", versionnum: "",project: project.key,d_local:"",ids:"",display:"",tfiles:"",tkeys:"",twords:"",percent:"",outstanding:""
                          };
             const numberOfMeasuresRetrieved = 14;
 
@@ -300,6 +301,8 @@ return getJSON('/api/project_analyses/search', {
                     result.twords = responseMetrics.measures[k].history[d].value;
                   }else if (responseMetrics.measures[k].metric === "lngprt-lrm-percent-complete-for-locales") {
                     result.percent = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-lrm-is-outstanding-prepkits") {
+                    result.outstanding = responseMetrics.measures[k].history[d].value;
                   }
                 }
               }
@@ -449,10 +452,38 @@ export function findJenkinsURL() {
   return getJSON('/api/settings/values', {
   keys: "sonar.lrm.jenkins.url",
 }).then(function (response) {
+  var str = response.settings[0].value;
+  if(str.charAt(str.length-1)==="/")
+     return str.substring(0,str.length-1);
+  else
      return response.settings[0].value;
   });
 }
 
+export function findWordCost(projectkey) {
+  return getJSON('/api/settings/values', {
+  component: projectkey,
+  keys: "sonar.lrm.cost.per.word",
+}).then(function (response) {
+     return response.settings[0].value;
+  });
+}
+
+export function findLate() {
+  return getJSON('/api/settings/values', {
+  keys: "sonar.lrm.prepkit.days.late.error",
+}).then(function (response) {
+     return response.settings[0].value;
+  });
+}
+
+export function findWarn() {
+  return getJSON('/api/settings/values', {
+  keys: "sonar.lrm.prepkit.days.late.warning",
+}).then(function (response) {
+     return response.settings[0].value;
+  });
+}
 
 export function findlplrmsummary(project) {
 

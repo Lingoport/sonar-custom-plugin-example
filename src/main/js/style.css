@@ -7,73 +7,74 @@
 .widget{position:relative;overflow-x:auto;overflow-y:hidden;padding:10px;margin:0}
 
 table.lg_ds_progress_bar td.label_center {
-	white-space: nowrap;
-	text-align: center;
-	padding: 5px 10px 5px 0;
+    white-space: nowrap;
+    text-align: center;
+    padding: 5px 10px 5px 0;
 }
 
 table.lg_ds_progress_bar td.label_left {
-	white-space: nowrap;
-	text-align: left;
-	padding: 5px 10px 5px 0;
+    white-space: nowrap;
+    text-align: left;
+    padding: 5px 10px 5px 0;
 }
 
 table.outline, th.outline, td.outline {
     border: 1px solid black;
-	padding: 3px;
+    padding: 3px;
 }
 
 
 table tr.separator {
-	height: 10px;
+    height: 10px;
 }
 
 table tr.separator td{
-	column-span:3
+    column-span:3
 }
 
 td {
-	vertical-align:top;
+    vertical-align:top;
 }
 
 table tr td.td_option_width {
-	width:25%
+    width:25%
 }
 
-
+/* Wrap the text within a <div> tag using this class so that
+    the text is displayed to the right of the start of the background color */
 div.text_with_background_color {
    padding: 5px 10px 5px 10px;
 }
 
 div.lg_gz_summary_rules_widget .chart {
-	width: 100%;
-	text-align: center;
+    width: 100%;
+    text-align: center;
 }
 
 div.lg_gz_summary_rules_widget .chart img {
-	margin: 5px auto 0 auto;
-	border: 1px solid #CECECE;
-	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-	border-radius: 3px;
+    margin: 5px auto 0 auto;
+    border: 1px solid #CECECE;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
 }
 
 div.lg_gz_summary_rules_widget ul {
-	list-style-type: none;
-	margin-top: 10px;
+    list-style-type: none;
+    margin-top: 10px;
 }
 
 div.lg_gz_summary_rules_widget ul li {
-	list-style-type: none;
-	float: left;
-	width: 100%;
-	padding: 5px;
-	background: #F2F2F2;
-	margin: 0 15px 7px 0;
+    list-style-type: none;
+    float: left;
+    width: 100%;
+    padding: 5px;
+    background: #F2F2F2;
+    margin: 0 15px 7px 0;
 }
 
 div.lg_gz_summary_rules_widget ul li a,
 div.lg_gz_summary_rules_widget ul li img {
-	float: right;
+    float: right;
 }
 
 div.lg_gz_summary_scan_widget table {
@@ -81,7 +82,7 @@ div.lg_gz_summary_scan_widget table {
     font-size: 12px;
     text-align: left;
     width: 100%;
-	margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 div.lg_gz_summary_scan_widget table th {
@@ -112,43 +113,43 @@ div.lg_widget table {
     font-size: 12px;
     text-align: left;
     width: 100%;
-	margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 div.lg_widget table th {
-    background: none repeat scroll 0 0 #EDF2E1;
+    background: none repeat scroll 0 0 #EAE9FF;
     border-bottom: 1px solid #FFFFFF;
-    border-top: 4px solid #77AE00;
-    color: #5B8208;
+    border-top: 4px solid #2D2970;
+    color: #444444;
     font-size: 13px;
     font-weight: normal;
     padding: 8px;
 }
 
 div.lg_widget table td {
-    background: none repeat scroll 0 0 #EDEDED;
+    background: none repeat scroll 0 0 #F8F7FE;
     border-bottom: 1px solid #FFFFFF;
     border-top: 1px solid transparent;
-    color: #4F7007;
+    color: #171717;
     padding: 8px;
 }
 
 div.lg_widget table tr:hover td {
-    background: none repeat scroll 0 0 #F1F2ED;
-    color: #5A7811;
+    background: none repeat scroll 0 0 #EEEDF5;
+    color: #2D2970;
 }
 
 
 div.lg_widget table tr:hover td.error_hover {
     background: none repeat scroll 0 0 #ff6600;
     color: #ffffff;
-	font-weight: bold;
+    font-weight: bold;
 }
 
 div.lg_widget table tr:hover td.error_hover_href a {
     background: none repeat scroll 0 0 #ff6600;
-	color:#ffffff; /* white */
-	font-weight: bold;
+    color:#ffffff; /* white */
+    font-weight: bold;
 }
 
 div.lg_widget table tr:hover td.warn_hover {
@@ -157,81 +158,81 @@ div.lg_widget table tr:hover td.warn_hover {
 }
 
 table.lg_ds_progress_bar td {
-	padding: 4px 10px 4px 0;
+    padding: 4px 10px 4px 0;
 }
 
 table.lg_ds_progress_bar td.label {
-	width: 1%;
-	white-space: nowrap;
-	text-align: left;
-	padding: 5px 10px 5px 0;
+    width: 1%;
+    white-space: nowrap;
+    text-align: left;
+    padding: 5px 10px 5px 0;
 }
 
 table.lg_ds_progress_bar td.error_label {
-	width: 1%;
-	white-space: nowrap;
-	text-align: left;
-	padding: 5px 10px 5px 0;
-	background-color:#ff0000;
-	color:#ffffff;
-	font-weight: bold;
+    width: 1%;
+    white-space: nowrap;
+    text-align: left;
+    padding: 5px 10px 5px 0;
+    background-color:#ff0000; /* red */
+    color:#ffffff; /* white */
+    font-weight: bold;
 }
 
 table.lg_ds_progress_bar td.error_label_href a{
-	width: 1%;
-	white-space: nowrap;
-	text-align: left;
-	padding: 5px 10px 5px 0;
-	background-color:#ff0000;
-	color:#ffffff;
-	font-weight: bold;
+    width: 1%;
+    white-space: nowrap;
+    text-align: left;
+    padding: 5px 10px 5px 0;
+    background-color:#ff0000; /* red */
+    color:#ffffff; /* white */
+    font-weight: bold;
 }
 
 table.lg_ds_progress_bar td.warn_label {
-	width: 1%;
-	white-space: nowrap;
-	text-align: left;
-	padding: 5px 10px 5px 0;
-	background-color:#ffff00;
-	font-weight: bold;
+    width: 1%;
+    white-space: nowrap;
+    text-align: left;
+    padding: 5px 10px 5px 0;
+    background-color:#ffff00; /* yellow */
+    font-weight: bold;
 }
 
 table.lg_ds_progress_bar th.val {
-	width: 1%;
-	white-space: nowrap;
-	text-align: left;
-	padding: 0 0 0 10px;
+    width: 1%;
+    white-space: nowrap;
+    text-align: left;
+    padding: 0 0 0 10px;
 }
 
 table.lg_ds_progress_bar td.val {
-	width: 1%;
-	white-space: nowrap;
-	text-align: left;
-	padding: 0 0 0 10px;
+    width: 1%;
+    white-space: nowrap;
+    text-align: left;
+    padding: 0 0 0 10px;
 }
 
 table.lg_ds_progress_bar td.bar {
-	width: 97%;
+    width: 97%;
 }
 
 table.lg_ds_progress_bar .legendValue {
-	width: 10px;
-	height: 10px;
-	background-color: #92B7D3;
-	display: inline-block;
-	zoom: 1;
-	*display: inline;
+    width: 10px;
+    height: 10px;
+    background-color: #92B7D3;
+    display: inline-block;
+    zoom: 1; /* IE hack to trigger hasLayout */
+    *display: inline; /* IE hack to achieve inline-block behavior */
 }
 
 table.lg_ds_progress_bar .legendTotal {
-	width: 10px;
-	height: 10px;
-	background-color: #2A4269;
-	display: inline-block;
-	zoom: 1;
-	*display: inline;
+    width: 10px;
+    height: 10px;
+    background-color: #2A4269;
+    display: inline-block;
+    zoom: 1; /* IE hack to trigger hasLayout */
+    *display: inline; /* IE hack to achieve inline-block behavior */
 }
 
 table.lg_ds_progress_bar td.bar>a>div>div {
-	float: right;
+    float: right;
 }

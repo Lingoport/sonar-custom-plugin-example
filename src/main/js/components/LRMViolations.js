@@ -5,7 +5,7 @@
  */
 import React from 'react';
 import '../style.css';
-
+import {translate} from '../common/l10n.js'
 
 export default class LRMViolations extends React.PureComponent {
 
@@ -28,18 +28,18 @@ export default class LRMViolations extends React.PureComponent {
     return (
 
       <table className="lg_ds_progress_bar" border="0" width="500">
-      <h3>Source Issues</h3>
+      <h3>{translate('lingoport.sourceissue')}</h3>
 
       <tbody>
       <p>
        <span className="big"><a href={proj}>
        <span id="m_lngprt-gyzr-violations">{this.props.measure.violation}</span> </a></span>
       </p>
-      <span><span id="m_lngprt-gyzr-violations-rci" class="alert_OK">{this.props.measure.rci}%</span> compliance</span>
+      <span><span id="m_lngprt-gyzr-violations-rci" class="alert_OK">{this.props.measure.rci}%</span> {translate('lingoport.compliance')}</span>
       <br/>
-      <span>{this.props.measure.ratio} rules activated</span>
+      <span>{this.props.measure.ratio} {translate('lingoport.ruleactive')}</span>
       <br/>
-    </tbody></table>
+      </tbody></table>
 
     );
   }

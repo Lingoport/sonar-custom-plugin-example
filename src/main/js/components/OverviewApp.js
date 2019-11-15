@@ -14,6 +14,8 @@ import OverviewGlobalyzerSummary from './OverviewGlobalyzerSummary'
 import OverviewLRMSummary from './OverviewLRMSummary'
 import OverviewHistory from './OverviewHistory'
 import OverviewLicense from './OverviewLicense'
+import lingo_logo from '../img/logo.png'
+
 
 
 export default class OverviewApp extends React.PureComponent {
@@ -71,7 +73,7 @@ export default class OverviewApp extends React.PureComponent {
       <div className="page" id="dashboard">
         <span className="hidden" id="is-project-dashboard"></span>
         <header className="page-header">
-          <h1 className="page-title">Lingoport Overview</h1>
+        <img style={{width:'165px',height:'35px',textAlign: 'right'}} src={lingo_logo} alt=""/>
           </header>
           <div style={{width: '100%',display: 'block', float: 'none'}}>
 
@@ -120,11 +122,11 @@ export default class OverviewApp extends React.PureComponent {
                      )
                  }
 
-                 </div>
+                  </div>
                 </div>
-             </div>
-            </div>
-          </div>
+              </div>
+           </div>
+         </div>
       </div>
     );
   }
