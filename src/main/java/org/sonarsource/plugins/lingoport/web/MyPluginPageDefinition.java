@@ -22,8 +22,11 @@ public class MyPluginPageDefinition implements PageDefinition {
 
       .addPage(Page.builder("lingoport/globalyzer_page")
         .setName("Globalyzer")
-        .setScope(Scope.COMPONENT).build());
+        .setScope(Scope.COMPONENT).build())
 
+      .addPage(Page.builder("lingoport/control_page")
+        .setName("Control Center")
+        .setScope(Scope.COMPONENT).build());
 
   }
 }
