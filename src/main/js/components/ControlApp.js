@@ -6,12 +6,10 @@
 import React from 'react';
 import {translate} from '../common/l10n.js'
 import {findSegments} from '../api_control.js'
-import {findlpLicense} from '../api.js'
+import {findFiles} from '../api_control.js'
+import {findPrepLocale} from '../api_control.js'
 
-import OverviewGlobalyzerSummary from './OverviewGlobalyzerSummary'
-import OverviewLRMSummary from './OverviewLRMSummary'
-import OverviewHistory from './OverviewHistory'
-import OverviewLicense from './OverviewLicense'
+
 import lingo_logo from '../img/logo.png'
 
 
@@ -21,7 +19,7 @@ export default class ControlApp extends React.PureComponent {
   state = {
     filelist: [],
     segments: [],
-    license:[]
+    locales:[]
   };
 
   componentDidMount() {
@@ -35,10 +33,18 @@ export default class ControlApp extends React.PureComponent {
     );
 
 
-    findlpLicense(this.props.project).then(
+    findFiles(this.props.project).then(
       (valuesReturnedByAPI) => {
         this.setState({
-          license: valuesReturnedByAPI
+          filelist: valuesReturnedByAPI
+        });
+      }
+    );
+
+    findPrepLocale(this.props.project).then(
+      (valuesReturnedByAPI) => {
+        this.setState({
+          locales: valuesReturnedByAPI
         });
       }
     );
@@ -55,7 +61,30 @@ export default class ControlApp extends React.PureComponent {
            <td>{this.state.segments[d].messageinfo}</td>
          </tr>
       );
-      console.log(this.state.segments[d].messageinfo);
+    }
+
+    var filecontent = new Array(this.state.filelist.length);
+
+    for(let d = 0; d < this.state.filelist.length; d++){
+      filecontent[d]  = (
+        <tr>
+           <td>{this.state.filelist[d].filename}</td>
+         </tr>
+      );
+    }
+   var displayName = [];
+   let len1 = this.state.locales.length-1;
+   if(this.state.locales[len1]!=undefined){
+      displayName = this.state.locales[len1].displayNameMSR.split(";")
+    }
+    var localecontent = new Array(displayName.length);
+
+    for(let d = 0; d < displayName.length; d++){
+      localecontent[d]  = (
+        <tr>
+           <td>{displayName[d]}</td>
+         </tr>
+      );
     }
     // Data Gathered: {JSON.stringify(this.state.data)}
     return (
@@ -71,15 +100,45 @@ export default class ControlApp extends React.PureComponent {
               <div className="dashboard-column-wrapper" style={{width: '20%',margin: '0 -1px 0 0',float:'left'}}>
                 <div className="dashboard-column" id="dashboard-column-1" style={{margin: '0 5px 0 0px',padding:'0',overflow:'visible'}}>
 
+                <div className="block" id="block_1">
+                <div className="lpcontrolfile" style={{height:'100%'}}>
+                <div className="widget">
+                <link href="../style.css" rel="stylesheet"/>
+                <h3>File Name</h3>
+                <div className="lg_widget">
+                <table>
+                <tbody>
+                  {filecontent}
 
-                {this.state.license.map(
-                    (value,idx) =>
-                    <OverviewLicense
-                      measure={value}
-                      key={idx}
-                    />
-                    )
-                }
+                  <br/>
+                </tbody></table>
+                </div>
+                <div className="clear"></div>
+                </div>
+                <div style={{clear: 'both'}}></div>
+                </div>
+                </div>
+
+                <div className="block" id="block_2">
+                <div className="lpcontrollocale" style={{height:'100%'}}>
+                <div className="widget">
+                <link href="../style.css" rel="stylesheet"/>
+                <h3>Locales</h3>
+                <div className="lg_widget">
+                <table>
+                <tbody>
+                  {localecontent}
+
+                  <br/>
+                </tbody></table>
+                </div>
+                <div className="clear"></div>
+                </div>
+                <div style={{clear: 'both'}}></div>
+                </div>
+                </div>
+
+
                 </div>
                </div>
 
