@@ -5,14 +5,14 @@
  */
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
-import OverviewApp from './components/OverviewApp';
+import ControlApp from './components/ControlApp';
 
 window.registerExtension('lingoport/control_page', options => {
 
   const { el } = options;
 
   render(
-          <OverviewApp
+          <ControlApp
             project={options.component}
           />, el
   );
