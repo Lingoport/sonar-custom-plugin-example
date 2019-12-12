@@ -52,7 +52,7 @@ export default class LRMProductivity extends React.PureComponent {
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
       <div className="lg_widget">
-      <h3>{translate('lingoport.proreport')}t</h3>
+      <h3>{translate('lingoport.proreport')}</h3>
       <table>
       <tbody>
       <tr>
