@@ -24,21 +24,29 @@ return getJSON('/api/issues/search', {
   const numberOfAnalyses = responseAnalyses.issues.length;
   if (numberOfAnalyses > 0) {
   var data = [];
+  let d =0;
+  var filter =[];
       for (let i = 0; i < numberOfAnalyses; i++) {
          let result = {
                   messageinfo: "",
                   keyinfo:"",
            };
-          result.messageinfo = responseAnalyses.issues[i].message;
+          var temp = responseAnalyses.issues[i].message.split(":");
+          var len2 = temp.length;
+          result.messageinfo = temp[len2-1];
           result.keyinfo = responseAnalyses.issues[i].key;
-          data[i] = result;
+
+          if(filter.indexOf(temp[len2-2])==-1){
+             data[d] = result;
+             d++;
+             filter[d] = temp[len2-2];
+           }
       }
       //console.table(data);
       return data;
     }
  });
 }
-
 
 
 export function findFiles(project) {
