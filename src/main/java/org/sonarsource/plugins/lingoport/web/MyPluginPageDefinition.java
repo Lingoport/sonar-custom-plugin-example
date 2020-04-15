@@ -25,7 +25,7 @@ public class MyPluginPageDefinition implements PageDefinition {
         .setScope(Scope.COMPONENT).build())
 
     //  .addPage(Page.builder("lingoport/control_page")
-   //     .setName("Control Center")
+    //    .setName("Control Center")
     //    .setScope(Scope.COMPONENT).build());
 
   }
