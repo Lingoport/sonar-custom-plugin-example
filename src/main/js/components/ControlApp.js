@@ -50,7 +50,22 @@ export default class ControlApp extends React.PureComponent {
     );
   }
 
+   getValue(){
+  	var hobbies = document.getElementsByName("segments");
+  	var value;
+  	for (i=0; i<hobbies.length; i++){
+  		if (hobbies[i].checked){
+  			if (!value){
+  				value = hobbies[i].value;
+  			} else {
+  				value += "," + hobbies[i].value;
+  			}
+  		}
+  	}
 
+  	console.log(value);
+  }
+// 
 
   render() {
     var content = new Array(this.state.segments.length);
@@ -58,7 +73,7 @@ export default class ControlApp extends React.PureComponent {
     for(let d = 0; d < this.state.segments.length; d++){
       content[d]  = (
         <tr>
-           <td>{this.state.segments[d].messageinfo}</td>
+           <input type="checkbox" name="segments" value={this.state.segments[d].messageinfo}/> <td>{this.state.segments[d].messageinfo}</td>
          </tr>
       );
     }
@@ -145,6 +160,7 @@ export default class ControlApp extends React.PureComponent {
 
                <div className="dashboard-column-wrapper" style={{width: '70%',margin: '0 -1px 0 0',float:'left'}}>
                  <div className="dashboard-column" id="dashboard-column-2" style={{margin: '0 0px 0 5px',float:'rignt',padding:'0',overflow:'visible'}}>
+                 <button id="issues-bulk-change" className="button" type="button" onclick={this.getValue.bind()} >BLOCK</button>
 
                     <h5>{content}</h5>
 
