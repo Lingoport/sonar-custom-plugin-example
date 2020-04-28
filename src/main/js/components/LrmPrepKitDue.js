@@ -55,7 +55,7 @@ componentDidMount() {
 
     var content = new Array(arrLocale.length);
     for(let d = 0; d < arrLocale.length; d++){
-      if(arrDaysLate> this.state.late){
+      if(arrDaysLate[d]>= this.state.late){
         content[d]  = (
            <tr height="30" className="alt">
            <td className="label">  {arrVersion[d]}</td>
@@ -66,7 +66,7 @@ componentDidMount() {
            <td className="label" style={{backgroundColor: '#ff0000'}}>{arrDaysLate[d]}</td>
            </tr>);
       }else{
-          if(arrDaysLate> this.state.warn){
+          if(arrDaysLate[d]>= this.state.warn){
             content[d]  = (
                <tr height="30" className="alt">
                <td className="label">  {arrVersion[d]}</td>
