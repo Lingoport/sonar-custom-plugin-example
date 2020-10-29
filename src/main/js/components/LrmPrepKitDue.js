@@ -12,8 +12,8 @@ import {translate} from '../common/l10n.js'
 export default class LrmPrepKitDue extends React.PureComponent {
 
   state = {
-    late: '14',
-    warn:'7'
+    late: 14,
+    warn: 7
   };
 
 componentDidMount() {
@@ -55,7 +55,7 @@ componentDidMount() {
 
     var content = new Array(arrLocale.length);
     for(let d = 0; d < arrLocale.length; d++){
-      if(arrDaysLate[d]>= this.state.late){
+      if(Number(arrDaysLate[d])>= Number(this.state.late)){
         content[d]  = (
            <tr height="30" className="alt">
            <td className="label">  {arrVersion[d]}</td>
@@ -66,7 +66,7 @@ componentDidMount() {
            <td className="label" style={{backgroundColor: '#ff0000'}}>{arrDaysLate[d]}</td>
            </tr>);
       }else{
-          if(arrDaysLate[d]>= this.state.warn){
+          if(Number(arrDaysLate[d])>= Number(this.state.warn)){
             content[d]  = (
                <tr height="30" className="alt">
                <td className="label">  {arrVersion[d]}</td>
