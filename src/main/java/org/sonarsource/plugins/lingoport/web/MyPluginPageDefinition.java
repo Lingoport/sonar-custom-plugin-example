@@ -17,7 +17,7 @@ public class MyPluginPageDefinition implements PageDefinition {
 
 
       .addPage(Page.builder("lingoport/lrm_page")
-        .setName("Resource Manager")
+        .setName("Localyzer")
         .setScope(Scope.COMPONENT).build())
 
       .addPage(Page.builder("lingoport/globalyzer_page")
