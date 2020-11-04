@@ -27,7 +27,7 @@ export default class LRMHistory extends React.PureComponent {
       );
     }else{
       var content = new Array(this.props.measure.gdate.length+1);
-      content[0] = ['x', 'LRM Remaining Words','LRM Remaining Files'];
+      content[0] = ['x', 'Localyzer Remaining Words','Localyzer Remaining Files'];
       let m = 0;
       for(let d = 1; d < content.length; d++){
         content[d]  = (

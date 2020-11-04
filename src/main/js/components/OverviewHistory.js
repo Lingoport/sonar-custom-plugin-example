@@ -27,7 +27,7 @@ export default class OverviewHistory extends React.PureComponent {
        );
     }else{
     var content = new Array(this.props.measure.gdate.length+1);
-    content[0] = ['x', 'Globalyzer Issues','LRM Remaining Words'];
+    content[0] = ['x', 'Globalyzer Issues','Localyzer Remaining Words'];
     let m = 0;
     for(let d = 1; d < content.length; d++){
       content[d]  = (
