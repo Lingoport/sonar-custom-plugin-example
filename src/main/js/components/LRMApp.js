@@ -119,7 +119,7 @@ export default class LRMApp extends React.PureComponent {
 
               <div className="dashboard-column-wrapper" style={{width: '50%',margin: '0 -1px 0 0',float:'left'}}>
                 <div className="dashboard-column" id="dashboard-column-1" style={{margin: '0 5px 0 0px',padding:'0',overflow:'visible'}}>
-                <img style={{width:'225px',height:'52px',textAlign: 'right'}} src={lrm_wide} alt=""/>
+                <img style={{width:'200px',height:'55px',textAlign: 'right'}} src={lrm_wide} alt=""/>
 
                 {this.state.preLocal.map(
                     (value,idx) =>
