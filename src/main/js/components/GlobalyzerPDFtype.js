@@ -57,7 +57,6 @@ export default class GlobalyzerPDFtype extends React.PureComponent {
           <tr height="30" className="alt">
           <td className="label">  {scan[d]}</td>
           <td className="label">{ruleset[d]}</td>
-          <td className="label"><input type="CheckBox" name="hobby" value="1"/></td>
           <td className="label"><input type="CheckBox" name="hobby" value="1" checked="checked"/></td>
           <td className="label"><input type="CheckBox" name="hobby" value="1"/></td>
           <td className="label"><input type="CheckBox" name="hobby" value="1"/></td>
@@ -72,15 +71,36 @@ export default class GlobalyzerPDFtype extends React.PureComponent {
       <div className="lpgzsummaryscanwidget" style={{height:'100%'}}>
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
-      <h3>Globalyzer Scans Type of Issues Selection</h3>
+      <h3>Globalyzer Lite Project Definition File Settings</h3>
       <div className="lg_widget">
+
+      <table className="lg_ds_progress_bar" border="0" width="500">
+      <thead>
+      <tr>
+       <th>Concatenations</th>
+       <th>Priority1</th>
+       <th>Priority2</th>
+       <th>Priority3</th>
+       <th>Priority4</th>
+       <th>Priority5</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr height="30" className="alt">
+      <td className="label"><input type="CheckBox" name="hobby" value="1" checked="true"/></td>
+      <td className="label"><input type="CheckBox" name="hobby" value="1" checked="true"/></td>
+      <td className="label"><input type="CheckBox" name="hobby" value="1"/></td>
+      <td className="label"><input type="CheckBox" name="hobby" value="1"/></td>
+      <td className="label"><input type="CheckBox" name="hobby" value="1"/></td>
+      <td className="label"><input type="CheckBox" name="hobby" value="1"/></td>
+      </tr>
+      </tbody></table>
 
       <table className="lg_ds_progress_bar" border="0" width="500">
       <thead>
       <tr>
        <th>{translate('lingoport.scan')}</th>
        <th>{translate('lingoport.ruleset')}</th>
-       <th>Concatenations</th>
        <th>Embedded Strings</th>
        <th>Locale-Sensitive Methods</th>
        <th>General Patterns</th>
