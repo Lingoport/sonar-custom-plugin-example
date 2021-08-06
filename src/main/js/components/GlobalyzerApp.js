@@ -16,6 +16,8 @@ import GlobalyzerViolations from './GlobalyzerViolations'
 import GlobalyzerRulesSummary from './GlobalyzerRulesSummary'
 import GlobalyzerIssuesHistory from './GlobalyzerIssuesHistory'
 import OverviewGlobalyzerSummary from './OverviewGlobalyzerSummary'
+import GlobalyzerPDFtype from './GlobalyzerPDFtype'
+import GlobalyzerPDFpriority from './GlobalyzerPDFpriority'
 import globalyzer_wide from '../img/Globalyzer_Wide.png'
 
 export default class GlobalyzerApp extends React.PureComponent {
@@ -121,6 +123,22 @@ export default class GlobalyzerApp extends React.PureComponent {
                  {this.state.data.map(
                      (value,idx) =>
                      <GlobalyzerScanSummary
+                       measure={value}
+                       key={idx}
+                     />
+                     )
+                 }
+                 {this.state.data.map(
+                     (value,idx) =>
+                     <GlobalyzerPDFtype
+                       measure={value}
+                       key={idx}
+                     />
+                     )
+                 }
+                 {this.state.data.map(
+                     (value,idx) =>
+                     <GlobalyzerPDFpriority
                        measure={value}
                        key={idx}
                      />
