@@ -13,7 +13,7 @@ export default class GlobalyzerPDFtype extends React.PureComponent {
     types: '',
     wordcost:'0',
   };
-/*
+
   get(types,e){
     this.disabledButton();
     e.preventDefault();
@@ -34,7 +34,38 @@ export default class GlobalyzerPDFtype extends React.PureComponent {
                 console.log("Prep Kit job queued if no connection error occurred.")
          });
       }
-*/
+
+
+disabledButton(){
+ var inputs = document.getElementsByTagName("input");
+ for(var i = 0;i<inputs.length;i++){
+   if(inputs[i].id.toLowerCase()=="concatenations"){
+     if(inputs[i].checked==true){
+       inputs[i].checked=false
+     }else{
+       inputs[i].checked=true
+
+     }
+     //inputs[i].disabled=true;
+   }
+ }
+}
+
+changecheck(){
+  var inputs = document.getElementsByTagName("input");
+  for(var i = 0;i<inputs.length;i++){
+    if(inputs[i].id.toLowerCase()=="concatenations"){
+      if(inputs[i].value=='unselected'){
+        inputs[i].value=='selected'
+      }else{
+        inputs[i].value=='unselected'
+
+      }
+    }
+  }
+
+}
+
   render() {
     if(this.props.measure.Scan === undefined){
         var content= (<h5>No data found</h5>);
@@ -57,10 +88,10 @@ export default class GlobalyzerPDFtype extends React.PureComponent {
           <tr height="30" className="alt">
           <td className="label">  {scan[d]}</td>
           <td className="label">{ruleset[d]}</td>
-          <td className="label"><input type="CheckBox" name="hobby" value="1" checked="checked"/></td>
-          <td className="label"><input type="CheckBox" name="hobby" value="1"/></td>
-          <td className="label"><input type="CheckBox" name="hobby" value="1"/></td>
-          <td className="label"><input type="CheckBox" name="hobby" value="1"/></td>
+          <td className="label"><input type="checkbox" id="Embedded" checked="checked"/></td>
+          <td className="label"><input type="checkbox" id="Locale" /></td>
+          <td className="label"><input type="checkbox" id="General" /></td>
+          <td className="label"><input type="checkbox" id="Static" /></td>
           </tr>
       );
      }
@@ -87,12 +118,12 @@ export default class GlobalyzerPDFtype extends React.PureComponent {
       </thead>
       <tbody>
       <tr height="30" className="alt">
-      <td className="label"><input type="CheckBox" name="hobby" value="1" checked="true"/></td>
-      <td className="label"><input type="CheckBox" name="hobby" value="1" checked="true"/></td>
-      <td className="label"><input type="CheckBox" name="hobby" value="1"/></td>
-      <td className="label"><input type="CheckBox" name="hobby" value="1"/></td>
-      <td className="label"><input type="CheckBox" name="hobby" value="1"/></td>
-      <td className="label"><input type="CheckBox" name="hobby" value="1"/></td>
+      <td className="label"><input type="checkbox" id="Concatenations" checked='true' onChange={this.changecheck()}/></td>
+      <td className="label"><input type="checkbox" id="Priority1" checked="true"/></td>
+      <td className="label"><input type="checkbox" id="Priority2" /></td>
+      <td className="label"><input type="checkbox" id="Priority3" /></td>
+      <td className="label"><input type="checkbox" id="Priority4" /></td>
+      <td className="label"><input type="checkbox" id="Priority5" /></td>
       </tr>
       </tbody></table>
 
