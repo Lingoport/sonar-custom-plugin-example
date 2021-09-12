@@ -46,9 +46,27 @@ disabledButton(){
        inputs[i].checked=true
 
      }
-     //inputs[i].disabled=true;
    }
  }
+}
+
+changeSelect(data_id,e){
+ var inputs = document.getElementsByTagName("input");
+ for(var i = 0;i<inputs.length;i++){
+   console.log(data_id)
+   console.log(inputs[i].id)
+   if(inputs[i].type.toLowerCase()=="submit" && inputs[i].id==data_id ){
+     if(inputs[i].value=="Unselected"){
+       console.log("60")
+      inputs[i].value='Selected'
+    }
+    else{
+      console.log("64")
+      inputs[i].value='Unselected'
+     }
+    }
+ }
+ e.preventDefault();
 }
 
 changecheck(){
@@ -63,6 +81,7 @@ changecheck(){
       }
     }
   }
+
 
 }
 
@@ -118,12 +137,12 @@ changecheck(){
       </thead>
       <tbody>
       <tr height="30" className="alt">
-      <td className="label"><input type="checkbox" id="Concatenations" checked='true' onChange={this.changecheck()}/></td>
-      <td className="label"><input type="checkbox" id="Priority1" checked="true"/></td>
-      <td className="label"><input type="checkbox" id="Priority2" /></td>
-      <td className="label"><input type="checkbox" id="Priority3" /></td>
-      <td className="label"><input type="checkbox" id="Priority4" /></td>
-      <td className="label"><input type="checkbox" id="Priority5" /></td>
+      <td className="label"><input type="submit" title="" id="Concatenations" value="Unselected" onClick={this.changeSelect.bind(this,"Concatenations")}/> </td>
+      <td className="label"><input type="submit" title="" id="Priority1" value="Selected" onClick={this.changeSelect.bind(this,"Priority1")}/></td>
+      <td className="label"><input type="submit" title="" id="Priority2" value="Selected" onClick={this.changeSelect.bind(this,"Priority2")}/></td>
+      <td className="label"><input type="submit" title="" id="Priority3" value="Selected" onClick={this.changeSelect.bind(this,"Priority3")}/></td>
+      <td className="label"><input type="submit" title="" id="Priority4" value="Selected" onClick={this.changeSelect.bind(this,"Priority4")}/></td>
+      <td className="label"><input type="submit" title="" id="Priority5" value="Selected" onClick={this.changeSelect.bind(this,"Priority5")}/></td>
       </tr>
       </tbody></table>
 
