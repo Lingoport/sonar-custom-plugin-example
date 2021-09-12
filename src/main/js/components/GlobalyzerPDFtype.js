@@ -5,84 +5,62 @@
  */
 import React from 'react';
 import '../style.css';
-import {translate} from '../common/l10n.js'
+import {translate} from '../common/l10n.js';
+import {findJenkinsURL} from '../api_lrm.js';
+import $ from 'jquery';
+
 
 export default class GlobalyzerPDFtype extends React.PureComponent {
 
   state = {
-    types: '',
-    wordcost:'0',
+    jenkins: ''
   };
 
-  get(types,e){
-    this.disabledButton();
+  componentDidMount() {
+    findJenkinsURL().then(
+      (valuesReturnedByAPI) => {
+        this.setState({
+          jenkins: valuesReturnedByAPI
+        });
+      }
+    );
+  }
+
+  get(jenkins,e){
     e.preventDefault();
      $.ajax({
                type:'POST',
-               url:jenkins + '/buildByToken/buildWithParameters'+"?" +'job=DashboardPrepKit&token=DASHBOARDPREPKIT&lrm_group_project=' + this.props.measure.project  + '&dashboard_user=' + 'dash',
+               url:jenkins + '/buildByToken/buildWithParameters'+"?" +'job=DashboardSavePDF&token=SAVEPDF&group_project=' + this.props.measure.project  + '&dashboard_user=' + 'dash',
             //   url:'http://ec2-34-234-66-56.compute-1.amazonaws.com/jenkins'+ '/buildByToken/buildWithParameters'+"?" +'job=DashboardPrepKit&token=DASHBOARDPREPKIT&lrm_group_project=' + 'CET.OpenMind' + '&dashboard_user=' + 'dash',
                contentType:'application/x-www-form-urlencoded; charset=UTF-8',
                beforeSend: function (jqXHR, settings) {
                    var url = settings.url;
                 }
              }).done(function(data, textStatus, jqXHR){
-                console.log("Prep Kit job queued.")
+                console.log("Save PDF queued.")
             }).fail(function(jqXHR, textStatus, errorThrown ) {
              //status is always 0 for cross-domain errors so there will be no information.
              //The No Access-Control-Allow-Origin header is thrown for cross domains even though
              //we're using the build token.
-                console.log("Prep Kit job queued if no connection error occurred.")
+                console.log("Save PDF queued if no connection error occurred.")
          });
       }
 
 
-disabledButton(){
- var inputs = document.getElementsByTagName("input");
- for(var i = 0;i<inputs.length;i++){
-   if(inputs[i].id.toLowerCase()=="concatenations"){
-     if(inputs[i].checked==true){
-       inputs[i].checked=false
-     }else{
-       inputs[i].checked=true
-
-     }
-   }
- }
-}
 
 changeSelect(data_id,e){
  var inputs = document.getElementsByTagName("input");
  for(var i = 0;i<inputs.length;i++){
-   console.log(data_id)
-   console.log(inputs[i].id)
    if(inputs[i].type.toLowerCase()=="submit" && inputs[i].id==data_id ){
      if(inputs[i].value=="Unselected"){
-       console.log("60")
       inputs[i].value='Selected'
     }
     else{
-      console.log("64")
       inputs[i].value='Unselected'
      }
     }
  }
  e.preventDefault();
-}
-
-changecheck(){
-  var inputs = document.getElementsByTagName("input");
-  for(var i = 0;i<inputs.length;i++){
-    if(inputs[i].id.toLowerCase()=="concatenations"){
-      if(inputs[i].value=='unselected'){
-        inputs[i].value=='selected'
-      }else{
-        inputs[i].value=='unselected'
-
-      }
-    }
-  }
-
-
 }
 
   render() {
@@ -91,26 +69,16 @@ changecheck(){
 
     }else{
       var scan = this.props.measure.Scan.split(";")
-      var ruleset = this.props.measure.RuleSet.split(";")
-      var issues = this.props.measure.Issues.split(";")
-      var lines = this.props.measure.Lines.split(";")
-      var files = this.props.measure.Files.split(";")
-      var local = this.props.measure.local.split(";")
+      
       var content = new Array(scan.length);
       for(let d = 0; d < scan.length; d++){
-        if(local[d]==='1')
-          ruleset[d] = ruleset[d]+'(Local)';
-        else {
-          ruleset[d] = ruleset[d]+'(Remote)';
-        }
        content[d]  = (
           <tr height="30" className="alt">
           <td className="label">  {scan[d]}</td>
-          <td className="label">{ruleset[d]}</td>
-          <td className="label"><input type="checkbox" id="Embedded" checked="checked"/></td>
-          <td className="label"><input type="checkbox" id="Locale" /></td>
-          <td className="label"><input type="checkbox" id="General" /></td>
-          <td className="label"><input type="checkbox" id="Static" /></td>
+          <td className="label"><input type="submit" title="" id={"Embedded"+scan[d]} value="Selected" onClick={this.changeSelect.bind(this,"Embedded"+scan[d])}/></td>
+          <td className="label"><input type="submit" title="" id={"Locale"+scan[d]} value="Selected" onClick={this.changeSelect.bind(this,"Locale"+scan[d])}/></td>
+          <td className="label"><input type="submit" title="" id={"General"+scan[d]} value="Selected" onClick={this.changeSelect.bind(this,"General"+scan[d])}/></td>
+          <td className="label"><input type="submit" title="" id={"Static"+scan[d]} value="Selected" onClick={this.changeSelect.bind(this,"Static"+scan[d])}/></td>
           </tr>
       );
      }
@@ -137,7 +105,7 @@ changecheck(){
       </thead>
       <tbody>
       <tr height="30" className="alt">
-      <td className="label"><input type="submit" title="" id="Concatenations" value="Unselected" onClick={this.changeSelect.bind(this,"Concatenations")}/> </td>
+      <td className="label"><input type="submit" title="" id="Concatenations" value="Selected" onClick={this.changeSelect.bind(this,"Concatenations")}/> </td>
       <td className="label"><input type="submit" title="" id="Priority1" value="Selected" onClick={this.changeSelect.bind(this,"Priority1")}/></td>
       <td className="label"><input type="submit" title="" id="Priority2" value="Selected" onClick={this.changeSelect.bind(this,"Priority2")}/></td>
       <td className="label"><input type="submit" title="" id="Priority3" value="Selected" onClick={this.changeSelect.bind(this,"Priority3")}/></td>
@@ -150,7 +118,6 @@ changecheck(){
       <thead>
       <tr>
        <th>{translate('lingoport.scan')}</th>
-       <th>{translate('lingoport.ruleset')}</th>
        <th>Embedded Strings</th>
        <th>Locale-Sensitive Methods</th>
        <th>General Patterns</th>
@@ -161,7 +128,7 @@ changecheck(){
           {content}
           <td valign="top" align="left" nowrap="" colspan="4">
             <div id="prepkit">
-            <input type="submit" title="" value="Save to Project Definition File"/>
+            <input type="submit" title="" value="Save to Project Definition File" onClick={this.get.bind(this,this.state.jenkins)}/>
             <a></a>
             </div>
           </td>

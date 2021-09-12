@@ -35,7 +35,7 @@ return getJSON('/api/project_analyses/search', {
             let result = {version: analysis.events[j].name,
                           Scan:"",
                           RuleSet:"",
-                           Issues:"0", Lines:"0",Files:"0",local:""
+                           Issues:"0", Lines:"0",Files:"0",local:"",project: project.key
 
                          };
             const numberOfMeasuresRetrieved = 7;
