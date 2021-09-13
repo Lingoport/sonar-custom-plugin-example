@@ -13,7 +13,8 @@ import $ from 'jquery';
 export default class GlobalyzerPDFtype extends React.PureComponent {
 
   state = {
-    jenkins: ''
+    jenkins: '',
+    pdf:'Concatenations Selected Priority1 Selected Priority2 Selected Priority3 Selected Priority4 Selected Priority5 Selected ',
   };
 
   componentDidMount() {
@@ -30,7 +31,7 @@ export default class GlobalyzerPDFtype extends React.PureComponent {
     e.preventDefault();
      $.ajax({
                type:'POST',
-               url:jenkins + '/buildByToken/buildWithParameters'+"?" +'job=DashboardSavePDF&token=SAVEPDF&group_project=' + this.props.measure.project  + '&dashboard_user=' + 'dash',
+               url:jenkins + '/buildByToken/buildWithParameters'+"?" +'job=DashboardSavePDF&token=SAVEPDF&group_project=' + this.props.measure.project  + '&dashboard_user=' + 'dash'+'&param='+this.state.pdf,
             //   url:'http://ec2-34-234-66-56.compute-1.amazonaws.com/jenkins'+ '/buildByToken/buildWithParameters'+"?" +'job=DashboardPrepKit&token=DASHBOARDPREPKIT&lrm_group_project=' + 'CET.OpenMind' + '&dashboard_user=' + 'dash',
                contentType:'application/x-www-form-urlencoded; charset=UTF-8',
                beforeSend: function (jqXHR, settings) {
@@ -54,9 +55,11 @@ changeSelect(data_id,e){
    if(inputs[i].type.toLowerCase()=="submit" && inputs[i].id==data_id ){
      if(inputs[i].value=="Unselected"){
       inputs[i].value='Selected'
+      this.state.pdf=this.state.pdf.replace(data_id+" Unselected", data_id+" Selected")
     }
     else{
       inputs[i].value='Unselected'
+      this.state.pdf=this.state.pdf.replace(data_id+" Selected", data_id+" Unselected")
      }
     }
  }
@@ -69,16 +72,19 @@ changeSelect(data_id,e){
 
     }else{
       var scan = this.props.measure.Scan.split(";")
-      
+
       var content = new Array(scan.length);
       for(let d = 0; d < scan.length; d++){
+        if(this.state.pdf.search(scan[d]+" Embedded")==-1)
+          this.state.pdf = this.state.pdf + scan[d]+" Embedded "+"Selected " + scan[d] +" Locale "+"Selected "+scan[d] +" General "+"Selected "+scan[d] +" Static "+"Selected "
+
        content[d]  = (
           <tr height="30" className="alt">
           <td className="label">  {scan[d]}</td>
-          <td className="label"><input type="submit" title="" id={"Embedded"+scan[d]} value="Selected" onClick={this.changeSelect.bind(this,"Embedded"+scan[d])}/></td>
-          <td className="label"><input type="submit" title="" id={"Locale"+scan[d]} value="Selected" onClick={this.changeSelect.bind(this,"Locale"+scan[d])}/></td>
-          <td className="label"><input type="submit" title="" id={"General"+scan[d]} value="Selected" onClick={this.changeSelect.bind(this,"General"+scan[d])}/></td>
-          <td className="label"><input type="submit" title="" id={"Static"+scan[d]} value="Selected" onClick={this.changeSelect.bind(this,"Static"+scan[d])}/></td>
+          <td className="label"><input type="submit" title="" id={scan[d]+" Embedded"} value="Selected" onClick={this.changeSelect.bind(this,scan[d]+" Embedded")}/></td>
+          <td className="label"><input type="submit" title="" id={scan[d]+" Locale"} value="Selected" onClick={this.changeSelect.bind(this,scan[d]+" Locale")}/></td>
+          <td className="label"><input type="submit" title="" id={scan[d]+" General"} value="Selected" onClick={this.changeSelect.bind(this,scan[d]+" General")}/></td>
+          <td className="label"><input type="submit" title="" id={scan[d]+" Static"} value="Selected" onClick={this.changeSelect.bind(this,scan[d]+" Static")}/></td>
           </tr>
       );
      }
