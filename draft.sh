@@ -40,7 +40,7 @@ do
   if [[ "$contain" == "" ]]
     then
      cat >>pdf.xml<<EOF
-     $line
+$line
 EOF
      echo $line
   fi
@@ -50,13 +50,13 @@ done < $ORIGIN_CONFIG_PATH
 while read -r line
 do
    cat >>newpdf.xml<<EOF
-   $line
+$line
 EOF
   priority=$(echo $line | grep "/report-type>")
   if [[ "$priority" != "" ]]
     then
      cat >>newpdf.xml<<EOF
-     <report-priorities>$param</report-priorities>
+   <report-priorities>$param</report-priorities>
 EOF
   fi
     type=$(echo $line | grep "</scan-name>")
@@ -69,13 +69,13 @@ EOF
     if [[ "$embedded" != "" ]]
        then
         cat >>newpdf.xml<<EOF
-         <checks>
-          <embedded-strings>true</embedded-strings>
+     <checks>
+       <embedded-strings>true</embedded-strings>
 EOF
        else
           cat >>newpdf.xml<<EOF
-            <checks>
-            <embedded-strings>false</embedded-strings>
+      <checks>
+        <embedded-strings>false</embedded-strings>
 EOF
     fi
 
@@ -84,11 +84,11 @@ EOF
     if [[ "$Locale" != "" ]]
        then
         cat >>newpdf.xml<<EOF
-          <locale-sensitive-methods>true</locale-sensitive-methods>
+        <locale-sensitive-methods>true</locale-sensitive-methods>
 EOF
        else
           cat >>newpdf.xml<<EOF
-            <locale-sensitive-methods>false</locale-sensitive-methods>
+        <locale-sensitive-methods>false</locale-sensitive-methods>
 EOF
     fi
 
@@ -97,11 +97,11 @@ EOF
     if [[ "$General" != "" ]]
        then
         cat >>newpdf.xml<<EOF
-          <general-patterns>true</general-patterns>
+        <general-patterns>true</general-patterns>
 EOF
        else
           cat >>newpdf.xml<<EOF
-            <general-patterns>false</general-patterns>
+        <general-patterns>false</general-patterns>
 EOF
     fi
 
@@ -109,13 +109,13 @@ EOF
     if [[ "$Static" != "" ]]
        then
         cat >>newpdf.xml<<EOF
-            <static-file-references>true</static-file-references>
-          </checks>
+         <static-file-references>true</static-file-references>
+      </checks>
 EOF
        else
           cat >>newpdf.xml<<EOF
-            <static-file-references>false</static-file-references>
-          </checks>
+         <static-file-references>false</static-file-references>
+      </checks>
 EOF
     fi
 
@@ -139,4 +139,4 @@ export new_path="${JENKINS_HOME}/Lingoport_Data/Dashboard/Projects/${JOB_NAME}/L
 
 sed -i s~$CONFIG_PATH~${new_path}~ ${JENKINS_HOME}/jobs/${JOB_NAME}/config.xml
 
-#java -jar ${JENKINS_HOME}/jenkins-cli.jar -http -auth ${JENKINS_USERNAME}:${JENKINS_TOKEN} -s http://localhost:8080/jenkins reload-job ${JOB_NAME}
+java -jar ${JENKINS_HOME}/jenkins-cli.jar -http -auth ${JENKINS_USERNAME}:${JENKINS_TOKEN} -s http://localhost:8080/jenkins reload-job ${JOB_NAME}
