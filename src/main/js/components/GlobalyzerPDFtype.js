@@ -35,7 +35,7 @@ export default class GlobalyzerPDFtype extends React.PureComponent {
                type:'POST',
             //   url:jenkins + '/buildByToken/buildWithParameters'+"?" +'job=DashboardSavePDF&token=SAVEPDF&group_project=' + this.props.measure.project  + '&dashboard_user=' + 'dash'+'&param='+this.state.pdf,
 
-               url:jenkins + '/buildByToken/buildWithParameters'+"?" +'job=DashboardSavePDF&token=SAVEPDF&group_project=' + this.props.measure.project  + '&dashboard_user=' + 'dash'+'&param='+type_selection,
+               url:jenkins + '/buildByToken/buildWithParameters'+"?" +'job=DashboardSavePDF&token=SAVEPDF&group_project=' + this.props.measure.project  + '&dashboard_user=' + 'dash'+'&param='+type_selection+'&issue_type='+this.state.pdf,
             //   url:'http://ec2-34-234-66-56.compute-1.amazonaws.com/jenkins'+ '/buildByToken/buildWithParameters'+"?" +'job=DashboardPrepKit&token=DASHBOARDPREPKIT&lrm_group_project=' + 'CET.OpenMind' + '&dashboard_user=' + 'dash',
                contentType:'application/x-www-form-urlencoded; charset=UTF-8',
                beforeSend: function (jqXHR, settings) {

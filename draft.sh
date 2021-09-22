@@ -62,19 +62,64 @@ EOF
     type=$(echo $line | grep "</scan-name>")
   if [[ "$type" != "" ]]
     then
-     cat >>newpdf.xml<<EOF
-     <checks>
+    scan_name=${line/<scan-name>/}
+    scan_name=${scan_name/<\/scan-name>/}
 
-       <embedded-strings>true</embedded-strings>
-
-       <locale-sensitive-methods>true</locale-sensitive-methods>
-
-       <general-patterns>true</general-patterns>
-
-       <static-file-references>false</static-file-references>
-
-      </checks>
+    embedded=$(echo $issue_type | grep $scan_name" Embedded Selected")
+    if [[ "$embedded" != "" ]]
+       then
+        cat >>newpdf.xml<<EOF
+         <checks>
+          <embedded-strings>true</embedded-strings>
 EOF
+       else
+          cat >>newpdf.xml<<EOF
+            <checks>
+            <embedded-strings>false</embedded-strings>
+EOF
+    fi
+
+
+    Locale=$(echo $issue_type | grep $scan_name" Locale Selected")
+    if [[ "$Locale" != "" ]]
+       then
+        cat >>newpdf.xml<<EOF
+          <locale-sensitive-methods>true</locale-sensitive-methods>
+EOF
+       else
+          cat >>newpdf.xml<<EOF
+            <locale-sensitive-methods>false</locale-sensitive-methods>
+EOF
+    fi
+
+
+    General=$(echo $issue_type | grep $scan_name" General Selected")
+    if [[ "$General" != "" ]]
+       then
+        cat >>newpdf.xml<<EOF
+          <general-patterns>true</general-patterns>
+EOF
+       else
+          cat >>newpdf.xml<<EOF
+            <general-patterns>false</general-patterns>
+EOF
+    fi
+
+    Static=$(echo $issue_type | grep $scan_name" Static Selected")
+    if [[ "$Static" != "" ]]
+       then
+        cat >>newpdf.xml<<EOF
+            <static-file-references>true</static-file-references>
+          </checks>
+EOF
+       else
+          cat >>newpdf.xml<<EOF
+            <static-file-references>false</static-file-references>
+          </checks>
+EOF
+    fi
+
+
   fi
 
 done < pdf.xml
@@ -94,4 +139,4 @@ export new_path="${JENKINS_HOME}/Lingoport_Data/Dashboard/Projects/${JOB_NAME}/L
 
 sed -i s~$CONFIG_PATH~${new_path}~ ${JENKINS_HOME}/jobs/${JOB_NAME}/config.xml
 
-java -jar ${JENKINS_HOME}/jenkins-cli.jar -http -auth ${JENKINS_USERNAME}:${JENKINS_TOKEN} -s http://localhost:8080/jenkins reload-job ${JOB_NAME}
+#java -jar ${JENKINS_HOME}/jenkins-cli.jar -http -auth ${JENKINS_USERNAME}:${JENKINS_TOKEN} -s http://localhost:8080/jenkins reload-job ${JOB_NAME}
