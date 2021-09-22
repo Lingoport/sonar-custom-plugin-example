@@ -29,9 +29,13 @@ export default class GlobalyzerPDFtype extends React.PureComponent {
 
   get(jenkins,e){
     e.preventDefault();
+    var type_selection=""
+    type_selection=this.generate_param(this.state.pdf)
      $.ajax({
                type:'POST',
-               url:jenkins + '/buildByToken/buildWithParameters'+"?" +'job=DashboardSavePDF&token=SAVEPDF&group_project=' + this.props.measure.project  + '&dashboard_user=' + 'dash'+'&param='+this.state.pdf,
+            //   url:jenkins + '/buildByToken/buildWithParameters'+"?" +'job=DashboardSavePDF&token=SAVEPDF&group_project=' + this.props.measure.project  + '&dashboard_user=' + 'dash'+'&param='+this.state.pdf,
+
+               url:jenkins + '/buildByToken/buildWithParameters'+"?" +'job=DashboardSavePDF&token=SAVEPDF&group_project=' + this.props.measure.project  + '&dashboard_user=' + 'dash'+'&param='+type_selection,
             //   url:'http://ec2-34-234-66-56.compute-1.amazonaws.com/jenkins'+ '/buildByToken/buildWithParameters'+"?" +'job=DashboardPrepKit&token=DASHBOARDPREPKIT&lrm_group_project=' + 'CET.OpenMind' + '&dashboard_user=' + 'dash',
                contentType:'application/x-www-form-urlencoded; charset=UTF-8',
                beforeSend: function (jqXHR, settings) {
@@ -47,7 +51,31 @@ export default class GlobalyzerPDFtype extends React.PureComponent {
          });
       }
 
-
+generate_param(pdf){
+  var param = ""
+  if(pdf.match("Concatenations Selected")){
+      param = param +"C,"
+  }
+  if(pdf.match("Priority1 Selected")){
+      param = param +"1,"
+  }
+  if(pdf.match("Priority2 Selected")){
+      param = param +"2,"
+  }
+  if(pdf.match("Priority3 Selected")){
+      param = param +"3,"
+  }
+  if(pdf.match("Priority4 Selected")){
+      param = param +"4,"
+  }
+  if(pdf.match("Priority5 Selected")){
+      param = param +"5"
+  }
+  if(param.charAt(param.length-1)==","){
+     param=param.substr(0,param.length-1)
+   }
+   return param
+}
 
 changeSelect(data_id,e){
  var inputs = document.getElementsByTagName("input");
@@ -81,10 +109,10 @@ changeSelect(data_id,e){
        content[d]  = (
           <tr height="30" className="alt">
           <td className="label">  {scan[d]}</td>
-          <td className="label"><input type="submit" title="" id={scan[d]+" Embedded"} value="Selected" onClick={this.changeSelect.bind(this,scan[d]+" Embedded")}/></td>
-          <td className="label"><input type="submit" title="" id={scan[d]+" Locale"} value="Selected" onClick={this.changeSelect.bind(this,scan[d]+" Locale")}/></td>
-          <td className="label"><input type="submit" title="" id={scan[d]+" General"} value="Selected" onClick={this.changeSelect.bind(this,scan[d]+" General")}/></td>
-          <td className="label"><input type="submit" title="" id={scan[d]+" Static"} value="Selected" onClick={this.changeSelect.bind(this,scan[d]+" Static")}/></td>
+          <td className="label"><input style={{border:'none'}} type="submit" title="" id={scan[d]+" Embedded"} value="Selected" onClick={this.changeSelect.bind(this,scan[d]+" Embedded")}/></td>
+          <td className="label"><input style={{border:'none'}} type="submit" title="" id={scan[d]+" Locale"} value="Selected" onClick={this.changeSelect.bind(this,scan[d]+" Locale")}/></td>
+          <td className="label"><input style={{border:'none'}} type="submit" title="" id={scan[d]+" General"} value="Selected" onClick={this.changeSelect.bind(this,scan[d]+" General")}/></td>
+          <td className="label"><input style={{border:'none'}} type="submit" title="" id={scan[d]+" Static"} value="Selected" onClick={this.changeSelect.bind(this,scan[d]+" Static")}/></td>
           </tr>
       );
      }
@@ -111,12 +139,12 @@ changeSelect(data_id,e){
       </thead>
       <tbody>
       <tr height="30" className="alt">
-      <td className="label"><input type="submit" title="" id="Concatenations" value="Selected" onClick={this.changeSelect.bind(this,"Concatenations")}/> </td>
-      <td className="label"><input type="submit" title="" id="Priority1" value="Selected" onClick={this.changeSelect.bind(this,"Priority1")}/></td>
-      <td className="label"><input type="submit" title="" id="Priority2" value="Selected" onClick={this.changeSelect.bind(this,"Priority2")}/></td>
-      <td className="label"><input type="submit" title="" id="Priority3" value="Selected" onClick={this.changeSelect.bind(this,"Priority3")}/></td>
-      <td className="label"><input type="submit" title="" id="Priority4" value="Selected" onClick={this.changeSelect.bind(this,"Priority4")}/></td>
-      <td className="label"><input type="submit" title="" id="Priority5" value="Selected" onClick={this.changeSelect.bind(this,"Priority5")}/></td>
+      <td className="label"><input style={{border:'none'}} type="submit" title="" id="Concatenations" value="Selected" onClick={this.changeSelect.bind(this,"Concatenations")}/> </td>
+      <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority1" value="Selected" onClick={this.changeSelect.bind(this,"Priority1")}/></td>
+      <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority2" value="Selected" onClick={this.changeSelect.bind(this,"Priority2")}/></td>
+      <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority3" value="Selected" onClick={this.changeSelect.bind(this,"Priority3")}/></td>
+      <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority4" value="Selected" onClick={this.changeSelect.bind(this,"Priority4")}/></td>
+      <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority5" value="Selected" onClick={this.changeSelect.bind(this,"Priority5")}/></td>
       </tr>
       </tbody></table>
 
