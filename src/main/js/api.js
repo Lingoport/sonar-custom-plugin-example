@@ -22,7 +22,7 @@ return getJSON('/api/project_analyses/search', {
   if (numberOfAnalyses > 0) {
     return getJSON('/api/measures/search_history', {
       component: project.key,
-      metrics: "lngprt-gyzr-scan-line-count,lngprt-gyzr-scan-rule-set-name,lngprt-gyzr-scan-local-ruleset,lngprt-gyzr-scan-violation-count,lngprt-gyzr-scan-file-count,lngprt-gyzr-scan-scan-name,lngprt-gyzr-scan-machine-learning",
+      metrics: "lngprt-gyzr-scan-line-count,lngprt-gyzr-scan-rule-set-name,lngprt-gyzr-scan-local-ruleset,lngprt-gyzr-scan-violation-count,lngprt-gyzr-scan-file-count,lngprt-gyzr-scan-scan-name,lngprt-gyzr-scan-machine-learning,lngprt-gyzr-scan-select-priority,lngprt-gyzr-scan-select-type",
       ps: 1000
     }).then(function (responseMetrics) {
       var data = [];
@@ -34,11 +34,13 @@ return getJSON('/api/project_analyses/search', {
           if (analysis.events[j].category === "VERSION") {
             let result = {version: analysis.events[j].name,
                           Scan:"",
+                          Type:"",
                           RuleSet:"",
+                          Priority:"",
                            Issues:"0", Lines:"0",Files:"0",local:"",project: project.key
 
                          };
-            const numberOfMeasuresRetrieved = 7;
+            const numberOfMeasuresRetrieved = 9;
 
             for (let k = 0; k < numberOfMeasuresRetrieved; k++) {
               for(let d = 0; d < responseMetrics.measures[k].history.length; d++) {
@@ -57,6 +59,10 @@ return getJSON('/api/project_analyses/search', {
                     result.Scan = responseMetrics.measures[k].history[d].value;
                   } else if(responseMetrics.measures[k].metric === "lngprt-gyzr-scan-machine-learning"){
                   //  result.bugs = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-gyzr-scan-select-type") {
+                    result.Type = responseMetrics.measures[k].history[d].value;
+                  }else if (responseMetrics.measures[k].metric === "lngprt-gyzr-scan-select-priority") {
+                    result.Priority = responseMetrics.measures[k].history[d].value;
                   }
                 }
               }

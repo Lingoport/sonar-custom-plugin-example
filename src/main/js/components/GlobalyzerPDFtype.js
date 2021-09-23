@@ -14,7 +14,7 @@ export default class GlobalyzerPDFtype extends React.PureComponent {
 
   state = {
     jenkins: '',
-    pdf:'Concatenations Selected Priority1 Selected Priority2 Selected Priority3 Selected Priority4 Selected Priority5 Selected ',
+    pdf:'',
   };
 
   componentDidMount() {
@@ -97,11 +97,58 @@ changeSelect(data_id,e){
   render() {
     if(this.props.measure.Scan === undefined){
         var content= (<h5>No data found</h5>);
-
+        var priority_content= (<h5>No data found</h5>);
     }else{
       var scan = this.props.measure.Scan.split(";")
-
+      var result_type = this.props.measure.Type.split(";")
+      var result_priority = this.props.measure.Priority.split(";")
+      var scan_priority = result_priority[0]
       var content = new Array(scan.length);
+      var priority_selection = new Array(6);
+      if(scan_priority.search("C")==-1){
+        priority_selection[0]="Unselected"
+      }else{
+        priority_selection[0]="Selected"
+      }
+      if(scan_priority.search("1")==-1){
+        priority_selection[1]="Unselected"
+      }else{
+        priority_selection[1]="Selected"
+      }
+      if(scan_priority.search("2")==-1){
+        priority_selection[2]="Unselected"
+      }else{
+        priority_selection[2]="Selected"
+      }
+      if(scan_priority.search("3")==-1){
+        priority_selection[3]="Unselected"
+      }else{
+        priority_selection[3]="Selected"
+      }
+      if(scan_priority.search("4")==-1){
+        priority_selection[4]="Unselected"
+      }else{
+        priority_selection[4]="Selected"
+      }
+      if(scan_priority.search("5")==-1){
+        priority_selection[5]="Unselected"
+      }else{
+        priority_selection[5]="Selected"
+      }
+
+      this.state.pdf = "Concatenations "+priority_selection[0]+" Priority1 "+priority_selection[1]+" Priority2 "+priority_selection[2]+" Priority3 " +priority_selection[3]+" Priority4 "+ priority_selection[4]+" Priority5 "+priority_selection[5]
+
+      var priority_content = (
+        <tr height="30" className="alt">
+        <td className="label"><input style={{border:'none'}} type="submit" title="" id="Concatenations" value={priority_selection[0]} onClick={this.changeSelect.bind(this,"Concatenations")}/> </td>
+        <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority1" value={priority_selection[1]} onClick={this.changeSelect.bind(this,"Priority1")}/></td>
+        <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority2" value={priority_selection[2]} onClick={this.changeSelect.bind(this,"Priority2")}/></td>
+        <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority3" value={priority_selection[3]} onClick={this.changeSelect.bind(this,"Priority3")}/></td>
+        <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority4" value={priority_selection[4]} onClick={this.changeSelect.bind(this,"Priority4")}/></td>
+        <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority5" value={priority_selection[5]} onClick={this.changeSelect.bind(this,"Priority5")}/></td>
+      </tr>
+      );
+
       for(let d = 0; d < scan.length; d++){
         if(this.state.pdf.search(scan[d]+" Embedded")==-1)
           this.state.pdf = this.state.pdf + scan[d]+" Embedded "+"Selected " + scan[d] +" Locale "+"Selected "+scan[d] +" General "+"Selected "+scan[d] +" Static "+"Selected "
@@ -138,14 +185,9 @@ changeSelect(data_id,e){
       </tr>
       </thead>
       <tbody>
-      <tr height="30" className="alt">
-      <td className="label"><input style={{border:'none'}} type="submit" title="" id="Concatenations" value="Selected" onClick={this.changeSelect.bind(this,"Concatenations")}/> </td>
-      <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority1" value="Selected" onClick={this.changeSelect.bind(this,"Priority1")}/></td>
-      <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority2" value="Selected" onClick={this.changeSelect.bind(this,"Priority2")}/></td>
-      <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority3" value="Selected" onClick={this.changeSelect.bind(this,"Priority3")}/></td>
-      <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority4" value="Selected" onClick={this.changeSelect.bind(this,"Priority4")}/></td>
-      <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority5" value="Selected" onClick={this.changeSelect.bind(this,"Priority5")}/></td>
-      </tr>
+
+      {priority_content}
+
       </tbody></table>
 
       <table className="lg_ds_progress_bar" border="0" width="500">
