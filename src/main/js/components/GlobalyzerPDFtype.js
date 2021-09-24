@@ -100,7 +100,6 @@ changeSelect(data_id,e){
         var priority_content= (<h5>No data found</h5>);
     }else{
       var scan = this.props.measure.Scan.split(";")
-      var result_type = this.props.measure.Type.split(";")
       var result_priority = this.props.measure.Priority.split(";")
       var scan_priority = result_priority[0]
       var content = new Array(scan.length);
@@ -148,18 +147,45 @@ changeSelect(data_id,e){
         <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority5" value={priority_selection[5]} onClick={this.changeSelect.bind(this,"Priority5")}/></td>
       </tr>
       );
-
+      var result_type = this.props.measure.Type.split(";")
       for(let d = 0; d < scan.length; d++){
+
+        var scan_type = result_type[d];
+
+        var select_type = new Array(4);
+
+        if(scan_type.search("Embedded")==-1){
+          select_type[0]="Unselected"
+        }else{
+          select_type[0]="Selected"
+        }
+        if(scan_type.search("Locale")==-1){
+          select_type[1]="Unselected"
+        }else{
+          select_type[1]="Selected"
+        }
+        if(scan_type.search("General")==-1){
+          select_type[2]="Unselected"
+        }else{
+          select_type[2]="Selected"
+        }
+        if(scan_type.search("Static")==-1){
+          select_type[3]="Unselected"
+        }else{
+          select_type[3]="Selected"
+        }
+
+
         if(this.state.pdf.search(scan[d]+" Embedded")==-1)
-          this.state.pdf = this.state.pdf + scan[d]+" Embedded "+"Selected " + scan[d] +" Locale "+"Selected "+scan[d] +" General "+"Selected "+scan[d] +" Static "+"Selected "
+          this.state.pdf = this.state.pdf + scan[d]+" Embedded "+select_type[0]+" " + scan[d] +" Locale "+select_type[1]+" "+scan[d] +" General "+select_type[2]+" "+scan[d] +" Static "+select_type[3]+" "
 
        content[d]  = (
           <tr height="30" className="alt">
           <td className="label">  {scan[d]}</td>
-          <td className="label"><input style={{border:'none'}} type="submit" title="" id={scan[d]+" Embedded"} value="Selected" onClick={this.changeSelect.bind(this,scan[d]+" Embedded")}/></td>
-          <td className="label"><input style={{border:'none'}} type="submit" title="" id={scan[d]+" Locale"} value="Selected" onClick={this.changeSelect.bind(this,scan[d]+" Locale")}/></td>
-          <td className="label"><input style={{border:'none'}} type="submit" title="" id={scan[d]+" General"} value="Selected" onClick={this.changeSelect.bind(this,scan[d]+" General")}/></td>
-          <td className="label"><input style={{border:'none'}} type="submit" title="" id={scan[d]+" Static"} value="Selected" onClick={this.changeSelect.bind(this,scan[d]+" Static")}/></td>
+          <td className="label"><input style={{border:'none'}} type="submit" title="" id={scan[d]+" Embedded"} value={select_type[0]} onClick={this.changeSelect.bind(this,scan[d]+" Embedded")}/></td>
+          <td className="label"><input style={{border:'none'}} type="submit" title="" id={scan[d]+" Locale"} value={select_type[1]} onClick={this.changeSelect.bind(this,scan[d]+" Locale")}/></td>
+          <td className="label"><input style={{border:'none'}} type="submit" title="" id={scan[d]+" General"} value={select_type[2]} onClick={this.changeSelect.bind(this,scan[d]+" General")}/></td>
+          <td className="label"><input style={{border:'none'}} type="submit" title="" id={scan[d]+" Static"} value={select_type[3]} onClick={this.changeSelect.bind(this,scan[d]+" Static")}/></td>
           </tr>
       );
      }
