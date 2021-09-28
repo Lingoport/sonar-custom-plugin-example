@@ -53,22 +53,22 @@ export default class GlobalyzerPDFtype extends React.PureComponent {
 
 generate_param(pdf){
   var param = ""
-  if(pdf.match("Concatenations Selected")){
+  if(pdf.match("Concatenations Include")){
       param = param +"C,"
   }
-  if(pdf.match("Priority1 Selected")){
+  if(pdf.match("Priority1 Include")){
       param = param +"1,"
   }
-  if(pdf.match("Priority2 Selected")){
+  if(pdf.match("Priority2 Include")){
       param = param +"2,"
   }
-  if(pdf.match("Priority3 Selected")){
+  if(pdf.match("Priority3 Include")){
       param = param +"3,"
   }
-  if(pdf.match("Priority4 Selected")){
+  if(pdf.match("Priority4 Include")){
       param = param +"4,"
   }
-  if(pdf.match("Priority5 Selected")){
+  if(pdf.match("Priority5 Include")){
       param = param +"5"
   }
   if(param.charAt(param.length-1)==","){
@@ -81,13 +81,13 @@ changeSelect(data_id,e){
  var inputs = document.getElementsByTagName("input");
  for(var i = 0;i<inputs.length;i++){
    if(inputs[i].type.toLowerCase()=="submit" && inputs[i].id==data_id ){
-     if(inputs[i].value=="Unselected"){
-      inputs[i].value='Selected'
-      this.state.pdf=this.state.pdf.replace(data_id+" Unselected", data_id+" Selected")
+     if(inputs[i].value=="Exclude"){
+      inputs[i].value='Include'
+      this.state.pdf=this.state.pdf.replace(data_id+" Exclude", data_id+" Include")
     }
     else{
-      inputs[i].value='Unselected'
-      this.state.pdf=this.state.pdf.replace(data_id+" Selected", data_id+" Unselected")
+      inputs[i].value='Exclude'
+      this.state.pdf=this.state.pdf.replace(data_id+" Include", data_id+" Exclude")
      }
     }
  }
@@ -105,34 +105,34 @@ changeSelect(data_id,e){
       var content = new Array(scan.length);
       var priority_selection = new Array(6);
       if(scan_priority.search("C")==-1){
-        priority_selection[0]="Unselected"
+        priority_selection[0]="Exclude"
       }else{
-        priority_selection[0]="Selected"
+        priority_selection[0]="Include"
       }
       if(scan_priority.search("1")==-1){
-        priority_selection[1]="Unselected"
+        priority_selection[1]="Exclude"
       }else{
-        priority_selection[1]="Selected"
+        priority_selection[1]="Include"
       }
       if(scan_priority.search("2")==-1){
-        priority_selection[2]="Unselected"
+        priority_selection[2]="Exclude"
       }else{
-        priority_selection[2]="Selected"
+        priority_selection[2]="Include"
       }
       if(scan_priority.search("3")==-1){
-        priority_selection[3]="Unselected"
+        priority_selection[3]="Exclude"
       }else{
-        priority_selection[3]="Selected"
+        priority_selection[3]="Include"
       }
       if(scan_priority.search("4")==-1){
-        priority_selection[4]="Unselected"
+        priority_selection[4]="Exclude"
       }else{
-        priority_selection[4]="Selected"
+        priority_selection[4]="Include"
       }
       if(scan_priority.search("5")==-1){
-        priority_selection[5]="Unselected"
+        priority_selection[5]="Exclude"
       }else{
-        priority_selection[5]="Selected"
+        priority_selection[5]="Include"
       }
 
       this.state.pdf = "Concatenations "+priority_selection[0]+" Priority1 "+priority_selection[1]+" Priority2 "+priority_selection[2]+" Priority3 " +priority_selection[3]+" Priority4 "+ priority_selection[4]+" Priority5 "+priority_selection[5]
@@ -155,24 +155,24 @@ changeSelect(data_id,e){
         var select_type = new Array(4);
 
         if(scan_type.search("Embedded")==-1){
-          select_type[0]="Unselected"
+          select_type[0]="Exclude"
         }else{
-          select_type[0]="Selected"
+          select_type[0]="Include"
         }
         if(scan_type.search("Locale")==-1){
-          select_type[1]="Unselected"
+          select_type[1]="Exclude"
         }else{
-          select_type[1]="Selected"
+          select_type[1]="Include"
         }
         if(scan_type.search("General")==-1){
-          select_type[2]="Unselected"
+          select_type[2]="Exclude"
         }else{
-          select_type[2]="Selected"
+          select_type[2]="Include"
         }
         if(scan_type.search("Static")==-1){
-          select_type[3]="Unselected"
+          select_type[3]="Exclude"
         }else{
-          select_type[3]="Selected"
+          select_type[3]="Include"
         }
 
 

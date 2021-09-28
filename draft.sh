@@ -65,7 +65,7 @@ EOF
     scan_name=${line/<scan-name>/}
     scan_name=${scan_name/<\/scan-name>/}
 
-    embedded=$(echo $issue_type | grep $scan_name" Embedded Selected")
+    embedded=$(echo $issue_type | grep $scan_name" Embedded Include")
     if [[ "$embedded" != "" ]]
        then
         cat >>newpdf.xml<<EOF
@@ -80,7 +80,7 @@ EOF
     fi
 
 
-    Locale=$(echo $issue_type | grep $scan_name" Locale Selected")
+    Locale=$(echo $issue_type | grep $scan_name" Locale Include")
     if [[ "$Locale" != "" ]]
        then
         cat >>newpdf.xml<<EOF
@@ -93,7 +93,7 @@ EOF
     fi
 
 
-    General=$(echo $issue_type | grep $scan_name" General Selected")
+    General=$(echo $issue_type | grep $scan_name" General Include")
     if [[ "$General" != "" ]]
        then
         cat >>newpdf.xml<<EOF
@@ -105,7 +105,7 @@ EOF
 EOF
     fi
 
-    Static=$(echo $issue_type | grep $scan_name" Static Selected")
+    Static=$(echo $issue_type | grep $scan_name" Static Include")
     if [[ "$Static" != "" ]]
        then
         cat >>newpdf.xml<<EOF
@@ -140,3 +140,5 @@ export new_path="${JENKINS_HOME}/Lingoport_Data/Dashboard/Projects/${JOB_NAME}/L
 sed -i s~$CONFIG_PATH~${new_path}~ ${JENKINS_HOME}/jobs/${JOB_NAME}/config.xml
 
 java -jar ${JENKINS_HOME}/jenkins-cli.jar -http -auth ${JENKINS_USERNAME}:${JENKINS_TOKEN} -s http://localhost:8080/jenkins reload-job ${JOB_NAME}
+
+$JENKINS_HOME/lingoport/bin/execute_jenkins_cli.sh "build -s ${JOB_NAME}"
