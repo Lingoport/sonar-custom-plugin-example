@@ -140,12 +140,12 @@ generate_param(pdf){
   if (element.getAttribute("checked") == null) {
     element.setAttribute("checked", "true");
     element.checked = true;
-    element.title="Include"
+  //  element.title="Include"
     this.state.pdf=this.state.pdf.replace(data_id+" Exclude", data_id+" Include")
   } else {
     element.removeAttribute("checked");
     element.checked = false;
-    element.title="Exclude"
+  //  element.title="Exclude"
     this.state.pdf=this.state.pdf.replace(data_id+" Include", data_id+" Exclude")
   }
   e.preventDefault();
@@ -196,12 +196,12 @@ generate_param(pdf){
 
       var priority_content = (
         <tr height="30" className="alt">
-        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Concatenations" title={this.state.priority_selection[0]} onChange={this.boxPress.bind(this,"Concatenations")}/> </td>
-        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority1" title={this.state.priority_selection[1]} onChange={this.boxPress.bind(this,"Priority1")}/></td>
-        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority2" title={this.state.priority_selection[2]} onChange={this.boxPress.bind(this,"Priority2")}/></td>
-        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority3" title={this.state.priority_selection[3]} onChange={this.boxPress.bind(this,"Priority3")}/></td>
-        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority4" title={this.state.priority_selection[4]} onChange={this.boxPress.bind(this,"Priority4")}/></td>
-        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority5" title={this.state.priority_selection[5]} onChange={this.boxPress.bind(this,"Priority5")}/></td>
+        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Concatenations"  onChange={this.boxPress.bind(this,"Concatenations")}/> </td>
+        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority1"  onChange={this.boxPress.bind(this,"Priority1")}/></td>
+        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority2"  onChange={this.boxPress.bind(this,"Priority2")}/></td>
+        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority3" onChange={this.boxPress.bind(this,"Priority3")}/></td>
+        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority4"  onChange={this.boxPress.bind(this,"Priority4")}/></td>
+        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority5"  onChange={this.boxPress.bind(this,"Priority5")}/></td>
       </tr>
       );
       var result_type = this.props.measure.Type.split(";")
@@ -236,10 +236,10 @@ generate_param(pdf){
        content[d]  = (
           <tr height="30" className="alt">
           <td className="label">  {scan[d]}</td>
-          <td className="label"><input style={{border:'none'}} type="checkbox"  id={scan[d]+" Embedded"} title={this.state.select_type[0]} onChange={this.boxPress.bind(this,scan[d]+" Embedded")}/></td>
-          <td className="label"><input style={{border:'none'}} type="checkbox"  id={scan[d]+" Locale"} title={this.state.select_type[1]} onChange={this.boxPress.bind(this,scan[d]+" Locale")}/></td>
-          <td className="label"><input style={{border:'none'}} type="checkbox"  id={scan[d]+" General"} title={this.state.select_type[2]} onChange={this.boxPress.bind(this,scan[d]+" General")}/></td>
-          <td className="label"><input style={{border:'none'}} type="checkbox"  id={scan[d]+" Static"} title={this.state.select_type[3]} onChange={this.boxPress.bind(this,scan[d]+" Static")}/></td>
+          <td className="label"><input style={{border:'none'}} type="checkbox"  id={scan[d]+" Embedded"}  onChange={this.boxPress.bind(this,scan[d]+" Embedded")}/></td>
+          <td className="label"><input style={{border:'none'}} type="checkbox"  id={scan[d]+" Locale"}  onChange={this.boxPress.bind(this,scan[d]+" Locale")}/></td>
+          <td className="label"><input style={{border:'none'}} type="checkbox"  id={scan[d]+" General"} onChange={this.boxPress.bind(this,scan[d]+" General")}/></td>
+          <td className="label"><input style={{border:'none'}} type="checkbox"  id={scan[d]+" Static"}  onChange={this.boxPress.bind(this,scan[d]+" Static")}/></td>
           </tr>
       );
      }
