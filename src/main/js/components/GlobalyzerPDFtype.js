@@ -15,6 +15,8 @@ export default class GlobalyzerPDFtype extends React.PureComponent {
   state = {
     jenkins: '',
     pdf:'',
+    priority_selection:["","","","","",""],
+    select_type:["","","",""]
   };
 
   componentDidMount() {
@@ -25,6 +27,61 @@ export default class GlobalyzerPDFtype extends React.PureComponent {
         });
       }
     );
+    if(this.state.priority_selection[0]=="Include"){
+      var element = document.getElementById("Concatenations");
+        element.setAttribute("checked", "true");
+        element.checked = true;
+    }
+    if(this.state.priority_selection[1]=="Include"){
+      var element = document.getElementById("Priority1");
+        element.setAttribute("checked", "true");
+        element.checked = true;
+    }
+    if(this.state.priority_selection[2]=="Include"){
+      var element = document.getElementById("Priority2");
+        element.setAttribute("checked", "true");
+        element.checked = true;
+    }
+    if(this.state.priority_selection[3]=="Include"){
+      var element = document.getElementById("Priority3");
+        element.setAttribute("checked", "true");
+        element.checked = true;
+    }
+    if(this.state.priority_selection[4]=="Include"){
+      var element = document.getElementById("Priority4");
+        element.setAttribute("checked", "true");
+        element.checked = true;
+    }
+    if(this.state.priority_selection[5]=="Include"){
+      var element = document.getElementById("Priority5");
+        element.setAttribute("checked", "true");
+        element.checked = true;
+    }
+      var scan = this.props.measure.Scan.split(";")
+      var result_type = this.props.measure.Type.split(";")
+for(let d = 0; d < scan.length; d++){
+  var scan_type = result_type[d];
+    if(scan_type.search("Embedded")!=-1){
+      var element = document.getElementById(scan[d]+" Embedded");
+        element.setAttribute("checked", "true");
+        element.checked = true;
+    }
+    if(scan_type.search("Locale")!=-1){
+      var element = document.getElementById(scan[d]+" Locale");
+        element.setAttribute("checked", "true");
+        element.checked = true;
+    }
+    if(scan_type.search("General")!=-1){
+      var element = document.getElementById(scan[d]+" General");
+        element.setAttribute("checked", "true");
+        element.checked = true;
+    }
+    if(scan_type.search("Static")!=-1){
+      var element = document.getElementById(scan[d]+" Static");
+        element.setAttribute("checked", "true");
+        element.checked = true;
+    }
+  }
   }
 
   get(jenkins,e){
@@ -77,21 +134,21 @@ generate_param(pdf){
    return param
 }
 
-changeSelect(data_id,e){
- var inputs = document.getElementsByTagName("input");
- for(var i = 0;i<inputs.length;i++){
-   if(inputs[i].type.toLowerCase()=="submit" && inputs[i].id==data_id ){
-     if(inputs[i].value=="Exclude"){
-      inputs[i].value='Include'
-      this.state.pdf=this.state.pdf.replace(data_id+" Exclude", data_id+" Include")
-    }
-    else{
-      inputs[i].value='Exclude'
-      this.state.pdf=this.state.pdf.replace(data_id+" Include", data_id+" Exclude")
-     }
-    }
- }
- e.preventDefault();
+ boxPress(data_id,e) {
+  var checkbox = data_id;
+  var element = document.getElementById(checkbox);
+  if (element.getAttribute("checked") == null) {
+    element.setAttribute("checked", "true");
+    element.checked = true;
+    element.title="Include"
+    this.state.pdf=this.state.pdf.replace(data_id+" Exclude", data_id+" Include")
+  } else {
+    element.removeAttribute("checked");
+    element.checked = false;
+    element.title="Exclude"
+    this.state.pdf=this.state.pdf.replace(data_id+" Include", data_id+" Exclude")
+  }
+  e.preventDefault();
 }
 
   render() {
@@ -103,48 +160,48 @@ changeSelect(data_id,e){
       var result_priority = this.props.measure.Priority.split(";")
       var scan_priority = result_priority[0]
       var content = new Array(scan.length);
-      var priority_selection = new Array(6);
+
       if(scan_priority.search("C")==-1){
-        priority_selection[0]="Exclude"
+        this.state.priority_selection[0]="Exclude"
       }else{
-        priority_selection[0]="Include"
+        this.state.priority_selection[0]="Include"
       }
       if(scan_priority.search("1")==-1){
-        priority_selection[1]="Exclude"
+        this.state.priority_selection[1]="Exclude"
       }else{
-        priority_selection[1]="Include"
+        this.state.priority_selection[1]="Include"
       }
       if(scan_priority.search("2")==-1){
-        priority_selection[2]="Exclude"
+        this.state.priority_selection[2]="Exclude"
       }else{
-        priority_selection[2]="Include"
+        this.state.priority_selection[2]="Include"
       }
       if(scan_priority.search("3")==-1){
-        priority_selection[3]="Exclude"
+        this.state.priority_selection[3]="Exclude"
       }else{
-        priority_selection[3]="Include"
+        this.state.priority_selection[3]="Include"
       }
       if(scan_priority.search("4")==-1){
-        priority_selection[4]="Exclude"
+        this.state.priority_selection[4]="Exclude"
       }else{
-        priority_selection[4]="Include"
+        this.state.priority_selection[4]="Include"
       }
       if(scan_priority.search("5")==-1){
-        priority_selection[5]="Exclude"
+        this.state.priority_selection[5]="Exclude"
       }else{
-        priority_selection[5]="Include"
+        this.state.priority_selection[5]="Include"
       }
 
-      this.state.pdf = "Concatenations "+priority_selection[0]+" Priority1 "+priority_selection[1]+" Priority2 "+priority_selection[2]+" Priority3 " +priority_selection[3]+" Priority4 "+ priority_selection[4]+" Priority5 "+priority_selection[5]
+      this.state.pdf = "Concatenations "+this.state.priority_selection[0]+" Priority1 "+this.state.priority_selection[1]+" Priority2 "+this.state.priority_selection[2]+" Priority3 " +this.state.priority_selection[3]+" Priority4 "+ this.state.priority_selection[4]+" Priority5 "+this.state.priority_selection[5]
 
       var priority_content = (
         <tr height="30" className="alt">
-        <td className="label"><input style={{border:'none'}} type="submit" title="" id="Concatenations" value={priority_selection[0]} onClick={this.changeSelect.bind(this,"Concatenations")}/> </td>
-        <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority1" value={priority_selection[1]} onClick={this.changeSelect.bind(this,"Priority1")}/></td>
-        <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority2" value={priority_selection[2]} onClick={this.changeSelect.bind(this,"Priority2")}/></td>
-        <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority3" value={priority_selection[3]} onClick={this.changeSelect.bind(this,"Priority3")}/></td>
-        <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority4" value={priority_selection[4]} onClick={this.changeSelect.bind(this,"Priority4")}/></td>
-        <td className="label"><input style={{border:'none'}} type="submit" title="" id="Priority5" value={priority_selection[5]} onClick={this.changeSelect.bind(this,"Priority5")}/></td>
+        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Concatenations" title={this.state.priority_selection[0]} onChange={this.boxPress.bind(this,"Concatenations")}/> </td>
+        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority1" title={this.state.priority_selection[1]} onChange={this.boxPress.bind(this,"Priority1")}/></td>
+        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority2" title={this.state.priority_selection[2]} onChange={this.boxPress.bind(this,"Priority2")}/></td>
+        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority3" title={this.state.priority_selection[3]} onChange={this.boxPress.bind(this,"Priority3")}/></td>
+        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority4" title={this.state.priority_selection[4]} onChange={this.boxPress.bind(this,"Priority4")}/></td>
+        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority5" title={this.state.priority_selection[5]} onChange={this.boxPress.bind(this,"Priority5")}/></td>
       </tr>
       );
       var result_type = this.props.measure.Type.split(";")
@@ -152,40 +209,37 @@ changeSelect(data_id,e){
 
         var scan_type = result_type[d];
 
-        var select_type = new Array(4);
-
         if(scan_type.search("Embedded")==-1){
-          select_type[0]="Exclude"
+          this.state.select_type[0]="Exclude"
         }else{
-          select_type[0]="Include"
+          this.state.select_type[0]="Include"
         }
         if(scan_type.search("Locale")==-1){
-          select_type[1]="Exclude"
+          this.state.select_type[1]="Exclude"
         }else{
-          select_type[1]="Include"
+          this.state.select_type[1]="Include"
         }
         if(scan_type.search("General")==-1){
-          select_type[2]="Exclude"
+          this.state.select_type[2]="Exclude"
         }else{
-          select_type[2]="Include"
+          this.state.select_type[2]="Include"
         }
         if(scan_type.search("Static")==-1){
-          select_type[3]="Exclude"
+          this.state.select_type[3]="Exclude"
         }else{
-          select_type[3]="Include"
+          this.state.select_type[3]="Include"
         }
 
-
         if(this.state.pdf.search(scan[d]+" Embedded")==-1)
-          this.state.pdf = this.state.pdf + scan[d]+" Embedded "+select_type[0]+" " + scan[d] +" Locale "+select_type[1]+" "+scan[d] +" General "+select_type[2]+" "+scan[d] +" Static "+select_type[3]+" "
+          this.state.pdf = this.state.pdf + scan[d]+" Embedded "+this.state.select_type[0]+" " + scan[d] +" Locale "+this.state.select_type[1]+" "+scan[d] +" General "+this.state.select_type[2]+" "+scan[d] +" Static "+this.state.select_type[3]+" "
 
        content[d]  = (
           <tr height="30" className="alt">
           <td className="label">  {scan[d]}</td>
-          <td className="label"><input style={{border:'none'}} type="submit" title="" id={scan[d]+" Embedded"} value={select_type[0]} onClick={this.changeSelect.bind(this,scan[d]+" Embedded")}/></td>
-          <td className="label"><input style={{border:'none'}} type="submit" title="" id={scan[d]+" Locale"} value={select_type[1]} onClick={this.changeSelect.bind(this,scan[d]+" Locale")}/></td>
-          <td className="label"><input style={{border:'none'}} type="submit" title="" id={scan[d]+" General"} value={select_type[2]} onClick={this.changeSelect.bind(this,scan[d]+" General")}/></td>
-          <td className="label"><input style={{border:'none'}} type="submit" title="" id={scan[d]+" Static"} value={select_type[3]} onClick={this.changeSelect.bind(this,scan[d]+" Static")}/></td>
+          <td className="label"><input style={{border:'none'}} type="checkbox"  id={scan[d]+" Embedded"} title={this.state.select_type[0]} onChange={this.boxPress.bind(this,scan[d]+" Embedded")}/></td>
+          <td className="label"><input style={{border:'none'}} type="checkbox"  id={scan[d]+" Locale"} title={this.state.select_type[1]} onChange={this.boxPress.bind(this,scan[d]+" Locale")}/></td>
+          <td className="label"><input style={{border:'none'}} type="checkbox"  id={scan[d]+" General"} title={this.state.select_type[2]} onChange={this.boxPress.bind(this,scan[d]+" General")}/></td>
+          <td className="label"><input style={{border:'none'}} type="checkbox"  id={scan[d]+" Static"} title={this.state.select_type[3]} onChange={this.boxPress.bind(this,scan[d]+" Static")}/></td>
           </tr>
       );
      }
