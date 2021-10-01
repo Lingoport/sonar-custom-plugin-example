@@ -148,7 +148,6 @@ generate_param(pdf){
   //  element.title="Exclude"
     this.state.pdf=this.state.pdf.replace(data_id+" Include", data_id+" Exclude")
   }
-  e.preventDefault();
 }
 
   render() {
@@ -195,13 +194,13 @@ generate_param(pdf){
       this.state.pdf = "Concatenations "+this.state.priority_selection[0]+" Priority1 "+this.state.priority_selection[1]+" Priority2 "+this.state.priority_selection[2]+" Priority3 " +this.state.priority_selection[3]+" Priority4 "+ this.state.priority_selection[4]+" Priority5 "+this.state.priority_selection[5]
 
       var priority_content = (
-        <tr height="30" className="alt">
-        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Concatenations"  onChange={this.boxPress.bind(this,"Concatenations")}/> </td>
-        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority1"  onChange={this.boxPress.bind(this,"Priority1")}/></td>
-        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority2"  onChange={this.boxPress.bind(this,"Priority2")}/></td>
-        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority3" onChange={this.boxPress.bind(this,"Priority3")}/></td>
-        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority4"  onChange={this.boxPress.bind(this,"Priority4")}/></td>
-        <td className="label"><input style={{border:'none'}} type="checkbox"  id="Priority5"  onChange={this.boxPress.bind(this,"Priority5")}/></td>
+        <tr height="30" className="alt" style={{textAlign:'center'}}>
+        <td className="label" style={{textAlign:'center'}}><input  type="checkbox"  id="Concatenations"  onChange={this.boxPress.bind(this,"Concatenations")}/> </td>
+        <td className="label" style={{textAlign:'center'}}><input  type="checkbox"  id="Priority1"  onChange={this.boxPress.bind(this,"Priority1")}/></td>
+        <td className="label" style={{textAlign:'center'}}><input  type="checkbox"  id="Priority2"  onChange={this.boxPress.bind(this,"Priority2")}/></td>
+        <td className="label" style={{textAlign:'center'}}><input  type="checkbox"  id="Priority3" onChange={this.boxPress.bind(this,"Priority3")}/></td>
+        <td className="label" style={{textAlign:'center'}}><input  type="checkbox"  id="Priority4"  onChange={this.boxPress.bind(this,"Priority4")}/></td>
+        <td className="label" style={{textAlign:'center'}}><input  type="checkbox"  id="Priority5"  onChange={this.boxPress.bind(this,"Priority5")}/></td>
       </tr>
       );
       var result_type = this.props.measure.Type.split(";")
@@ -234,12 +233,12 @@ generate_param(pdf){
           this.state.pdf = this.state.pdf + scan[d]+" Embedded "+this.state.select_type[0]+" " + scan[d] +" Locale "+this.state.select_type[1]+" "+scan[d] +" General "+this.state.select_type[2]+" "+scan[d] +" Static "+this.state.select_type[3]+" "
 
        content[d]  = (
-          <tr height="30" className="alt">
+          <tr height="30" className="alt" style={{textAlign:'center'}}>
           <td className="label">  {scan[d]}</td>
-          <td className="label"><input style={{border:'none'}} type="checkbox"  id={scan[d]+" Embedded"}  onChange={this.boxPress.bind(this,scan[d]+" Embedded")}/></td>
-          <td className="label"><input style={{border:'none'}} type="checkbox"  id={scan[d]+" Locale"}  onChange={this.boxPress.bind(this,scan[d]+" Locale")}/></td>
-          <td className="label"><input style={{border:'none'}} type="checkbox"  id={scan[d]+" General"} onChange={this.boxPress.bind(this,scan[d]+" General")}/></td>
-          <td className="label"><input style={{border:'none'}} type="checkbox"  id={scan[d]+" Static"}  onChange={this.boxPress.bind(this,scan[d]+" Static")}/></td>
+          <td className="label" style={{textAlign:'center'}}><input type="checkbox"  id={scan[d]+" Embedded"}  onChange={this.boxPress.bind(this,scan[d]+" Embedded")}/></td>
+          <td className="label" style={{textAlign:'center'}}><input type="checkbox"  id={scan[d]+" Locale"}  onChange={this.boxPress.bind(this,scan[d]+" Locale")}/></td>
+          <td className="label" style={{textAlign:'center'}}><input type="checkbox"  id={scan[d]+" General"} onChange={this.boxPress.bind(this,scan[d]+" General")}/></td>
+          <td className="label" style={{textAlign:'center'}}><input type="checkbox"  id={scan[d]+" Static"}  onChange={this.boxPress.bind(this,scan[d]+" Static")}/></td>
           </tr>
       );
      }
@@ -250,10 +249,10 @@ generate_param(pdf){
       <div className="lpgzsummaryscanwidget" style={{height:'100%'}}>
       <div className="widget">
       <link href="../style.css" rel="stylesheet"/>
-      <h3>Globalyzer Lite Project Definition File Settings</h3>
+      <h3>Globalyzer Settings</h3>
       <div className="lg_widget">
 
-      <table className="lg_ds_progress_bar" border="0" width="500">
+      <table className="lg_ds_progress_bar" border="0" width="500" align="center">
       <thead>
       <tr>
        <th>Concatenations</th>
@@ -270,7 +269,7 @@ generate_param(pdf){
 
       </tbody></table>
 
-      <table className="lg_ds_progress_bar" border="0" width="500">
+      <table className="lg_ds_progress_bar" border="0" width="500" align="center">
       <thead>
       <tr>
        <th>{translate('lingoport.scan')}</th>

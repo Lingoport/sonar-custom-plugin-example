@@ -18,6 +18,10 @@ table.lg_ds_progress_bar td.label_left {
     padding: 5px 10px 5px 0;
 }
 
+input {
+    text-align: middle;
+}
+
 table.outline, th.outline, td.outline {
     border: 1px solid black;
     padding: 3px;
