@@ -287,6 +287,8 @@ generate_param(pdf){
             <a></a>
             </div>
           </td>
+
+          <td><a href="https://wiki.lingoport.com/About_Dashboard" target="_blank">Help</a></td>
       </tbody></table>
       </div>
       <div className="clear"></div>
