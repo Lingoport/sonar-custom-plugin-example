@@ -57,31 +57,36 @@ export default class GlobalyzerPDFtype extends React.PureComponent {
         element.setAttribute("checked", "true");
         element.checked = true;
     }
+
+   if(this.props.measure.Scan === undefined){
+
+   }else{
       var scan = this.props.measure.Scan.split(";")
       var result_type = this.props.measure.Type.split(";")
-for(let d = 0; d < scan.length; d++){
-  var scan_type = result_type[d];
-    if(scan_type.search("Embedded")!=-1){
-      var element = document.getElementById(scan[d]+" Embedded");
+      for(let d = 0; d < scan.length; d++){
+      var scan_type = result_type[d];
+      if(scan_type.search("Embedded")!=-1){
+        var element = document.getElementById(scan[d]+" Embedded");
         element.setAttribute("checked", "true");
         element.checked = true;
-    }
-    if(scan_type.search("Locale")!=-1){
-      var element = document.getElementById(scan[d]+" Locale");
+      }
+      if(scan_type.search("Locale")!=-1){
+        var element = document.getElementById(scan[d]+" Locale");
         element.setAttribute("checked", "true");
         element.checked = true;
-    }
-    if(scan_type.search("General")!=-1){
-      var element = document.getElementById(scan[d]+" General");
+      }
+      if(scan_type.search("General")!=-1){
+        var element = document.getElementById(scan[d]+" General");
         element.setAttribute("checked", "true");
         element.checked = true;
+      }
+      if(scan_type.search("Static")!=-1){
+        var element = document.getElementById(scan[d]+" Static");
+          element.setAttribute("checked", "true");
+          element.checked = true;
+      }
     }
-    if(scan_type.search("Static")!=-1){
-      var element = document.getElementById(scan[d]+" Static");
-        element.setAttribute("checked", "true");
-        element.checked = true;
-    }
-  }
+   }
   }
 
   get(jenkins,e){
@@ -154,6 +159,7 @@ generate_param(pdf){
     if(this.props.measure.Scan === undefined){
         var content= (<h5>No data found</h5>);
         var priority_content= (<h5>No data found</h5>);
+        var link_content = (<h5></h5>);
     }else{
       var scan = this.props.measure.Scan.split(";")
       var result_priority = this.props.measure.Priority.split(";")
@@ -202,6 +208,16 @@ generate_param(pdf){
         <td className="label" style={{textAlign:'center'}}><input  type="checkbox"  id="Priority4"  onChange={this.boxPress.bind(this,"Priority4")}/></td>
         <td className="label" style={{textAlign:'center'}}><input  type="checkbox"  id="Priority5"  onChange={this.boxPress.bind(this,"Priority5")}/></td>
       </tr>
+      );
+      var link_content = (
+        <tr>
+        <td valign="top" align="left" nowrap="" colspan="4">
+          <div id="prepkit">
+          <input type="submit" title="" value="Save to Project Definition File" onClick={this.get.bind(this,this.state.jenkins)}/>
+          </div>
+        </td>
+        <td><a href="https://wiki.lingoport.com/Dashboard_Globalyzer" target="_blank">Help</a></td>
+        </tr>
       );
       var result_type = this.props.measure.Type.split(";")
       for(let d = 0; d < scan.length; d++){
@@ -281,14 +297,7 @@ generate_param(pdf){
       </thead>
       <tbody>
           {content}
-          <td valign="top" align="left" nowrap="" colspan="4">
-            <div id="prepkit">
-            <input type="submit" title="" value="Save to Project Definition File" onClick={this.get.bind(this,this.state.jenkins)}/>
-            <a></a>
-            </div>
-          </td>
-
-          <td><a href="https://wiki.lingoport.com/About_Dashboard" target="_blank">Help</a></td>
+          {link_content}
       </tbody></table>
       </div>
       <div className="clear"></div>
